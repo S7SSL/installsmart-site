@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>InstallSmart AI — Aries World UPVC Proposal</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+html, body { width:100%; height:100%; background:#000; font-family:'Segoe UI',Arial,sans-serif; overflow:hidden; }
+
+.deck { width:100%; height:100%; position:relative; }
+
+.slide {
+  position:absolute; inset:0;
+  display:flex; flex-direction:column; justify-content:center; align-items:center;
+  padding:60px;
+  opacity:0; pointer-events:none;
+  transition:opacity 0.5s ease;
+  text-align:center;
+}
+.slide.active { opacity:1; pointer-events:all; }
+
+/* Slide 1 - Title */
+.s1 { background: radial-gradient(ellipse at center, #1a0033 0%, #000 70%); }
+.s1 .brand { font-size:0.9em; letter-spacing:4px; text-transform:uppercase; color:#0066cc; margin-bottom:24px; }
+.s1 h1 { font-size:clamp(2em,5vw,4em); font-weight:800; color:#fff; line-height:1.1; margin-bottom:20px; }
+.s1 h1 span { color:#0066cc; }
+.s1 p { color:#999; font-size:1.1em; max-width:600px; line-height:1.6; margin-bottom:32px; }
+.s1 .meta { display:flex; gap:20px; justify-content:center; font-size:0.9em; color:#666; flex-wrap:wrap; }
+.s1 .meta span { display:flex; align-items:center; gap:6px; }
+.s1 .meta strong { color:#0066cc; }
+
+/* Slide 2 - The Problem */
+.s2 { background: linear-gradient(135deg, #000 0%, #0a0a1a 100%); }
+.s2 .eyebrow { font-size:0.8em; letter-spacing:3px; text-transform:uppercase; color:#0066cc; margin-bottom:16px; }
+.s2 h2 { font-size:clamp(1.8em,4vw,3.2em); font-weight:800; color:#fff; margin-bottom:24px; }
+.s2 .problem { background:#111; border:1px solid #333; border-radius:16px; padding:32px; max-width:700px; text-align:left; }
+.s2 .problem p { color:#ccc; line-height:1.8; font-size:1.05em; margin-bottom:16px; }
+.s2 .problem .highlight { color:#0066cc; font-weight:600; }
+.s2 .bullets { text-align:left; color:#999; margin-top:20px; }
+.s2 .bullets li { margin-left:20px; margin-bottom:8px; }
+
+/* Slide 3 - Solutions */
+.s3 { background: radial-gradient(ellipse at 30% 50%, #001a33 0%, #000 70%); }
+.s3 h2 { font-size:clamp(1.8em,4vw,3.2em); font-weight:800; color:#fff; margin-bottom:36px; }
+.s3 .solutions { display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap:20px; max-width:900px; }
+.s3 .sol { background:#0a0a15; border:1px solid #0066cc33; border-radius:12px; padding:24px; text-align:left; }
+.s3 .sol .num { font-size:2em; color:#0066cc; font-weight:800; margin-bottom:8px; }
+.s3 .sol h3 { color:#fff; font-size:1.2em; margin-bottom:8px; }
+.s3 .sol p { color:#aaa; font-size:0.95em; line-height:1.6; }
+
+/* Slide 4 - Timeline */
+.s4 { background: radial-gradient(ellipse at 70% 50%, #330000 0%, #000 70%); }
+.s4 h2 { font-size:clamp(1.8em,4vw,3.2em); font-weight:800; color:#fff; margin-bottom:32px; }
+.s4 .timeline { display:flex; gap:20px; justify-content:center; flex-wrap:wrap; max-width:800px; }
+.s4 .day { background:#1a0000; border:1px solid #ff6b6b33; border-radius:12px; padding:28px 20px; text-align:center; min-width:180px; }
+.s4 .day .d { font-size:2.2em; font-weight:800; color:#ff6b6b; margin-bottom:10px; }
+.s4 .day p { color:#ddd; font-size:0.95em; line-height:1.5; }
+
+/* Slide 5 - Investment */
+.s5 { background: radial-gradient(ellipse at 50% 30%, #1a3300 0%, #000 70%); }
+.s5 h2 { font-size:clamp(1.8em,4vw,3.2em); font-weight:800; color:#fff; margin-bottom:32px; }
+.s5 .price { font-size:4em; font-weight:800; color:#22c55e; margin-bottom:10px; }
+.s5 .desc { color:#ccc; font-size:1.1em; margin-bottom:32px; max-width:700px; }
+.s5 .items { display:grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap:16px; max-width:800px; }
+.s5 .item { background:#0a1a0a; border:1px solid #22c55e33; border-radius:8px; padding:16px; text-align:left; }
+.s5 .item .label { color:#22c55e; font-weight:600; font-size:0.9em; }
+.s5 .item .value { color:#fff; font-weight:600; margin-top:4px; }
+
+/* Slide 6 - Results */
+.s6 { background: radial-gradient(ellipse at center, #000033 0%, #000 70%); }
+.s6 h2 { font-size:clamp(1.8em,4vw,3.2em); font-weight:800; color:#fff; margin-bottom:32px; }
+.s6 .results { display:grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap:20px; max-width:900px; }
+.s6 .res { background:#0a0a15; border:1px solid #0066cc33; border-radius:12px; padding:24px; }
+.s6 .res h3 { color:#0066cc; font-size:1.1em; margin-bottom:12px; text-transform:uppercase; letter-spacing:1px; }
+.s6 .res ul { list-style:none; text-align:left; }
+.s6 .res li { color:#aaa; font-size:0.9em; margin-bottom:8px; padding-left:20px; position:relative; }
+.s6 .res li:before { content:"✓"; position:absolute; left:0; color:#22c55e; }
+
+/* Slide 7 - CTA */
+.s7 { background: linear-gradient(135deg, #0066cc 0%, #004fa3 100%); }
+.s7 h1 { font-size:clamp(2em,5vw,4em); font-weight:800; color:#fff; margin-bottom:20px; }
+.s7 p { color:#ccc; font-size:1.1em; margin-bottom:32px; }
+.s7 .meta { color:#ddd; font-size:0.95em; margin-bottom:32px; }
+.s7 .cta { display:inline-block; background:#fff; color:#0066cc; padding:14px 32px; border-radius:6px; text-decoration:none; font-weight:700; font-size:1.05em; transition:transform 0.2s; }
+.s7 .cta:hover { transform:scale(1.05); }
+
+/* Nav */
+.nav {
+  position:fixed; bottom:32px; left:50%; transform:translateX(-50%);
+  display:flex; align-items:center; gap:20px;
+  background:rgba(255,255,255,0.05); backdrop-filter:blur(10px);
+  border:1px solid rgba(255,255,255,0.1);
+  border-radius:50px; padding:10px 24px;
+  z-index:100;
+}
+.nav button {
+  background:none; border:none; color:#fff; cursor:pointer; font-size:1.2em;
+  opacity:0.5; transition:opacity 0.2s; padding:4px 8px;
+}
+.nav button:hover { opacity:1; }
+.nav button:disabled { opacity:0.15; cursor:default; }
+.dots { display:flex; gap:8px; }
+.dot { width:8px; height:8px; border-radius:50%; background:#444; transition:background 0.3s, transform 0.3s; cursor:pointer; }
+.dot.active { background:#0066cc; transform:scale(1.3); }
+.slide-num { color:#555; font-size:0.8em; min-width:40px; text-align:center; }
+
+.hint { position:fixed; top:20px; right:24px; color:#333; font-size:0.78em; }
+</style>
+</head>
+<body>
+
+<div class="deck" id="deck">
+
+  <!-- SLIDE 1: Title -->
+  <div class="slide s1 active">
+    <div class="brand">InstallSmart AI</div>
+    <h1>Aries World <span>UPVC Optimization</span></h1>
+    <p>AI-ready website fix for PSB Glazing Ltd — 3 days, £995, live results</p>
+    <div class="meta">
+      <span>💼 <strong>Client:</strong> Aries World</span>
+      <span>💷 <strong>Investment:</strong> £995</span>
+      <span>⏱️ <strong>Timeline:</strong> 3 Days</span>
+      <span>📅 <strong>Delivery:</strong> 3 April 2026</span>
+    </div>
+  </div>
+
+  <!-- SLIDE 2: The Problem -->
+  <div class="slide s2">
+    <div class="eyebrow">Here's what's broken</div>
+    <h2>Your UPVC page isn't converting</h2>
+    <div class="problem">
+      <p>✓ Clear product description  ✓ Professional tone</p>
+      <p><span class="highlight">But...</span></p>
+      <ul class="bullets">
+        <li>❌ ZERO product images (text-only page)</li>
+        <li>❌ ZERO call-to-action (nowhere to click)</li>
+        <li>❌ ZERO pricing (price sensitivity kills conversions)</li>
+        <li>❌ ZERO testimonials (no social proof)</li>
+        <li>❌ ZERO AI-readiness (Google ignores it)</li>
+      </ul>
+      <p style="margin-top:20px; color:#ff6b6b; font-weight:600;">Result: You're invisible. You're losing to competitors.</p>
+    </div>
+  </div>
+
+  <!-- SLIDE 3: Solutions -->
+  <div class="slide s3">
+    <h2>The 5 Fixes</h2>
+    <div class="solutions">
+      <div class="sol">
+        <div class="num">1</div>
+        <h3>Product Images</h3>
+        <p>5-8 pro photos (installed doors, close-ups, lifestyle). Images boost engagement 2x and conversion 40%.</p>
+      </div>
+      <div class="sol">
+        <div class="num">2</div>
+        <h3>AI Schema Markup</h3>
+        <p>JSON-LD so Google understands your product. Enables featured snippets and Google SGE integration.</p>
+      </div>
+      <div class="sol">
+        <div class="num">3</div>
+        <h3>Lead Capture Form</h3>
+        <p>"Get Free Quote" button. Pop-up form connected to CRM. 70% of visitors leave without contacting.</p>
+      </div>
+      <div class="sol">
+        <div class="num">4</div>
+        <h3>Social Proof</h3>
+        <p>4 customer testimonials + star ratings + trust badges. Increases conversion 30-50%.</p>
+      </div>
+      <div class="sol">
+        <div class="num">5</div>
+        <h3>Comparison Table</h3>
+        <p>UPVC vs Timber vs Composite vs Aluminium. Price, maintenance, durability. Ranks for "vs" queries.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 4: Timeline -->
+  <div class="slide s4">
+    <h2>3-Day Turnaround</h2>
+    <div class="timeline">
+      <div class="day">
+        <div class="d">Day 1</div>
+        <p>Images + Schema + Form setup</p>
+      </div>
+      <div class="day">
+        <div class="d">Day 2</div>
+        <p>Testimonials + Comparison + Mobile</p>
+      </div>
+      <div class="day">
+        <div class="d">Day 3</div>
+        <p>Testing + Go-live + Handoff</p>
+      </div>
+    </div>
+    <p style="color:#ff6b6b; font-weight:600; margin-top:28px; font-size:1.1em;">✓ LIVE ON APRIL 3RD</p>
+  </div>
+
+  <!-- SLIDE 5: Investment -->
+  <div class="slide s5">
+    <h2>Your Investment</h2>
+    <div class="price">£995</div>
+    <div class="desc">All 5 fixes + setup + 30 days free updates</div>
+    <div class="items">
+      <div class="item">
+        <div class="label">Images</div>
+        <div class="value">£150</div>
+      </div>
+      <div class="item">
+        <div class="label">Schema Markup</div>
+        <div class="value">£100</div>
+      </div>
+      <div class="item">
+        <div class="label">Lead Form + CTA</div>
+        <div class="value">£100</div>
+      </div>
+      <div class="item">
+        <div class="label">Testimonials</div>
+        <div class="value">£100</div>
+      </div>
+      <div class="item">
+        <div class="label">Comparison Table</div>
+        <div class="value">£75</div>
+      </div>
+      <div class="item">
+        <div class="label">Mobile + Testing</div>
+        <div class="value">£100</div>
+      </div>
+      <div class="item">
+        <div class="label">GSC Setup</div>
+        <div class="value">£50</div>
+      </div>
+      <div class="item">
+        <div class="label">Documentation</div>
+        <div class="value">£50</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 6: Results -->
+  <div class="slide s6">
+    <h2>What You'll Get</h2>
+    <div class="results">
+      <div class="res">
+        <h3>Month 1-2</h3>
+        <ul>
+          <li>Google recognizes product schema</li>
+          <li>Featured snippet inclusion</li>
+          <li>5-10 qualified leads from form</li>
+        </ul>
+      </div>
+      <div class="res">
+        <h3>Month 2-3</h3>
+        <ul>
+          <li>Rankings improve 5-10 positions</li>
+          <li>Conversion rate +25-40%</li>
+          <li>Google SGE integration</li>
+        </ul>
+      </div>
+      <div class="res">
+        <h3>Long-Term</h3>
+        <ul>
+          <li>Consistent organic lead flow</li>
+          <li>You beat competitors</li>
+          <li>Lower customer acquisition cost</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 7: CTA -->
+  <div class="slide s7">
+    <h1>Let's Go</h1>
+    <p>3 days. £995. No BS. Results guaranteed.</p>
+    <div class="meta">📧 sat@installsmart.ai</div>
+    <a class="cta" href="mailto:sat@installsmart.ai?subject=Aries%20World%20UPVC%20Proposal%20-%20Ready%20to%20Go">Start Now</a>
+  </div>
+
+</div>
+
+<!-- Navigation -->
+<div class="nav">
+  <button id="prev" onclick="go(-1)" disabled>←</button>
+  <div class="dots" id="dots"></div>
+  <button id="next" onclick="go(1)">→</button>
+  <span class="slide-num" id="num">1 / 7</span>
+</div>
+
+<div class="hint">Use ← → arrow keys to navigate</div>
+
+<script>
+const slides = document.querySelectorAll('.slide');
+const dotsEl = document.getElementById('dots');
+const numEl = document.getElementById('num');
+let cur = 0;
+const total = slides.length;
+
+slides.forEach((_,i) => {
+  const d = document.createElement('div');
+  d.className = 'dot' + (i===0?' active':'');
+  d.onclick = () => go(i - cur);
+  dotsEl.appendChild(d);
+});
+
+function go(delta) {
+  slides[cur].classList.remove('active');
+  dotsEl.children[cur].classList.remove('active');
+  cur = Math.max(0, Math.min(total-1, cur+delta));
+  slides[cur].classList.add('active');
+  dotsEl.children[cur].classList.add('active');
+  numEl.textContent = (cur+1) + ' / ' + total;
+  document.getElementById('prev').disabled = cur === 0;
+  document.getElementById('next').disabled = cur === total-1;
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowRight' || e.key === 'ArrowDown') go(1);
+  if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')   go(-1);
+});
+</script>
+</body>
+</html>
