@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='28' font-size='28'>🍌</text></svg>">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Proposal for [CLIENT] — InstallSmart.AI</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #1a2332;
+      --amber: #f59e0b;
+      --amber-light: #fef3c7;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --border: #e5e7eb;
+      --white: #ffffff;
+    }
+
+    body {
+      font-family: 'Georgia', serif;
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--text);
+      background: var(--white);
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 0;
+    }
+
+    .page-header {
+      background: var(--navy);
+      color: var(--white);
+      padding: 36px 48px 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+    .logo-text {
+      font-family: 'Arial', sans-serif;
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      color: var(--white);
+    }
+    .logo-text span { color: var(--amber); }
+    .header-meta {
+      text-align: right;
+      font-family: 'Arial', sans-serif;
+    }
+    .header-meta .proposal-label {
+      font-size: 13px;
+      color: #94a3b8;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .header-meta .client-name {
+      font-size: 19px;
+      font-weight: 700;
+      color: var(--white);
+      margin-top: 2px;
+    }
+    .header-meta .date {
+      font-size: 12px;
+      color: #94a3b8;
+      margin-top: 3px;
+    }
+
+    .amber-rule {
+      height: 4px;
+      background: var(--amber);
+    }
+
+    .page-body {
+      padding: 40px 48px 32px;
+    }
+
+    h2 {
+      font-family: 'Arial', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--amber);
+      margin-bottom: 10px;
+      margin-top: 36px;
+    }
+    h2:first-child { margin-top: 0; }
+
+    h3 {
+      font-family: 'Arial', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 6px;
+      margin-top: 20px;
+    }
+
+    p { margin-bottom: 10px; color: var(--text); }
+
+    .section-divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 32px 0 0;
+    }
+
+    .scope-list {
+      list-style: none;
+      padding: 0;
+      margin: 4px 0 0;
+    }
+    .scope-list li {
+      padding: 7px 0 7px 20px;
+      position: relative;
+      border-bottom: 1px solid var(--border);
+      font-size: 13.5px;
+    }
+    .scope-list li:last-child { border-bottom: none; }
+    .scope-list li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--amber);
+      font-weight: 700;
+    }
+
+    .investment-box {
+      background: var(--navy);
+      border-radius: 8px;
+      padding: 28px 32px;
+      margin-top: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .investment-box .inv-label {
+      font-family: 'Arial', sans-serif;
+      font-size: 13px;
+      color: #94a3b8;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .investment-box .inv-desc {
+      font-family: 'Arial', sans-serif;
+      font-size: 16px;
+      color: var(--white);
+      font-weight: 600;
+      margin-top: 4px;
+    }
+    .investment-box .inv-price {
+      text-align: right;
+    }
+    .investment-box .inv-price .price-amount {
+      font-family: 'Arial', sans-serif;
+      font-size: 36px;
+      font-weight: 700;
+      color: var(--amber);
+      line-height: 1;
+    }
+    .investment-box .inv-price .price-note {
+      font-size: 11px;
+      color: #94a3b8;
+      margin-top: 4px;
+    }
+
+    .outcomes-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 16px;
+      margin-top: 12px;
+    }
+    .outcome-card {
+      background: #f8fafc;
+      border-left: 3px solid var(--amber);
+      border-radius: 4px;
+      padding: 16px;
+    }
+    .outcome-card .outcome-title {
+      font-family: 'Arial', sans-serif;
+      font-size: 12.5px;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 6px;
+    }
+    .outcome-card p {
+      font-size: 12.5px;
+      color: var(--muted);
+      margin: 0;
+      line-height: 1.5;
+    }
+
+    .steps-list {
+      list-style: none;
+      padding: 0;
+      margin-top: 10px;
+      counter-reset: steps;
+    }
+    .steps-list li {
+      counter-increment: steps;
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 13.5px;
+    }
+    .steps-list li:last-child { border-bottom: none; }
+    .steps-list li::before {
+      content: counter(steps);
+      background: var(--amber);
+      color: var(--white);
+      font-family: 'Arial', sans-serif;
+      font-weight: 700;
+      font-size: 11px;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .cta-wrap {
+      text-align: center;
+      margin: 28px 0 8px;
+    }
+    .cta-button {
+      display: inline-block;
+      background: var(--amber);
+      color: var(--white);
+      font-family: 'Arial', sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: 0.5px;
+      text-decoration: none;
+      padding: 13px 36px;
+      border-radius: 4px;
+    }
+
+    .signature-block {
+      margin-top: 32px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+      font-family: 'Arial', sans-serif;
+    }
+    .signature-block .sig-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+    .sig-row {
+      display: flex;
+      gap: 40px;
+      margin-top: 4px;
+    }
+    .sig-field {
+      flex: 1;
+    }
+    .sig-line {
+      border-bottom: 1px solid var(--text);
+      height: 32px;
+      margin-bottom: 6px;
+    }
+    .sig-field-label {
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .page-footer {
+      background: var(--navy);
+      color: #94a3b8;
+      font-family: 'Arial', sans-serif;
+      font-size: 11px;
+      padding: 16px 48px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 40px;
+    }
+    .page-footer a { color: #94a3b8; text-decoration: none; }
+
+    @media print {
+      body { max-width: 100%; font-size: 12px; }
+      .page-header { padding: 24px 32px 20px; }
+      .page-body { padding: 28px 32px 24px; }
+      .page-footer { margin-top: 24px; padding: 12px 32px; }
+    }
+
+    @media (max-width: 600px) {
+      .page-header { flex-direction: column; gap: 16px; padding: 24px; }
+      .header-meta { text-align: left; }
+      .page-body { padding: 28px 24px; }
+      .investment-box { flex-direction: column; gap: 16px; text-align: center; }
+      .outcomes-grid { grid-template-columns: 1fr; }
+      .page-footer { flex-direction: column; gap: 6px; padding: 16px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="page-header">
+    <div class="logo-text">InstallSmart<span>.AI</span></div>
+    <div class="header-meta">
+      <div class="proposal-label">Proposal for</div>
+      <div class="client-name">[CLIENT NAME]</div>
+      <div class="date">[MONTH YEAR] · Confidential</div>
+    </div>
+  </header>
+  <div class="amber-rule"></div>
+
+  <main class="page-body">
+
+    <h2>Executive Summary</h2>
+    <p>[Executive summary paragraph describing the opportunity and what you'll deliver]</p>
+
+    <hr class="section-divider">
+
+    <h2>Scope of Work</h2>
+    <p style="font-size:12.5px; color: var(--muted);">[Brief description of the scope]</p>
+    <ul class="scope-list">
+      <li><strong>[Deliverable 1]</strong> — [Description]</li>
+      <li><strong>[Deliverable 2]</strong> — [Description]</li>
+      <li><strong>[Deliverable 3]</strong> — [Description]</li>
+      <li><strong>[Deliverable 4]</strong> — [Description]</li>
+    </ul>
+
+    <hr class="section-divider">
+
+    <h2>Investment</h2>
+    <div class="investment-box">
+      <div>
+        <div class="inv-label">[PACKAGE NAME]</div>
+        <div class="inv-desc">[Description]</div>
+      </div>
+      <div class="inv-price">
+        <div class="price-amount">£[AMOUNT]</div>
+        <div class="price-note">[Terms]</div>
+      </div>
+    </div>
+
+    <hr class="section-divider">
+
+    <h2>What This Delivers</h2>
+    <div class="outcomes-grid">
+      <div class="outcome-card">
+        <div class="outcome-title">[Outcome 1]</div>
+        <p>[Description]</p>
+      </div>
+      <div class="outcome-card">
+        <div class="outcome-title">[Outcome 2]</div>
+        <p>[Description]</p>
+      </div>
+      <div class="outcome-card">
+        <div class="outcome-title">[Outcome 3]</div>
+        <p>[Description]</p>
+      </div>
+    </div>
+
+    <hr class="section-divider">
+
+    <h2>Next Steps</h2>
+    <ol class="steps-list">
+      <li>[Step 1]</li>
+      <li>[Step 2]</li>
+      <li>[Step 3]</li>
+    </ol>
+
+    <div class="cta-wrap">
+      <a class="cta-button" href="[CALENDLY OR CTA LINK]">Get Started →</a>
+    </div>
+
+    <div class="signature-block">
+      <div class="sig-label">Agreed and accepted</div>
+      <div class="sig-row">
+        <div class="sig-field">
+          <div class="sig-line"></div>
+          <div class="sig-field-label">Signature</div>
+        </div>
+        <div class="sig-field">
+          <div class="sig-line"></div>
+          <div class="sig-field-label">Date</div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <footer class="page-footer">
+    <span><a href="mailto:sat@installsmart.ai">sat@installsmart.ai</a></span>
+    <span>Kaizen Finance Ltd · Confidential</span>
+  </footer>
+
+</body>
+</html>
