@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>The Black Book Shuffle</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html, body {
+    background: #F5F1EB;
+    color: #1a1a1a;
+    font-family: 'Inter', sans-serif;
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    min-height: 100vh;
+    padding: 40px 16px 60px;
+  }
+
+  .container {
+    text-align: center;
+    width: 100%;
+    max-width: 500px;
+  }
+
+  h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.2rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    margin-bottom: 6px;
+    color: #1a1a1a;
+  }
+
+  .subtitle {
+    font-size: 0.9rem;
+    color: #888;
+    font-weight: 300;
+    letter-spacing: 0.08em;
+    margin-bottom: 30px;
+  }
+
+  .wheel-area {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 30px;
+  }
+
+  .pointer {
+    position: absolute;
+    top: -14px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    width: 0;
+    height: 0;
+    border-left: 14px solid transparent;
+    border-right: 14px solid transparent;
+    border-top: 26px solid #1a1a1a;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+  }
+
+  .pointer::after {
+    content: '';
+    position: absolute;
+    top: -30px;
+    left: -9px;
+    width: 18px;
+    height: 18px;
+    background: #1a1a1a;
+    border-radius: 50%;
+  }
+
+  .wheel-ring {
+    display: inline-block;
+    padding: 10px;
+    border-radius: 50%;
+    background: #1a1a1a;
+    box-shadow: 0 0 0 4px #C9A96E, 0 0 0 8px #1a1a1a, 0 10px 30px rgba(0,0,0,0.25);
+  }
+
+  canvas {
+    display: block;
+    border-radius: 50%;
+  }
+
+  .spin-btn {
+    display: inline-block;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    background: #1a1a1a;
+    color: #F5F1EB;
+    border: none;
+    padding: 15px 48px;
+    cursor: pointer;
+    -webkit-appearance: none;
+    border-radius: 0;
+    touch-action: manipulation;
+  }
+
+  .spin-btn:active {
+    background: #C9A96E;
+    color: #1a1a1a;
+  }
+
+  .spin-btn:disabled {
+    opacity: 0.5;
+  }
+
+  .result {
+    margin-top: 28px;
+    min-height: 100px;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .result.show {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .result-suit {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+    font-weight: 600;
+    padding: 8px 24px;
+    border: 2px solid #1a1a1a;
+    margin-bottom: 12px;
+  }
+
+  .result-message {
+    font-size: 1rem;
+    font-weight: 300;
+    line-height: 1.6;
+    max-width: 360px;
+    margin: 0 auto;
+    color: #444;
+    padding: 0 10px;
+  }
+
+  .draw-again {
+    display: inline-block;
+    margin-top: 14px;
+    font-size: 0.85rem;
+    color: #999;
+    text-decoration: underline;
+    cursor: pointer;
+    touch-action: manipulation;
+  }
+
+  @media (min-width: 600px) {
+    body { padding-top: 60px; }
+    h1 { font-size: 2.6rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <h1>The Black Book Shuffle</h1>
+  <p class="subtitle">One clear step. Every day.</p>
+
+  <div class="wheel-area">
+    <div class="pointer"></div>
+    <div class="wheel-ring">
+      <canvas id="wheel"></canvas>
+    </div>
+  </div>
+
+  <br>
+  <button class="spin-btn" id="spinBtn">Shuffle</button>
+
+  <div class="result" id="result">
+    <div class="result-suit" id="resultSuit"></div>
+    <p class="result-message" id="resultMessage"></p>
+    <span class="draw-again" id="drawAgain">Draw a new card</span>
+  </div>
+</div>
+
+<script>
+(function() {
+  var suits = [
+    {
+      name: 'Spades',
+      symbol: '\u2660',
+      color: '#1a1a1a',
+      messages: [
+        'Set one boundary today. Protect your time like it matters -- because it does.',
+        'Identify the one thing draining your energy. Remove it or reduce it.',
+        'Write down three non-negotiables for this week. Commit to them.',
+        'Say no to one thing that does not serve your growth.',
+        'Audit your environment. Remove one distraction holding you back.'
+      ]
+    },
+    {
+      name: 'Hearts',
+      symbol: '\u2665',
+      color: '#8B2500',
+      messages: [
+        'Write one kind note to yourself. Save it somewhere visible.',
+        'Reach out to someone you have been meaning to reconnect with.',
+        'Do one thing today purely because it brings you joy.',
+        'Forgive yourself for one mistake you have been carrying.',
+        'Tell someone what they mean to you. Be specific.'
+      ]
+    },
+    {
+      name: 'Diamonds',
+      symbol: '\u2666',
+      color: '#C9A96E',
+      messages: [
+        'Review one financial goal. Take one small action toward it today.',
+        'Invest 30 minutes in learning something that builds your future.',
+        'Identify one skill gap. Find one resource to start closing it.',
+        'Write down where you want to be in 90 days. Work backward from there.',
+        'Cancel one subscription or expense that no longer serves you.'
+      ]
+    },
+    {
+      name: 'Clubs',
+      symbol: '\u2663',
+      color: '#2D5A3D',
+      messages: [
+        'Move your body for 20 minutes. No excuses. No negotiation.',
+        'Drink more water than you think you need today.',
+        'Prepare one meal with intention. Nourish yourself properly.',
+        'Go to bed 30 minutes earlier tonight. Recovery is not optional.',
+        'Take a walk with no phone. Let your mind breathe.'
+      ]
+    }
+  ];
+
+  var canvas = document.getElementById('wheel');
+  var ctx = canvas.getContext('2d');
+
+  var size = Math.min(320, window.innerWidth - 80);
+  canvas.width = size;
+  canvas.height = size;
+  canvas.style.width = size + 'px';
+  canvas.style.height = size + 'px';
+
+  var R = size / 2 - 2;
+  var ctr = size / 2;
+  var currentAngle = 0;
+  var spinning = false;
+
+  function drawWheel(angle) {
+    ctx.clearRect(0, 0, size, size);
+    var sliceAngle = (2 * Math.PI) / suits.length;
+
+    for (var i = 0; i < suits.length; i++) {
+      var startA = angle + i * sliceAngle;
+      var endA = startA + sliceAngle;
+      var midA = startA + sliceAngle / 2;
+
+      ctx.beginPath();
+      ctx.moveTo(ctr, ctr);
+      ctx.arc(ctr, ctr, R, startA, endA);
+      ctx.closePath();
+      ctx.fillStyle = (i % 2 === 0) ? '#1a1a1a' : '#2a2a2a';
+      ctx.fill();
+      ctx.strokeStyle = '#C9A96E';
+      ctx.lineWidth = 1.5;
+      ctx.stroke();
+
+      ctx.save();
+      ctx.translate(ctr, ctr);
+      ctx.rotate(midA);
+
+      ctx.font = 'bold ' + Math.round(size * 0.09) + 'px serif';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillStyle = '#C9A96E';
+      ctx.fillText(suits[i].symbol, R * 0.58, -6);
+
+      ctx.font = Math.round(size * 0.04) + 'px sans-serif';
+      ctx.fillStyle = '#F5F1EB';
+      ctx.fillText(suits[i].name.toUpperCase(), R * 0.58, 14);
+
+      ctx.restore();
+    }
+
+    ctx.beginPath();
+    ctx.arc(ctr, ctr, size * 0.08, 0, 2 * Math.PI);
+    ctx.fillStyle = '#1a1a1a';
+    ctx.fill();
+    ctx.strokeStyle = '#C9A96E';
+    ctx.lineWidth = 2;
+    ctx.stroke();
+
+    ctx.font = 'bold ' + Math.round(size * 0.05) + 'px serif';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillStyle = '#C9A96E';
+    ctx.fillText('\u2666', ctr, ctr);
+  }
+
+  function spinWheel() {
+    if (spinning) return;
+    spinning = true;
+    document.getElementById('spinBtn').disabled = true;
+    document.getElementById('result').classList.remove('show');
+
+    var extraRotations = (4 + Math.random() * 4) * 2 * Math.PI;
+    var randomOffset = Math.random() * 2 * Math.PI;
+    var targetAngle = currentAngle + extraRotations + randomOffset;
+    var duration = 4000 + Math.random() * 1000;
+    var startTime = null;
+    var startAngle = currentAngle;
+
+    function animate(now) {
+      if (!startTime) startTime = now;
+      var elapsed = now - startTime;
+      var progress = Math.min(elapsed / duration, 1);
+      var eased = 1 - Math.pow(1 - progress, 3);
+
+      currentAngle = startAngle + (targetAngle - startAngle) * eased;
+      drawWheel(currentAngle);
+
+      if (progress < 1) {
+        requestAnimationFrame(animate);
+      } else {
+        spinning = false;
+        document.getElementById('spinBtn').disabled = false;
+        showResult();
+      }
+    }
+
+    requestAnimationFrame(animate);
+  }
+
+  function showResult() {
+    var sliceAngle = (2 * Math.PI) / suits.length;
+    var pointerAngle = (-Math.PI / 2 - currentAngle) % (2 * Math.PI);
+    if (pointerAngle < 0) pointerAngle += 2 * Math.PI;
+
+    var idx = Math.floor(pointerAngle / sliceAngle) % suits.length;
+    var suit = suits[idx];
+    var msg = suit.messages[Math.floor(Math.random() * suit.messages.length)];
+
+    var resultSuit = document.getElementById('resultSuit');
+    resultSuit.innerHTML = '<span style="color:' + suit.color + '">' + suit.symbol + '</span> ' + suit.name;
+    resultSuit.style.borderColor = suit.color;
+    document.getElementById('resultMessage').textContent = msg;
+
+    setTimeout(function() {
+      var el = document.getElementById('result');
+      el.classList.add('show');
+      el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }, 300);
+  }
+
+  document.getElementById('spinBtn').addEventListener('click', spinWheel);
+  document.getElementById('spinBtn').addEventListener('touchend', function(e) {
+    e.preventDefault();
+    spinWheel();
+  });
+  document.getElementById('drawAgain').addEventListener('click', function() {
+    document.getElementById('result').classList.remove('show');
+  });
+
+  drawWheel(currentAngle);
+})();
+</script>
+
+</body>
+</html>
