@@ -1,145 +1,448 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Website Proposal - The Black Book Collection | InstallSmart.AI</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  :root { --navy: #0a0e17; --navy-light: #111827; --cyan: #00e5ff; --cyan-dim: #00b8d4; --white: #f8fafc; --grey: #94a3b8; --grey-light: #cbd5e1; --red: #ef4444; --amber: #f59e0b; --green: #22c55e; }
-  body { font-family: 'Inter', sans-serif; background: var(--navy); color: var(--white); line-height: 1.7; -webkit-font-smoothing: antialiased; }
+
+  :root {
+    --navy: #0a0e17;
+    --navy-light: #111827;
+    --cyan: #00e5ff;
+    --cyan-dim: #00b8d4;
+    --white: #f8fafc;
+    --grey: #94a3b8;
+    --grey-light: #cbd5e1;
+    --red: #ef4444;
+    --amber: #f59e0b;
+    --green: #22c55e;
+    --gold: #C9A96E;
+  }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--navy);
+    color: var(--white);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
   .container { max-width: 820px; margin: 0 auto; padding: 0 24px; }
-  .hero { padding: 80px 0 60px; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.06); }
-  .hero-badge { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--cyan); border: 1px solid rgba(0,229,255,0.25); padding: 6px 18px; border-radius: 20px; margin-bottom: 28px; }
-  .hero h1 { font-size: 42px; font-weight: 700; letter-spacing: -1px; line-height: 1.15; margin-bottom: 12px; }
+
+  /* HERO */
+  .hero {
+    padding: 80px 0 60px;
+    text-align: center;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .hero-badge {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--cyan);
+    border: 1px solid rgba(0,229,255,0.25);
+    padding: 6px 18px;
+    border-radius: 20px;
+    margin-bottom: 28px;
+  }
+  .hero h1 {
+    font-size: 42px;
+    font-weight: 700;
+    letter-spacing: -1px;
+    line-height: 1.15;
+    margin-bottom: 12px;
+  }
   .hero h1 span { color: var(--cyan); }
-  .hero .subtitle { font-size: 17px; color: var(--grey); max-width: 560px; margin: 0 auto; }
-  .hero .client-name { font-family: 'JetBrains Mono', monospace; font-size: 13px; color: var(--grey); margin-top: 24px; letter-spacing: 1px; }
+  .hero .subtitle {
+    font-size: 17px;
+    color: var(--grey);
+    max-width: 580px;
+    margin: 0 auto;
+  }
+  .hero .client-name {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: var(--grey);
+    margin-top: 24px;
+    letter-spacing: 1px;
+  }
+
+  /* SECTIONS */
   section { padding: 56px 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
-  .section-label { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--cyan); margin-bottom: 10px; }
-  section h2 { font-size: 28px; font-weight: 600; margin-bottom: 20px; letter-spacing: -0.5px; }
-  section p { color: var(--grey-light); font-size: 15px; margin-bottom: 16px; }
-  .finding-card { background: var(--navy-light); border: 1px solid rgba(255,255,255,0.06); border-radius: 12px; padding: 28px; margin-bottom: 20px; border-left: 4px solid var(--red); }
-  .finding-card.warning { border-left-color: var(--amber); }
-  .finding-card.info { border-left-color: var(--cyan); }
-  .finding-card h3 { font-size: 17px; font-weight: 600; margin-bottom: 8px; display: flex; align-items: center; gap: 10px; }
-  .finding-card h3 .tag { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 1px; padding: 3px 10px; border-radius: 10px; text-transform: uppercase; font-weight: 500; }
-  .tag-critical { background: rgba(239,68,68,0.15); color: var(--red); }
-  .tag-warning { background: rgba(245,158,11,0.15); color: var(--amber); }
-  .tag-info { background: rgba(0,229,255,0.12); color: var(--cyan); }
-  .finding-card p { color: var(--grey); font-size: 14px; margin-bottom: 0; }
-  .phase-card { background: var(--navy-light); border: 1px solid rgba(255,255,255,0.06); border-radius: 12px; padding: 28px; margin-bottom: 20px; }
-  .phase-card .phase-num { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--cyan); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px; }
-  .phase-card h3 { font-size: 18px; font-weight: 600; margin-bottom: 8px; }
-  .phase-card p { color: var(--grey); font-size: 14px; margin-bottom: 0; }
-  .price-box { text-align: center; background: linear-gradient(135deg, rgba(0,229,255,0.06) 0%, rgba(0,229,255,0.02) 100%); border: 1px solid rgba(0,229,255,0.15); border-radius: 16px; padding: 48px 32px; margin: 24px 0; }
-  .price-box .label { font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: var(--cyan); margin-bottom: 12px; }
-  .price-box .amount { font-size: 52px; font-weight: 700; letter-spacing: -2px; margin-bottom: 6px; }
+  .section-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--cyan);
+    margin-bottom: 10px;
+  }
+  section h2 {
+    font-size: 28px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    letter-spacing: -0.5px;
+  }
+  section p {
+    color: var(--grey-light);
+    font-size: 15px;
+    margin-bottom: 16px;
+  }
+
+  /* SECTION CARDS */
+  .section-card {
+    background: var(--navy-light);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 12px;
+    padding: 32px;
+    margin-bottom: 20px;
+    position: relative;
+    overflow: hidden;
+  }
+  .section-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: var(--cyan);
+  }
+  .section-card.gold::before { background: var(--gold); }
+  .section-card.green::before { background: var(--green); }
+  .section-card .card-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--cyan);
+    margin-bottom: 8px;
+  }
+  .section-card.gold .card-num { color: var(--gold); }
+  .section-card.green .card-num { color: var(--green); }
+  .section-card h3 { font-size: 20px; font-weight: 600; margin-bottom: 12px; }
+  .section-card p { color: var(--grey); font-size: 14px; margin-bottom: 8px; }
+  .section-card p:last-child { margin-bottom: 0; }
+
+  /* DEMO LINK */
+  .demo-link {
+    display: inline-block;
+    margin-top: 12px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 1px;
+    color: var(--cyan);
+    text-decoration: none;
+    border: 1px solid rgba(0,229,255,0.3);
+    padding: 8px 20px;
+    border-radius: 6px;
+    transition: all 0.2s;
+  }
+  .demo-link:hover {
+    background: rgba(0,229,255,0.1);
+    border-color: var(--cyan);
+  }
+
+  /* FINDING TAGS */
+  .tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 1px;
+    padding: 3px 10px;
+    border-radius: 10px;
+    text-transform: uppercase;
+    font-weight: 500;
+    display: inline-block;
+    margin-left: 8px;
+    vertical-align: middle;
+  }
+  .tag-new { background: rgba(0,229,255,0.12); color: var(--cyan); }
+  .tag-fix { background: rgba(239,68,68,0.15); color: var(--red); }
+  .tag-grow { background: rgba(34,197,94,0.15); color: var(--green); }
+
+  /* DELIVERABLES LIST */
+  .deliverables {
+    list-style: none;
+    margin-top: 12px;
+  }
+  .deliverables li {
+    color: var(--grey-light);
+    font-size: 14px;
+    padding: 6px 0;
+    padding-left: 20px;
+    position: relative;
+  }
+  .deliverables li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 13px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--cyan);
+  }
+  .section-card.gold .deliverables li::before { background: var(--gold); }
+  .section-card.green .deliverables li::before { background: var(--green); }
+
+  /* PRICING */
+  .price-box {
+    text-align: center;
+    background: linear-gradient(135deg, rgba(0,229,255,0.06) 0%, rgba(0,229,255,0.02) 100%);
+    border: 1px solid rgba(0,229,255,0.15);
+    border-radius: 16px;
+    padding: 48px 32px;
+    margin: 24px 0;
+  }
+  .price-box .label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--cyan);
+    margin-bottom: 12px;
+  }
+  .price-box .amount {
+    font-size: 52px;
+    font-weight: 700;
+    letter-spacing: -2px;
+    margin-bottom: 4px;
+  }
   .price-box .amount span { color: var(--cyan); }
-  .price-box .note { color: var(--grey); font-size: 14px; }
-  .outcomes-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 24px; }
-  .outcome-card { background: var(--navy-light); border: 1px solid rgba(255,255,255,0.06); border-radius: 12px; padding: 24px; text-align: center; }
-  .outcome-card .icon { font-size: 28px; margin-bottom: 12px; }
-  .outcome-card h4 { font-size: 15px; font-weight: 600; margin-bottom: 6px; }
-  .outcome-card p { color: var(--grey); font-size: 13px; margin-bottom: 0; }
-  .cta-section { text-align: center; padding: 60px 0; border-bottom: none; }
+  .price-box .period {
+    font-size: 20px;
+    font-weight: 400;
+    color: var(--grey-light);
+    margin-bottom: 12px;
+  }
+  .price-box .note {
+    color: var(--grey);
+    font-size: 14px;
+    margin-bottom: 0;
+  }
+  .price-total {
+    text-align: center;
+    margin-top: 16px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: var(--grey);
+    letter-spacing: 0.5px;
+  }
+
+  /* MONTH BREAKDOWN */
+  .month-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-top: 24px;
+  }
+  .month-card {
+    background: var(--navy-light);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 12px;
+    padding: 24px 20px;
+    text-align: center;
+  }
+  .month-card .month-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--cyan);
+    margin-bottom: 6px;
+  }
+  .month-card h4 { font-size: 15px; font-weight: 600; margin-bottom: 6px; }
+  .month-card p { color: var(--grey); font-size: 12px; margin-bottom: 0; line-height: 1.5; }
+
+  /* CTA */
+  .cta-section {
+    text-align: center;
+    padding: 60px 0;
+    border-bottom: none;
+  }
   .cta-section h2 { font-size: 30px; margin-bottom: 12px; }
   .cta-section p { color: var(--grey); margin-bottom: 28px; }
-  .cta-btn { display: inline-block; background: var(--cyan); color: var(--navy); font-family: 'JetBrains Mono', monospace; font-weight: 600; font-size: 14px; letter-spacing: 1px; text-transform: uppercase; text-decoration: none; padding: 16px 40px; border-radius: 8px; transition: all 0.2s; }
+  .cta-btn {
+    display: inline-block;
+    background: var(--cyan);
+    color: var(--navy);
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 16px 40px;
+    border-radius: 8px;
+    transition: all 0.2s;
+  }
   .cta-btn:hover { background: var(--cyan-dim); transform: translateY(-1px); }
-  .footer { padding: 40px 0; text-align: center; border-top: 1px solid rgba(255,255,255,0.06); }
+
+  /* FOOTER */
+  .footer {
+    padding: 40px 0;
+    text-align: center;
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
   .footer .sig-name { font-size: 16px; font-weight: 600; margin-bottom: 2px; }
-  .footer .sig-title { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--grey); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 16px; }
-  .footer .brand { font-family: 'JetBrains Mono', monospace; font-size: 13px; letter-spacing: 2px; }
+  .footer .sig-title {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--grey);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+  .footer .brand {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    letter-spacing: 2px;
+  }
   .footer .brand span { color: var(--cyan); }
-  .footer .tagline { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 2px; color: var(--grey); margin-top: 10px; text-transform: uppercase; }
-  .footer-legal { font-size: 11px; color: rgba(255,255,255,0.2); margin-top: 32px; }
-  @media (max-width: 640px) { .hero h1 { font-size: 28px; } .outcomes-grid { grid-template-columns: 1fr; } .price-box .amount { font-size: 38px; } }
+  .footer .tagline {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: var(--grey);
+    margin-top: 10px;
+    text-transform: uppercase;
+  }
+  .footer-legal {
+    font-size: 11px;
+    color: rgba(255,255,255,0.2);
+    margin-top: 32px;
+  }
+
+  @media (max-width: 640px) {
+    .hero h1 { font-size: 28px; }
+    .month-grid { grid-template-columns: 1fr; }
+    .price-box .amount { font-size: 38px; }
+  }
 </style>
 </head>
 <body>
+
 <div class="container">
+
+  <!-- HERO -->
   <div class="hero">
     <div class="hero-badge">Website Audit &amp; Proposal</div>
     <h1>Your site has <span>potential</span>.<br>It's not converting yet.</h1>
-    <p class="subtitle">We audited theblackbookcollection.co.uk and found critical issues blocking growth. Here's what we'd fix -- and what it would deliver.</p>
+    <p class="subtitle">We audited theblackbookcollection.co.uk and found what's holding you back. Here's our three-part plan to fix the foundations, sharpen the experience, and turn visitors into buyers.</p>
     <p class="client-name">Prepared for The Black Book Collection</p>
   </div>
+
+  <!-- EXECUTIVE SUMMARY -->
   <section>
     <div class="section-label">Executive Summary</div>
     <h2>The Brand Is Strong. The Website Isn't Ready.</h2>
     <p>The Black Book Collection has a compelling product concept and distinctive brand voice. The Deck of Life planner speaks to a clear audience -- people who want direction, not just organisation. That positioning is rare and valuable.</p>
-    <p>But the Shopify store has structural issues that would prevent any visitor from becoming a customer. Broken navigation, missing products, empty pages, and weak SEO mean the site isn't just underperforming -- in its current state, it cannot sell. These are fixable problems, and fixing them would unlock the brand's full commercial potential online.</p>
+    <p>But the Shopify store has structural issues preventing visitors from becoming customers. Broken navigation, missing products, empty pages, and weak SEO mean the site can't sell in its current state. These are fixable problems -- and we've broken the fix into three clear phases, delivered over three months.</p>
   </section>
-  <section>
-    <div class="section-label">Audit Findings</div>
-    <h2>What We Found</h2>
-    <div class="finding-card">
-      <h3>Products Page Shows Zero Items <span class="tag tag-critical">Critical</span></h3>
-      <p>The Products page displays "0 products -- No products found." The SHOP NOW button on the homepage leads to an empty catalogue. No visitor can purchase anything. This is the single biggest issue on the site.</p>
-    </div>
-    <div class="finding-card">
-      <h3>Broken Navigation Links <span class="tag tag-critical">Critical</span></h3>
-      <p>Multiple navigation links point to the wrong pages or return 404 errors. The "About Us" link goes to a blog URL, "The Black Book Shuffle" link loads the wrong page content, and page slugs are mismatched throughout. Visitors clicking the main menu hit dead ends.</p>
-    </div>
-    <div class="finding-card warning">
-      <h3>SEO &amp; Discoverability Issues <span class="tag tag-warning">Warning</span></h3>
-      <p>The page title is generic with no keyword targeting. The H1 tag is empty. Three product images are missing alt text. Structured data exists but social profiles are empty. The "About" content sits on a /blogs/news URL instead of a proper page.</p>
-    </div>
-    <div class="finding-card warning">
-      <h3>Conversion &amp; Trust Gaps <span class="tag tag-warning">Warning</span></h3>
-      <p>Only PayPal is shown as a payment method. The contact form is a default Shopify template. No pricing, product detail, or purchase path visible. No social proof or reviews.</p>
-    </div>
-    <div class="finding-card info">
-      <h3>Content &amp; Brand Consistency <span class="tag tag-info">Info</span></h3>
-      <p>The homepage copy is strong and on-brand. The "Discover Your Suits" interactive section and The Black Book Shuffle concept are unique differentiators. The FAQ section is well-written. These are solid foundations to build on.</p>
-    </div>
-  </section>
+
+  <!-- THE THREE SECTIONS -->
   <section>
     <div class="section-label">Scope of Work</div>
-    <h2>What We'd Do</h2>
-    <div class="phase-card">
-      <div class="phase-num">Phase 1 -- Foundation Fix (Week 1-2)</div>
-      <h3>Get the Store Functional</h3>
-      <p>Fix all broken navigation links and page routing. Set up product listings so visitors can actually browse and buy. Correct the URL structure so every page lives at the right address.</p>
+    <h2>Three Phases. Three Months. One Goal.</h2>
+    <p>Each month has a clear focus, a defined deliverable, and builds directly on the last. No filler. No ambiguity.</p>
+
+    <!-- SECTION 1: SHUFFLE WHEEL -->
+    <div class="section-card">
+      <div class="card-num">Month 1 -- The Black Book Shuffle Wheel</div>
+      <h3>Build the Signature Feature <span class="tag tag-new">New Build</span></h3>
+      <p>The Black Book Shuffle is the most distinctive element of your brand. Right now it's a basic icon shuffle -- functional but forgettable. We'll replace it with a fully interactive spinning wheel that brings the concept to life.</p>
+      <p>This isn't just a visual upgrade. It's a reason to come back to the site every day, share with friends, and engage with the brand on a deeper level. The wheel becomes a retention tool and a conversion driver.</p>
+      <ul class="deliverables">
+        <li>Custom animated spinning wheel with all four suits</li>
+        <li>Daily focus messages for each suit (Spades, Hearts, Diamonds, Clubs)</li>
+        <li>Mobile-first design -- works perfectly on every device</li>
+        <li>Embedded directly into the Shopify page</li>
+        <li>Shareable results (social-ready output)</li>
+        <li>Analytics tracking on each spin and result</li>
+      </ul>
+      <a href="https://installsmart.ai/demos/shuffle-wheel.html" class="demo-link" target="_blank">&#9654; View Working Demo</a>
     </div>
-    <div class="phase-card">
-      <div class="phase-num">Phase 2 -- SEO &amp; Technical (Week 2-3)</div>
-      <h3>Make the Site Discoverable</h3>
-      <p>Optimise page titles, meta descriptions, and heading structure. Add proper alt text. Fix the H1 tag. Move About content to a proper page URL. Ensure full mobile responsiveness.</p>
+
+    <!-- SECTION 2: FIX THE FOUNDATIONS -->
+    <div class="section-card gold">
+      <div class="card-num">Month 2 -- Fix the Foundations</div>
+      <h3>Make the Store Work <span class="tag tag-fix">Critical Fix</span></h3>
+      <p>The store is broken. Products don't show, navigation links lead nowhere, and the SEO is invisible. Month 2 strips it back and rebuilds the essentials so visitors can actually find you, browse, and buy.</p>
+      <ul class="deliverables">
+        <li>Fix all broken navigation links and page routing</li>
+        <li>Set up product listings with proper descriptions, pricing, and imagery</li>
+        <li>Correct URL structure so every page lives at the right address</li>
+        <li>Fix the empty H1 tag, page titles, and meta descriptions</li>
+        <li>Add alt text to all images for accessibility and SEO</li>
+        <li>Move the About content from the blog URL to a proper page</li>
+        <li>Full mobile responsiveness check and fixes</li>
+      </ul>
     </div>
-    <div class="phase-card">
-      <div class="phase-num">Phase 3 -- Conversion &amp; Growth (Week 3-4)</div>
-      <h3>Turn Visitors Into Customers</h3>
-      <p>Add payment options beyond PayPal. Build out product pages with compelling descriptions, pricing, and imagery. Add social proof and trust signals. Integrate analytics and email marketing.</p>
+
+    <!-- SECTION 3: CONVERT -->
+    <div class="section-card green">
+      <div class="card-num">Month 3 -- Convert &amp; Grow</div>
+      <h3>Turn Visitors Into Customers <span class="tag tag-grow">Growth</span></h3>
+      <p>Once the store works and the experience is sharp, Month 3 focuses on conversion. We add the trust signals, payment options, and marketing hooks that turn a browser into a buyer.</p>
+      <ul class="deliverables">
+        <li>Add card payment options alongside PayPal</li>
+        <li>Build social proof: testimonials, reviews, trust badges</li>
+        <li>Create a branded contact experience (not the Shopify default)</li>
+        <li>Integrate Google Analytics and conversion tracking</li>
+        <li>Connect email signup to a welcome flow (Klaviyo or Mailchimp)</li>
+        <li>Structured data and Open Graph tags for social sharing</li>
+        <li>Launch readiness check and performance audit</li>
+      </ul>
     </div>
   </section>
+
+  <!-- INVESTMENT -->
   <section>
     <div class="section-label">Investment</div>
     <h2>What This Costs</h2>
-    <p>Phase 1 is the priority -- without it, the rest doesn't matter. We recommend starting there and building momentum.</p>
+    <p>One fixed monthly fee. Three months. Everything included. No surprises, no extras, no hourly billing.</p>
+
     <div class="price-box">
-      <div class="label">Phase 1 -- Foundation Fix</div>
-      <div class="amount"><span>&pound;</span>995</div>
-      <div class="note">One-off &middot; Delivered in 2 weeks &middot; Includes 30 days support</div>
+      <div class="label">3-Month Fixed Contract</div>
+      <div class="amount"><span>&pound;</span>495</div>
+      <div class="period">per month</div>
+      <div class="note">3 months &middot; Fixed price &middot; All three phases included</div>
     </div>
-    <p style="text-align:center;color:var(--grey);font-size:14px">Phases 2 &amp; 3 quoted separately once Phase 1 is live. Full build: from &pound;2,495.</p>
-  </section>
-  <section>
-    <div class="section-label">Outcomes</div>
-    <h2>What This Delivers</h2>
-    <div class="outcomes-grid">
-      <div class="outcome-card"><div class="icon">&#128722;</div><h4>A Working Store</h4><p>Products visible, purchasable, and connected to a real checkout flow.</p></div>
-      <div class="outcome-card"><div class="icon">&#128269;</div><h4>Search Visibility</h4><p>Proper SEO so Google can find, index, and rank your pages.</p></div>
-      <div class="outcome-card"><div class="icon">&#128200;</div><h4>Revenue Ready</h4><p>A site that matches the quality of your brand and actually converts.</p></div>
+    <p class="price-total">Total contract value: &pound;1,485</p>
+
+    <div class="month-grid">
+      <div class="month-card">
+        <div class="month-label">Month 1</div>
+        <h4>Shuffle Wheel</h4>
+        <p>Custom interactive feature build &amp; Shopify integration</p>
+      </div>
+      <div class="month-card">
+        <div class="month-label">Month 2</div>
+        <h4>Store Fix</h4>
+        <p>Navigation, products, SEO, and mobile fixes</p>
+      </div>
+      <div class="month-card">
+        <div class="month-label">Month 3</div>
+        <h4>Convert</h4>
+        <p>Payments, trust signals, analytics &amp; email</p>
+      </div>
     </div>
   </section>
+
+  <!-- CTA -->
   <div class="cta-section">
-    <h2>Ready to fix this?</h2>
-    <p>One conversation. We'll walk through the findings and agree on next steps.</p>
-    <a href="https://wa.me/447400612422?text=Hey%20Sat%20--%20I've%20seen%20the%20proposal%20for%20The%20Black%20Book%20Collection.%20Let's%20talk." class="cta-btn">Book a Call &#8594;</a>
+    <h2>Ready to start?</h2>
+    <p>One conversation. We'll walk through the plan and get Month 1 booked in.</p>
+    <a href="https://wa.me/447400612422?text=Hey%20Sat%20%E2%80%94%20I%27ve%20seen%20the%20proposal%20for%20The%20Black%20Book%20Collection.%20Let%27s%20talk." class="cta-btn">Book a Call &#8594;</a>
   </div>
+
+  <!-- FOOTER -->
   <div class="footer">
     <div class="sig-name">Sat Lally</div>
     <div class="sig-title">CEO // Founder</div>
@@ -147,6 +450,8 @@
     <div class="tagline">AI that works. Built, maintained, and compounding.</div>
     <div class="footer-legal">This proposal is confidential and intended solely for The Black Book Collection. &copy; 2026 InstallSmart.AI</div>
   </div>
+
 </div>
+
 </body>
 </html>
