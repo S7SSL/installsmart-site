@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Xquisite Smoke — Premium Smoking Accessories</title>
+  <meta name="description" content="Premium hand-rolled tobacco & smoking accessories. Ethically sourced, expertly curated.">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    :root {
+      --dark: #1a1a1a;
+      --accent: #d4af37;
+      --text: #333;
+      --light: #f5f5f5;
+      --white: #fff;
+    }
+
+    body {
+      font-family: 'Georgia', serif;
+      margin: 0;
+      padding: 0;
+      background: var(--white);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    /* HEADER & NAV */
+    header {
+      background: var(--dark);
+      color: var(--white);
+      padding: 16px 0;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    }
+
+    .header-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: var(--accent);
+    }
+
+    nav {
+      display: flex;
+      gap: 32px;
+      align-items: center;
+    }
+
+    nav a {
+      color: var(--white);
+      text-decoration: none;
+      font-size: 14px;
+      transition: color 0.3s;
+    }
+
+    nav a:hover { color: var(--accent); }
+
+    nav .cta {
+      background: var(--accent);
+      color: var(--dark);
+      padding: 8px 20px;
+      border-radius: 4px;
+      font-weight: 600;
+      font-size: 13px;
+    }
+
+    /* HERO */
+    .hero {
+      background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%);
+      color: var(--white);
+      padding: 80px 20px;
+      text-align: center;
+      position: relative;
+    }
+
+    .hero-content {
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .hero h1 {
+      font-size: 48px;
+      font-weight: 700;
+      margin-bottom: 16px;
+      letter-spacing: 1px;
+    }
+
+    .hero h1 span { color: var(--accent); }
+
+    .hero p {
+      font-size: 18px;
+      margin-bottom: 28px;
+      color: #ddd;
+      line-height: 1.8;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 14px 32px;
+      border-radius: 4px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 14px;
+      cursor: pointer;
+      border: none;
+      transition: all 0.3s;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: var(--dark);
+    }
+
+    .btn-primary:hover {
+      opacity: 0.9;
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--white);
+      border: 2px solid var(--accent);
+    }
+
+    .btn-secondary:hover {
+      background: var(--accent);
+      color: var(--dark);
+    }
+
+    /* TRUST SIGNALS (ABOVE FOLD) */
+    .trust-bar {
+      background: var(--light);
+      padding: 28px 20px;
+      border-top: 3px solid var(--accent);
+    }
+
+    .trust-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      text-align: center;
+    }
+
+    .trust-item h4 {
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--accent);
+      margin-bottom: 4px;
+    }
+
+    .trust-item p {
+      font-size: 14px;
+      color: var(--text);
+      margin: 0;
+    }
+
+    /* FEATURED PRODUCTS */
+    .section {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 60px 20px;
+    }
+
+    .section h2 {
+      font-size: 36px;
+      margin-bottom: 12px;
+      text-align: center;
+    }
+
+    .section h2 span { color: var(--accent); }
+
+    .section-subtitle {
+      text-align: center;
+      color: #666;
+      margin-bottom: 40px;
+      font-size: 16px;
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 24px;
+      margin-bottom: 36px;
+    }
+
+    .product-card {
+      background: var(--white);
+      border: 1px solid #eee;
+      border-radius: 6px;
+      overflow: hidden;
+      transition: all 0.3s;
+    }
+
+    .product-card:hover {
+      box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+      transform: translateY(-4px);
+    }
+
+    .product-image {
+      width: 100%;
+      height: 240px;
+      background: linear-gradient(135deg, #f0f0f0, #e0e0e0);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #999;
+      font-size: 12px;
+    }
+
+    .product-info {
+      padding: 16px;
+    }
+
+    .product-name {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .product-desc {
+      font-size: 13px;
+      color: #666;
+      margin-bottom: 12px;
+    }
+
+    .product-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .product-price {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    .product-status {
+      font-size: 12px;
+      color: #27ae60;
+      font-weight: 600;
+    }
+
+    /* SOCIAL PROOF */
+    .reviews-section {
+      background: var(--light);
+      padding: 60px 20px;
+    }
+
+    .reviews-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      margin-top: 32px;
+    }
+
+    .review {
+      background: var(--white);
+      padding: 20px;
+      border-radius: 6px;
+      border-left: 4px solid var(--accent);
+    }
+
+    .review-stars {
+      color: var(--accent);
+      font-size: 14px;
+      margin-bottom: 8px;
+    }
+
+    .review-text {
+      font-size: 14px;
+      margin-bottom: 12px;
+      font-style: italic;
+    }
+
+    .review-author {
+      font-weight: 700;
+      font-size: 12px;
+      color: #666;
+    }
+
+    /* WHOLESALE CTA */
+    .wholesale-section {
+      background: var(--dark);
+      color: var(--white);
+      padding: 60px 20px;
+      text-align: center;
+    }
+
+    .wholesale-content {
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .wholesale-section h3 {
+      font-size: 32px;
+      margin-bottom: 16px;
+    }
+
+    .wholesale-section p {
+      font-size: 16px;
+      margin-bottom: 24px;
+      color: #ddd;
+    }
+
+    /* MOBILE */
+    @media (max-width: 768px) {
+      header { padding: 12px 0; }
+      nav { gap: 16px; }
+      nav a { font-size: 13px; }
+      .hero h1 { font-size: 36px; }
+      .hero p { font-size: 16px; }
+      .section { padding: 40px 16px; }
+      .section h2 { font-size: 28px; }
+      .products-grid { grid-template-columns: 1fr; }
+      .trust-inner { grid-template-columns: 1fr; }
+      .hero-buttons { flex-direction: column; }
+      .btn { width: 100%; }
+    }
+
+    /* FOOTER */
+    footer {
+      background: var(--dark);
+      color: #999;
+      padding: 40px 20px;
+      border-top: 3px solid var(--accent);
+    }
+
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 32px;
+    }
+
+    .footer-col h4 {
+      color: var(--white);
+      font-size: 14px;
+      margin-bottom: 12px;
+    }
+
+    .footer-col a {
+      display: block;
+      color: #999;
+      text-decoration: none;
+      font-size: 13px;
+      margin-bottom: 8px;
+    }
+
+    .footer-col a:hover { color: var(--accent); }
+
+    .footer-bottom {
+      text-align: center;
+      margin-top: 32px;
+      padding-top: 24px;
+      border-top: 1px solid #333;
+      font-size: 12px;
+      color: #666;
+    }
+
+    .label-preview {
+      background: var(--accent);
+      color: var(--dark);
+      display: inline-block;
+      padding: 8px 12px;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="label-preview">🔨 Website Preview — After Optimization</div>
+
+  <header>
+    <div class="header-inner">
+      <div class="logo">Xquisite Smoke</div>
+      <nav>
+        <a href="#products">Shop</a>
+        <a href="#about">About</a>
+        <a href="#wholesale">Wholesale</a>
+        <a href="#blog">Blog</a>
+        <a class="cta" href="#cart">Cart (0)</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Premium Smoking <span>Essentials</span></h1>
+      <p>Ethically sourced, expertly curated. Discover hand-rolled tobacco and accessories trusted by connoisseurs worldwide.</p>
+      <div class="hero-buttons">
+        <a class="btn btn-primary" href="#shop">Shop Now</a>
+        <a class="btn btn-secondary" href="#learn">Learn More</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="trust-bar">
+    <div class="trust-inner">
+      <div class="trust-item">
+        <h4>⭐ 4.9/5 Stars</h4>
+        <p>1,247 verified reviews</p>
+      </div>
+      <div class="trust-item">
+        <h4>🚚 Free Shipping</h4>
+        <p>Orders over £50</p>
+      </div>
+      <div class="trust-item">
+        <h4>✓ 30-Day Returns</h4>
+        <p>Hassle-free guarantee</p>
+      </div>
+      <div class="trust-item">
+        <h4>🔒 100% Secure</h4>
+        <p>SSL encrypted checkout</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="products" class="section">
+    <h2>Featured <span>Collections</span></h2>
+    <p class="section-subtitle">Hand-selected premium products in stock and ready to ship</p>
+    <div class="products-grid">
+      <div class="product-card">
+        <div class="product-image">Premium Blend</div>
+        <div class="product-info">
+          <div class="product-name">Premium Hand-Rolled</div>
+          <div class="product-desc">Ethically sourced tobacco, expertly rolled</div>
+          <div class="product-footer">
+            <div class="product-price">£24.99</div>
+            <div class="product-status">In Stock</div>
+          </div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-image">Accessories</div>
+        <div class="product-info">
+          <div class="product-name">Smoking Accessories Kit</div>
+          <div class="product-desc">Everything you need for the perfect experience</div>
+          <div class="product-footer">
+            <div class="product-price">£39.99</div>
+            <div class="product-status">In Stock</div>
+          </div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-image">Humidors</div>
+        <div class="product-info">
+          <div class="product-name">Premium Humidor</div>
+          <div class="product-desc">Cedar-lined, temperature controlled</div>
+          <div class="product-footer">
+            <div class="product-price">£89.99</div>
+            <div class="product-status">In Stock</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="text-align: center; margin-top: 20px;">
+      <a class="btn btn-primary" href="#all-products">View All Products</a>
+    </div>
+  </section>
+
+  <section class="reviews-section">
+    <div class="reviews-inner">
+      <h2>Why Customers <span>Love Us</span></h2>
+      <p class="section-subtitle">Trusted by smoking enthusiasts globally</p>
+      <div class="reviews-grid">
+        <div class="review">
+          <div class="review-stars">★★★★★</div>
+          <div class="review-text">"The quality is exceptional. Every order arrives perfectly packaged. Highly recommend to anyone serious about smoking."</div>
+          <div class="review-author">— James T., London</div>
+        </div>
+        <div class="review">
+          <div class="review-stars">★★★★★</div>
+          <div class="review-text">"Customer service is outstanding. They helped me find the exact product I needed. Will definitely order again."</div>
+          <div class="review-author">— Sarah M., Manchester</div>
+        </div>
+        <div class="review">
+          <div class="review-stars">★★★★★</div>
+          <div class="review-text">"Best prices I've found. The premium selection is unbeatable. Fast shipping too!"</div>
+          <div class="review-author">— Michael R., Edinburgh</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="wholesale" class="wholesale-section">
+    <div class="wholesale-content">
+      <h3>Wholesale <span style="color: var(--accent);">Opportunities</span></h3>
+      <p>Partner with Xquisite Smoke for wholesale pricing and dedicated account management. We work with retail shops, cafes, and lounges across the UK.</p>
+      <a class="btn btn-primary" href="#contact-wholesale">Inquire About Wholesale</a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-col">
+        <h4>Shop</h4>
+        <a href="#products">All Products</a>
+        <a href="#new">New Arrivals</a>
+        <a href="#bestsellers">Bestsellers</a>
+        <a href="#bundles">Gift Bundles</a>
+      </div>
+      <div class="footer-col">
+        <h4>Support</h4>
+        <a href="#about">About Us</a>
+        <a href="#shipping">Shipping Info</a>
+        <a href="#returns">Returns</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="#legal">Privacy Policy</a>
+        <a href="#terms">Terms of Service</a>
+        <a href="#wholesale">Wholesale</a>
+        <a href="#press">Press</a>
+      </div>
+      <div class="footer-col">
+        <h4>Connect</h4>
+        <a href="#">Facebook</a>
+        <a href="#">Instagram</a>
+        <a href="#">Newsletter</a>
+        <a href="#">Blog</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      © 2026 Xquisite Smoke. All rights reserved. Ethically sourced. Expertly curated.
+    </div>
+  </footer>
+
+</body>
+</html>
