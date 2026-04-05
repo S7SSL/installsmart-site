@@ -64,9 +64,17 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 20px 40
 .nav-cta:hover { opacity: 0.9; }
 
 /* CERTIFICATE BADGE */
-.cert-badge { display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; background: var(--accent-dim); border: 1px solid var(--accent); border-radius: 4px; margin-bottom: 32px; }
-.cert-badge a { color: var(--accent); font-weight: 600; text-decoration: none; border-bottom: 1px solid var(--accent); }
+.cert-badge { display: inline-flex; align-items: center; gap: 12px; padding: 12px 20px; background: linear-gradient(135deg, var(--accent-dim) 0%, rgba(0, 229, 255, 0.05) 100%); border: 1px solid var(--accent); border-radius: 6px; margin-bottom: 32px; }
+.cert-badge a { color: var(--accent); font-weight: 700; text-decoration: none; font-size: 14px; }
 .cert-badge a:hover { opacity: 0.8; }
+.cert-badge span { color: var(--muted); font-size: 13px; }
+
+/* CREDENTIAL HERO */
+.credential-section { background: linear-gradient(135deg, rgba(0, 229, 255, 0.08) 0%, rgba(0, 229, 255, 0.02) 100%); border: 1px solid var(--accent-dim); border-radius: 8px; padding: 40px; margin: 60px 0; text-align: center; }
+.credential-section h3 { font-size: 24px; font-weight: 800; color: var(--accent); margin-bottom: 12px; }
+.credential-section p { font-size: 14px; color: var(--muted); margin-bottom: 20px; }
+.credential-section a { display: inline-block; padding: 12px 28px; background: var(--accent); color: var(--bg); font-weight: 700; text-decoration: none; border-radius: 4px; transition: 0.2s; }
+.credential-section a:hover { opacity: 0.9; }
 
 /* HERO */
 .hero { min-height: 100vh; display: flex; align-items: center; padding: 120px 40px 80px; position: relative; overflow: hidden; }
@@ -142,7 +150,13 @@ footer a { color: var(--accent); text-decoration: none; }
     <div class="hero-badge">✓ Google AI Certified</div>
     <h1>AI That Actually Works.<br>No Vendor Bias.</h1>
     <p class="hero-sub">You've got the AI budget approved. Now you need someone who'll tell you what actually works—not what they're paid to sell. That's me.</p>
-    <div class="cert-badge"><a href="https://coursera.org/verify/UAYM4XX0KGEM" target="_blank" rel="noopener">✓ Verify Certificate</a></div>
+    <div class="cert-badge">
+      <span>🏆</span>
+      <div>
+        <a href="https://coursera.org/verify/UAYM4XX0KGEM" target="_blank" rel="noopener">Google AI Certified</a><br>
+        <span>Verifiable credential • Completed Apr 2026</span>
+      </div>
+    </div>
     <a href="#cta" class="hero-cta">Book Your 15-Min Call →</a>
   </div>
 </div>
@@ -205,6 +219,23 @@ footer a { color: var(--accent); text-decoration: none; }
         </div>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- CREDENTIALS -->
+<section style="background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
+  <div class="section-inner">
+    <div class="section-label">Credential</div>
+    <h2>Google AI Certified</h2>
+    <p class="section-intro">Most AI advisors have no formal credential. I do. Completed Google's professional AI fundamentals certification — independently verified and publicly searchable.</p>
+    
+    <div class="credential-section">
+      <h3>🏆 Publicly Verifiable Proof</h3>
+      <p>Click below to see my name, completion date, and credential on Coursera's public directory. Anyone can validate that this is real.</p>
+      <a href="https://coursera.org/verify/UAYM4XX0KGEM" target="_blank" rel="noopener">View & Verify My Certificate →</a>
+    </div>
+
+    <p style="text-align: center; color: var(--muted); font-size: 14px; margin-top: 32px;">In a market saturated with self-proclaimed "AI experts," this credential matters. It proves I've invested in keeping current with enterprise AI best practices.</p>
   </div>
 </section>
 
