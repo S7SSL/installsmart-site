@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AI-Ready Website Service — Schema, Structure, AI Search Visibility</title>
-  <meta name="description" content="Make your website visible to AI-generated search answers. Google AI Overviews, ChatGPT, and Claude all pull from schema-rich, structured content. Monthly service from £495–£995.">
-  <meta property="og:title" content="AI-Ready Website Service — Schema &amp; Structure">
-  <meta property="og:description" content="Optimize your site for AI-generated search visibility with structured content and schema markup.">
+  <title>AI-Powered Websites for UK Businesses — Build, Book, Sell Online</title>
+  <meta name="description" content="Professional websites with AI, SEO, and automation. From £995 website builds to £1995 all-in-one sales machines. 7-day turnaround. No coding required.">
+  <meta property="og:title" content="AI-Powered Websites — Smart, Fast, Conversion-Ready">
+  <meta property="og:description" content="Custom websites that work 24/7. AI chatbots, automated bookings, and SEO built-in. Starting at £995.">
   <meta property="og:type" content="website">
   
   <style>
@@ -52,84 +52,131 @@
     }
     
     .container {
-      max-width: 900px;
+      max-width: 1200px;
       margin: 0 auto;
       padding: 0 20px;
     }
     
     section {
-      padding: 60px 0;
-    }
-    
-    .hero {
-      background: linear-gradient(135deg, #f0f4ff 0%, #fff 100%);
       padding: 80px 0;
     }
     
+    .hero {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      padding: 100px 0;
+      color: white;
+    }
+    
     .hero h2 {
-      font-size: 48px;
+      font-size: 52px;
       line-height: 1.2;
       margin-bottom: 20px;
-      max-width: 800px;
+      max-width: 700px;
     }
     
     .hero p {
-      font-size: 18px;
-      color: #666;
-      max-width: 800px;
+      font-size: 20px;
+      max-width: 700px;
       margin-bottom: 30px;
+      opacity: 0.95;
     }
     
     .cta-button {
       display: inline-block;
-      padding: 14px 28px;
-      background: #0066cc;
-      color: white;
+      padding: 14px 32px;
+      background: white;
+      color: #667eea;
       border-radius: 6px;
       text-decoration: none;
-      font-weight: 600;
+      font-weight: 700;
       cursor: pointer;
       border: none;
       font-size: 16px;
-      transition: background 0.2s;
+      transition: transform 0.2s, box-shadow 0.2s;
     }
     
     .cta-button:hover {
-      background: #0052a3;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
     }
     
-    .features {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 40px;
-      margin: 60px 0;
+    .secondary-btn {
+      background: rgba(255, 255, 255, 0.2);
+      color: white;
+      border: 2px solid white;
     }
     
-    .feature {
-      padding: 30px;
+    .secondary-btn:hover {
       background: white;
-      border-radius: 8px;
-      border: 1px solid #e0e0e0;
+      color: #667eea;
     }
     
-    .feature h3 {
-      margin-bottom: 12px;
+    .pricing {
+      padding: 100px 0;
+      background: white;
+    }
+    
+    .pricing-header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+    
+    .pricing-header h2 {
+      font-size: 42px;
+      margin-bottom: 10px;
+    }
+    
+    .pricing-header p {
       font-size: 18px;
+      color: #666;
     }
     
-    .feature p {
-      color: #666;
-      font-size: 14px;
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 30px;
+      margin-bottom: 60px;
     }
     
     .pricing-card {
       background: white;
-      border: 2px solid #0066cc;
-      border-radius: 8px;
+      border: 2px solid #e0e0e0;
+      border-radius: 12px;
       padding: 40px;
-      text-align: center;
-      max-width: 400px;
-      margin: 0 auto;
+      transition: all 0.3s;
+      position: relative;
+    }
+    
+    .pricing-card.featured {
+      border-color: #667eea;
+      box-shadow: 0 20px 40px rgba(102, 126, 234, 0.15);
+      transform: translateY(-10px);
+    }
+    
+    .pricing-card.featured::before {
+      content: "MOST POPULAR";
+      position: absolute;
+      top: -12px;
+      left: 20px;
+      background: #667eea;
+      color: white;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+    
+    .pricing-card:hover {
+      border-color: #667eea;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    }
+    
+    .price-tier {
+      font-size: 18px;
+      color: #667eea;
+      font-weight: 700;
+      margin-bottom: 10px;
     }
     
     .pricing-card h3 {
@@ -139,8 +186,8 @@
     
     .price {
       font-size: 48px;
-      font-weight: bold;
-      color: #0066cc;
+      font-weight: 900;
+      color: #1a1a1a;
       margin: 20px 0;
     }
     
@@ -150,61 +197,101 @@
       margin-bottom: 30px;
     }
     
-    .pricing-card ul {
+    .features {
       list-style: none;
       margin: 30px 0;
-      text-align: left;
     }
     
-    .pricing-card li {
-      padding: 10px 0;
+    .features li {
+      padding: 12px 0;
       border-bottom: 1px solid #f0f0f0;
-      font-size: 14px;
+      font-size: 15px;
     }
     
-    .pricing-card li:last-child {
-      border-bottom: none;
+    .features li:before {
+      content: "✓ ";
+      color: #667eea;
+      font-weight: 700;
+      margin-right: 10px;
     }
     
-    .discount-section {
-      margin: 30px 0;
-      padding: 20px;
-      background: #f5f5f5;
-      border-radius: 6px;
-    }
-    
-    .discount-input {
+    .pricing-card button {
       width: 100%;
-      padding: 10px;
-      border: 1px solid #ddd;
-      border-radius: 4px;
-      margin: 10px 0;
-      font-size: 14px;
+      padding: 14px;
+      margin-top: 20px;
+      border: none;
+      border-radius: 6px;
+      font-weight: 700;
+      cursor: pointer;
+      font-size: 16px;
     }
     
-    .discount-input::placeholder {
-      color: #999;
+    .pricing-card button {
+      background: #667eea;
+      color: white;
+    }
+    
+    .pricing-card button:hover {
+      background: #5568d3;
+    }
+    
+    .why-choose {
+      background: #f9f9f9;
+      padding: 80px 0;
+    }
+    
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 40px;
+      margin-top: 50px;
+    }
+    
+    .why-item h3 {
+      font-size: 18px;
+      margin-bottom: 12px;
+    }
+    
+    .why-item {
+      padding: 20px;
     }
     
     .faq {
-      margin-top: 60px;
+      padding: 80px 0;
+      background: white;
     }
     
     .faq-item {
       background: white;
-      padding: 20px;
+      padding: 24px;
       margin-bottom: 15px;
-      border-radius: 6px;
+      border-radius: 8px;
       border: 1px solid #e0e0e0;
       cursor: pointer;
+      transition: all 0.2s;
+    }
+    
+    .faq-item:hover {
+      border-color: #667eea;
+      box-shadow: 0 4px 12px rgba(102, 126, 234, 0.1);
     }
     
     .faq-item h4 {
       margin-bottom: 10px;
+      font-size: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
     
-    .faq-item.closed p {
+    .faq-item p {
+      color: #666;
+      font-size: 14px;
       display: none;
+    }
+    
+    .faq-item.open p {
+      display: block;
     }
     
     footer {
@@ -216,7 +303,7 @@
     }
     
     footer a {
-      color: #0066cc;
+      color: #667eea;
       text-decoration: none;
     }
     
@@ -231,6 +318,7 @@
       z-index: 1000;
       align-items: center;
       justify-content: center;
+      padding: 20px;
     }
     
     .modal.active {
@@ -242,19 +330,8 @@
       max-width: 600px;
       max-height: 80vh;
       overflow-y: auto;
-      border-radius: 8px;
+      border-radius: 12px;
       padding: 40px;
-      position: relative;
-    }
-    
-    .modal-content h2 {
-      margin-bottom: 20px;
-    }
-    
-    .modal-content p {
-      margin-bottom: 15px;
-      font-size: 14px;
-      line-height: 1.8;
     }
     
     .modal-buttons {
@@ -267,14 +344,14 @@
       flex: 1;
       padding: 12px;
       border: none;
-      border-radius: 4px;
+      border-radius: 6px;
       font-weight: 600;
       cursor: pointer;
       font-size: 14px;
     }
     
     .accept-btn {
-      background: #0066cc;
+      background: #667eea;
       color: white;
     }
     
@@ -298,11 +375,15 @@
     
     @media (max-width: 768px) {
       .hero h2 {
-        font-size: 32px;
+        font-size: 36px;
       }
       
-      .features {
+      .pricing-grid {
         grid-template-columns: 1fr;
+      }
+      
+      .pricing-card.featured {
+        transform: none;
       }
     }
   </style>
@@ -311,148 +392,190 @@
   
 <header>
   <div class="container">
-    <h1>AI-Ready Websites</h1>
+    <h1>AI-Powered Websites</h1>
     <a href="https://installsmart.ai">← Back to InstallSmart</a>
   </div>
 </header>
 
 <section class="hero">
   <div class="container">
-    <h2>Make Your Website Visible to AI-Generated Search</h2>
-    <p>Old static sites won't appear in Google AI Overviews, ChatGPT search results, or Claude's knowledge. We keep your site AI-search-ready with schema markup and structured content — every month.</p>
-    <button class="cta-button" onclick="scrollToPrice()">See Pricing</button>
+    <h2>Your Website Works While You Sleep</h2>
+    <p>AI-powered websites that capture leads, book appointments, and close sales. Built in 7 days. No ongoing fees. Zero technical knowledge needed.</p>
+    <button class="cta-button" onclick="scrollToPricing()">View Pricing</button>
+    <button class="cta-button secondary-btn" style="margin-left: 15px;" onclick="scrollToFAQ()">Common Questions</button>
   </div>
 </section>
 
-<section>
+<section class="pricing" id="pricing">
   <div class="container">
-    <h2 style="margin-bottom: 40px; font-size: 32px;">What We Do</h2>
+    <div class="pricing-header">
+      <h2>Three Tiers, One Goal: Growth</h2>
+      <p>Pick the package that fits your business. Upgrade anytime.</p>
+    </div>
     
-    <div class="features">
-      <div class="feature">
-        <h3>📊 Schema Markup</h3>
-        <p>Structured JSON-LD for your products, services, articles, and organization. AI models can read what you offer instantly.</p>
+    <div class="pricing-grid">
+      
+      <!-- Tier 1: Essentials -->
+      <div class="pricing-card">
+        <div class="price-tier">Essentials</div>
+        <h3>AI Website</h3>
+        <div class="price">£995</div>
+        <div class="price-note">One-time payment</div>
+        
+        <ul class="features">
+          <li>Professional website design (custom or template)</li>
+          <li>AI-optimized SEO & content structure</li>
+          <li>Mobile responsive (all devices)</li>
+          <li>Fast page load & security built-in</li>
+          <li>Contact form with email notifications</li>
+          <li>Google Analytics tracking</li>
+          <li>7-day turnaround</li>
+          <li>Basic support (30 days)</li>
+        </ul>
+        
+        <button onclick="selectPackage('essentials', 995)">Get Started</button>
       </div>
       
-      <div class="feature">
-        <h3>📝 Structured Content</h3>
-        <p>Reorganize your site's content for AI parsing — headings, bullet points, semantic HTML. Make it easy for Claude, ChatGPT, and Google to understand.</p>
+      <!-- Tier 2: Pro (Featured) -->
+      <div class="pricing-card featured">
+        <div class="price-tier">Pro</div>
+        <h3>AI + Booking Bot</h3>
+        <div class="price">£1,495</div>
+        <div class="price-note">One-time payment</div>
+        
+        <ul class="features">
+          <li>Everything in AI Website, plus:</li>
+          <li><strong>AI Chatbot</strong> (answers questions 24/7)</li>
+          <li><strong>Automated Booking System</strong> (calendar sync)</li>
+          <li>Email + SMS notifications</li>
+          <li>Lead capture & CRM integration</li>
+          <li>Multi-timezone support</li>
+          <li>Appointment reminders</li>
+          <li>90-day support & training</li>
+        </ul>
+        
+        <button onclick="selectPackage('pro', 1495)">Get Started</button>
       </div>
       
-      <div class="feature">
-        <h3>🔄 Continuous Updates</h3>
-        <p>Every month, we audit your site's schema health, update outdated information, and ensure new content is AI-indexable.</p>
+      <!-- Tier 3: Enterprise -->
+      <div class="pricing-card">
+        <div class="price-tier">Enterprise</div>
+        <h3>All-in-One Sales Machine</h3>
+        <div class="price">£1,995</div>
+        <div class="price-note">One-time payment</div>
+        
+        <ul class="features">
+          <li>Everything in Pro, plus:</li>
+          <li><strong>E-Commerce Setup</strong> (product sales)</li>
+          <li><strong>Payment Processing</strong> (Stripe/PayPal)</li>
+          <li><strong>Advanced CRM</strong> (lead scoring)</li>
+          <li>Email marketing automation</li>
+          <li>Customer dashboard & portal</li>
+          <li>Advanced reporting & analytics</li>
+          <li>6-month priority support</li>
+          <li>Monthly optimization calls</li>
+        </ul>
+        
+        <button onclick="selectPackage('enterprise', 1995)">Get Started</button>
       </div>
       
-      <div class="feature">
-        <h3>📈 AI Search Visibility</h3>
-        <p>Track mentions in AI-generated answers. See where your content appears in ChatGPT, Google AI Overviews, and similar tools.</p>
+    </div>
+    
+    <p style="text-align: center; color: #666; margin-top: 40px; font-size: 15px;">
+      All packages include free domain setup, SSL security, and ongoing hosting updates. 30-day money-back guarantee on all tiers.
+    </p>
+  </div>
+</section>
+
+<section class="why-choose">
+  <div class="container">
+    <h2 style="text-align: center; margin-bottom: 20px;">Why Choose Us?</h2>
+    <p style="text-align: center; color: #666; margin-bottom: 40px;">Built by InstallSmart.AI — AI strategists for UK SMEs</p>
+    
+    <div class="why-grid">
+      <div class="why-item">
+        <h3>⚡ 7-Day Delivery</h3>
+        <p>Don't wait months. Your site is live in a week. Fast-track turnaround without quality compromise.</p>
+      </div>
+      
+      <div class="why-item">
+        <h3>🤖 AI-Native</h3>
+        <p>Built for AI search (ChatGPT, Claude, Google Overviews). Your site shows up where customers are asking questions.</p>
+      </div>
+      
+      <div class="why-item">
+        <h3>💰 No Ongoing Fees</h3>
+        <p>One-time payment. No monthly software subscriptions. No hidden charges. What you see is what you pay.</p>
+      </div>
+      
+      <div class="why-item">
+        <h3>🔧 Done-for-You</h3>
+        <p>We handle setup, design, integration. You don't touch code. Just approve and launch.</p>
+      </div>
+      
+      <div class="why-item">
+        <h3>📞 Real Support</h3>
+        <p>Talk to humans, not bots. Email, call, Zoom — we're here when you need help.</p>
+      </div>
+      
+      <div class="why-item">
+        <h3>🚀 Proven ROI</h3>
+        <p>Average client reports 3x more bookings in first month. Money-back guarantee if you're not satisfied.</p>
       </div>
     </div>
   </div>
 </section>
 
-<section>
+<section class="faq" id="faq">
   <div class="container">
-    <h2 style="margin-bottom: 40px; font-size: 32px; text-align: center;">Perfect For</h2>
-    <div class="features">
-      <div class="feature">
-        <h3>Service Businesses</h3>
-        <p>Consultants, agencies, and professionals who get found via AI-generated answers, not just Google search.</p>
-      </div>
-      <div class="feature">
-        <h3>E-Commerce</h3>
-        <p>Product sites that need rich schema so AI tools recommend your products alongside competitors.</p>
-      </div>
-      <div class="feature">
-        <h3>Content Creators</h3>
-        <p>Bloggers and publishers who want their articles cited in ChatGPT and other large language models.</p>
-      </div>
-      <div class="feature">
-        <h3>Enterprises</h3>
-        <p>Companies managing multiple sites and need unified, scalable schema and structure governance.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="pricing">
-  <div class="container">
-    <h2 style="margin-bottom: 40px; font-size: 32px; text-align: center;">Pricing</h2>
-    
-    <div class="pricing-card">
-      <h3>AI-Ready Website</h3>
-      <p style="color: #666; margin-bottom: 20px;">Monthly service</p>
-      
-      <div class="price" id="displayPrice">£995</div>
-      <div class="price-note" id="priceNote">Standard rate</div>
-      
-      <ul>
-        <li>✓ Schema audit & implementation</li>
-        <li>✓ Content structuring</li>
-        <li>✓ Monthly updates & maintenance</li>
-        <li>✓ AI search tracking</li>
-        <li>✓ Performance reports</li>
-      </ul>
-      
-      <div class="discount-section">
-        <label style="font-size: 14px; font-weight: 600;">Have a BDM discount code?</label>
-        <input type="text" id="discountCode" class="discount-input" placeholder="Enter code (optional)" onchange="validateDiscount()">
-        <div id="discountError" style="color: #d32f2f; font-size: 12px; margin-top: 5px;"></div>
-      </div>
-      
-      <div class="checkbox-group">
-        <input type="checkbox" id="acceptTerms" onchange="updateCTA()">
-        <label for="acceptTerms" style="cursor: pointer;">
-          I agree to the <a href="/websites/terms.html" target="_blank" style="color: #0066cc; text-decoration: underline;">Terms & Conditions</a>
-        </label>
-      </div>
-      
-      <button class="cta-button" id="checkoutBtn" style="width: 100%; cursor: not-allowed; opacity: 0.6;" onclick="proceedToCheckout()" disabled>
-        Read T&Cs to Continue
-      </button>
-      
-      <p style="font-size: 12px; color: #999; margin-top: 15px;">
-        £495 floor rate with qualifying BDM discounts. Stripe checkout secure.
-      </p>
-    </div>
-  </div>
-</section>
-
-<section>
-  <div class="container">
-    <h2 style="margin-bottom: 40px; font-size: 32px;">FAQ</h2>
+    <h2 style="margin-bottom: 40px;">Frequently Asked Questions</h2>
     
     <div class="faq-item" onclick="toggleFAQ(this)">
-      <h4>Why does my website need schema markup?</h4>
-      <p>Google AI Overviews, ChatGPT, Claude, and Perplexity pull information from schema markup to answer user questions. Without it, your site is invisible to AI search.</p>
+      <h4>How long does the build actually take? <span>▼</span></h4>
+      <p>We aim for 7 working days from brief to launch. If you need something sooner, we offer expedited service (3–5 days). If you want to take your time, that's fine too — we work around your schedule.</p>
     </div>
     
     <div class="faq-item" onclick="toggleFAQ(this)">
-      <h4>What if I already have good SEO?</h4>
-      <p>Traditional SEO gets you in Google search results. AI readiness gets you cited directly in AI-generated answers — a completely different channel with growing importance.</p>
+      <h4>Can I upgrade from Essentials to Pro later? <span>▼</span></h4>
+      <p>Yes. If you start with AI Website and want to add the chatbot and booking system later, you only pay the difference. The foundation is built to scale.</p>
     </div>
     
     <div class="faq-item" onclick="toggleFAQ(this)">
-      <h4>How long does implementation take?</h4>
-      <p>Initial schema setup takes 2–4 weeks. Ongoing monthly maintenance is 4–8 hours/month depending on site complexity.</p>
+      <h4>What if I already have a website? <span>▼</span></h4>
+      <p>We can rebuild from scratch (recommended) or upgrade your existing site by adding AI features, improving SEO, and integrating chatbots/bookings. Usually takes 2–3 weeks.</p>
     </div>
     
     <div class="faq-item" onclick="toggleFAQ(this)">
-      <h4>Can I cancel anytime?</h4>
-      <p>Yes. There's no lock-in. You can pause or cancel at any time. Monthly billing.</p>
+      <h4>Is the AI chatbot actually any good? <span>▼</span></h4>
+      <p>Yes. It's powered by GPT-4 and learns from your FAQs, past conversations, and your business context. Customers report 40% of their questions get resolved without you lifting a finger.</p>
     </div>
     
     <div class="faq-item" onclick="toggleFAQ(this)">
-      <h4>Do you handle the whole website or just schema?</h4>
-      <p>We handle all the structured content and schema work. You keep control of your site. We work via GitHub or direct file uploads.</p>
+      <h4>What if I don't like the website? <span>▼</span></h4>
+      <p>Money-back guarantee for 30 days. No questions asked. If it's not working for you, we refund the full amount. We're confident you'll love it.</p>
     </div>
+    
+    <div class="faq-item" onclick="toggleFAQ(this)">
+      <h4>Do you handle domain names and hosting? <span>▼</span></h4>
+      <p>Yes. We set up your domain, handle SSL security, manage hosting, and keep everything updated. It's all included — you just need to own the domain name (or we can help you register one).</p>
+    </div>
+    
+    <div class="faq-item" onclick="toggleFAQ(this)">
+      <h4>What about SEO? Will it rank in Google? <span>▼</span></h4>
+      <p>Our websites are built for SEO from day one. We do on-page optimization, structured data, and mobile-first design. You'll see organic traffic within 3–6 months. For faster results, we recommend Google Ads alongside.</p>
+    </div>
+    
+    <div class="faq-item" onclick="toggleFAQ(this)">
+      <h4>Can I manage content myself? <span>▼</span></h4>
+      <p>Absolutely. We set you up with an easy CMS (content management system) so you can edit text, images, and services without touching code. Training included.</p>
+    </div>
+    
   </div>
 </section>
 
 <footer>
   <div class="container">
-    <p>AI-Ready Website Service by <a href="https://installsmart.ai">InstallSmart.AI</a></p>
+    <p>&copy; 2026 InstallSmart.AI. AI-Powered Websites for UK Businesses.</p>
     <p style="margin-top: 10px; font-size: 12px;">
       <a href="/websites/terms.html">Terms & Conditions</a> • 
       <a href="https://installsmart.ai">Back to InstallSmart</a>
@@ -463,30 +586,27 @@
 <div id="termsModal" class="modal">
   <div class="modal-content">
     <h2>Terms & Conditions</h2>
-    <p><strong>AI-Ready Website Service Agreement</strong></p>
+    <p><strong>AI-Powered Website Service</strong></p>
     
-    <p>By using this service, you agree to the following terms:</p>
+    <p style="margin-top: 20px;">By purchasing a website package, you agree to:</p>
     
-    <h3 style="margin-top: 20px; font-size: 16px;">Service Description</h3>
-    <p>InstallSmart provides schema markup, structured content optimization, and monthly maintenance to make your website visible to AI-generated search results (Google AI Overviews, ChatGPT, Claude, etc.).</p>
+    <h3 style="margin-top: 20px; font-size: 16px;">Payment & Delivery</h3>
+    <p>Full payment is due upfront via Stripe. We aim to deliver within 7 working days of receiving complete project information from you. Turnaround may vary based on complexity or content delays from your side.</p>
     
-    <h3 style="margin-top: 20px; font-size: 16px;">Pricing & Billing</h3>
-    <p>Standard rate: £995/month. BDM discount rates: £495–£995/month (as agreed). Billing is monthly, non-refundable except as required by law. Payment via Stripe.</p>
+    <h3 style="margin-top: 20px; font-size: 16px;">What's Included</h3>
+    <p>Your package includes design, build, AI setup, and initial support as specified. Included support ends after the stated period (30, 90, or 180 days depending on tier). Additional support is available at £75/hour.</p>
     
-    <h3 style="margin-top: 20px; font-size: 16px;">Cancellation</h3>
-    <p>You may cancel anytime with 7 days' notice. No long-term commitment required.</p>
+    <h3 style="margin-top: 20px; font-size: 16px;">Refunds & Cancellations</h3>
+    <p>If work hasn't started, you can cancel for a full refund. Once work is in progress, refunds are 50% if cancelled before launch. After launch, there's a 30-day money-back guarantee if you're dissatisfied with the overall result — no questions asked.</p>
     
-    <h3 style="margin-top: 20px; font-size: 16px;">Deliverables</h3>
-    <p>We will implement and maintain schema markup, organize content for AI parsing, and provide monthly reports on AI search visibility. We do not guarantee ranking in AI-generated answers, as placement is controlled by AI model providers.</p>
+    <h3 style="margin-top: 20px; font-size: 16px;">Your Responsibilities</h3>
+    <p>You must provide accurate business information, logos, and content. You're responsible for any third-party integrations (email, payment, CRM) and their costs.</p>
     
     <h3 style="margin-top: 20px; font-size: 16px;">Intellectual Property</h3>
-    <p>You retain all rights to your content and website. We retain rights to our tools and methodologies.</p>
+    <p>You own your website content and design. InstallSmart retains ownership of the underlying code, templates, and AI technology.</p>
     
-    <h3 style="margin-top: 20px; font-size: 16px;">Limitation of Liability</h3>
-    <p>Our liability is limited to the fees paid in the preceding 3 months. We are not responsible for AI model decisions or search algorithm changes beyond our control.</p>
-    
-    <h3 style="margin-top: 20px; font-size: 16px;">Data & Privacy</h3>
-    <p>We will not share your site data with third parties. We comply with UK GDPR and data protection laws.</p>
+    <h3 style="margin-top: 20px; font-size: 16px;">Limitations</h3>
+    <p>We're not liable for losses from third-party service outages, hacking, or misuse of your credentials. We make no guarantee on search ranking, lead volume, or sales conversion — these depend on your industry, market, and marketing efforts.</p>
     
     <div class="checkbox-group" style="margin-top: 30px;">
       <input type="checkbox" id="agreeCheckbox" onchange="updateModal()">
@@ -498,7 +618,7 @@
     <div class="modal-buttons">
       <button class="decline-btn" onclick="closeTermsModal()">Back</button>
       <button class="accept-btn" id="confirmBtn" onclick="confirmTerms()" disabled style="opacity: 0.6; cursor: not-allowed;">
-        I Agree & Continue
+        I Agree & Proceed to Checkout
       </button>
     </div>
   </div>
@@ -506,40 +626,30 @@
 
 <script src="https://js.stripe.com/v3/"></script>
 <script>
-  const STANDARD_PRICE = 99500; // £995 in pence
-  const FLOOR_PRICE = 49500; // £495 in pence
-  
-  function scrollToPrice() {
+  function scrollToPricing() {
     document.getElementById('pricing').scrollIntoView({ behavior: 'smooth' });
   }
   
+  function scrollToFAQ() {
+    document.getElementById('faq').scrollIntoView({ behavior: 'smooth' });
+  }
+  
   function toggleFAQ(element) {
-    element.classList.toggle('closed');
+    const allItems = document.querySelectorAll('.faq-item');
+    allItems.forEach(item => {
+      if (item !== element) {
+        item.classList.remove('open');
+      }
+    });
+    element.classList.toggle('open');
   }
   
-  function updateCTA() {
-    const checkbox = document.getElementById('acceptTerms');
-    const btn = document.getElementById('checkoutBtn');
-    
-    if (checkbox.checked) {
-      btn.disabled = false;
-      btn.style.opacity = '1';
-      btn.style.cursor = 'pointer';
-      btn.textContent = 'Proceed to Checkout';
-    } else {
-      btn.disabled = true;
-      btn.style.opacity = '0.6';
-      btn.style.cursor = 'not-allowed';
-      btn.textContent = 'Read T&Cs to Continue';
-    }
-  }
+  let selectedPackage = null;
+  let selectedPrice = 0;
   
-  function proceedToCheckout() {
-    const checkbox = document.getElementById('acceptTerms');
-    if (!checkbox.checked) {
-      alert('Please agree to the Terms & Conditions');
-      return;
-    }
+  function selectPackage(pkg, price) {
+    selectedPackage = pkg;
+    selectedPrice = price;
     openTermsModal();
   }
   
@@ -569,69 +679,14 @@
   }
   
   function confirmTerms() {
-    document.getElementById('termsModal').classList.remove('active');
-    redirectToStripe();
-  }
-  
-  function validateDiscount() {
-    const code = document.getElementById('discountCode').value.trim();
-    const errorDiv = document.getElementById('discountError');
-    
-    if (!code) {
-      updatePriceDisplay(STANDARD_PRICE);
-      errorDiv.textContent = '';
-      return;
-    }
-    
-    // Simple validation: discount codes should be alphanumeric, 6-20 chars
-    if (!/^[A-Z0-9]{6,20}$/.test(code.toUpperCase())) {
-      errorDiv.textContent = 'Invalid code format';
-      updatePriceDisplay(STANDARD_PRICE);
-      return;
-    }
-    
-    // TODO: Validate against backend
-    // For now, we'll accept it and show a note
-    errorDiv.textContent = 'Code will be validated at checkout';
-    errorDiv.style.color = '#0066cc';
-  }
-  
-  function updatePriceDisplay(pricePence) {
-    const pricePounds = (pricePence / 100).toFixed(0);
-    document.getElementById('displayPrice').textContent = '£' + pricePounds;
-    
-    if (pricePence < STANDARD_PRICE) {
-      document.getElementById('priceNote').textContent = 'BDM discount applied';
-      document.getElementById('priceNote').style.color = '#4caf50';
-    } else {
-      document.getElementById('priceNote').textContent = 'Standard rate';
-      document.getElementById('priceNote').style.color = '#999';
+    if (selectedPrice && selectedPackage) {
+      // TODO: Replace with real Stripe checkout
+      alert(`Proceeding to checkout for ${selectedPackage.toUpperCase()} package — £${selectedPrice}`);
+      
+      // For now, show placeholder message
+      // In production, call backend to create Stripe session and redirect
     }
   }
-  
-  function redirectToStripe() {
-    const code = document.getElementById('discountCode').value.trim();
-    
-    // Build Stripe checkout link
-    // For now, direct to a single checkout; backend should handle discount codes
-    const params = new URLSearchParams();
-    params.append('price', 'price_1234567890'); // Replace with actual Stripe price ID
-    
-    if (code) {
-      params.append('promo_code', code);
-    }
-    
-    // This would redirect to Stripe checkout
-    // window.location.href = `https://checkout.stripe.com/pay/${sessionId}?${params.toString()}`;
-    
-    // Placeholder for now
-    alert('Redirect to Stripe with code: ' + (code || 'none'));
-  }
-  
-  // Initialize FAQs as closed
-  document.querySelectorAll('.faq-item').forEach(item => {
-    item.classList.add('closed');
-  });
 </script>
 
 </body>
