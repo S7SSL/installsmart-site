@@ -289,9 +289,7 @@
     enterprise: 199500  // £1,995
   };
   
-  const API_URL = process.env.NODE_ENV === 'production' 
-    ? 'https://installsmart.ai/api'
-    : 'http://localhost:3000/api';
+  const API_URL = 'http://localhost:3000/api'; // Local API server
   
   // Store current discount codes
   const discounts = {
