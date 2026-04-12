@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pricing — AI-Powered Websites</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: linear-gradient(135deg, #f0f4ff 0%, #fff 100%);
+      padding: 40px 20px;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    h1 {
+      text-align: center;
+      font-size: 42px;
+      margin-bottom: 50px;
+      color: #1a1a1a;
+    }
+    
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 30px;
+      margin-bottom: 60px;
+    }
+    
+    .pricing-card {
+      background: white;
+      border: 2px solid #e0e0e0;
+      border-radius: 12px;
+      padding: 40px;
+      transition: all 0.3s;
+    }
+    
+    .pricing-card.featured {
+      border-color: #667eea;
+      box-shadow: 0 20px 40px rgba(102, 126, 234, 0.15);
+      transform: translateY(-10px);
+    }
+    
+    .pricing-card.featured::before {
+      content: "MOST POPULAR";
+      position: absolute;
+      top: -12px;
+      left: 20px;
+      background: #667eea;
+      color: white;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+    
+    .pricing-card h3 {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+    
+    .price {
+      font-size: 48px;
+      font-weight: bold;
+      color: #0066cc;
+      margin: 20px 0;
+      position: relative;
+    }
+    
+    .price.discounted {
+      font-size: 52px;
+    }
+    
+    .original-price {
+      font-size: 24px;
+      text-decoration: line-through;
+      color: #999;
+      margin-left: 10px;
+    }
+    
+    .savings {
+      font-size: 14px;
+      color: #4caf50;
+      font-weight: 600;
+      margin-top: 5px;
+    }
+    
+    .price-note {
+      font-size: 13px;
+      color: #999;
+      margin-bottom: 30px;
+    }
+    
+    .features {
+      list-style: none;
+      margin: 30px 0;
+    }
+    
+    .features li {
+      padding: 12px 0;
+      border-bottom: 1px solid #f0f0f0;
+      font-size: 15px;
+    }
+    
+    .features li:before {
+      content: "✓ ";
+      color: #667eea;
+      font-weight: 700;
+      margin-right: 10px;
+    }
+    
+    .discount-section {
+      background: #f5f5f5;
+      padding: 20px;
+      border-radius: 6px;
+      margin: 20px 0;
+    }
+    
+    .discount-section label {
+      display: block;
+      margin-bottom: 10px;
+      font-weight: 600;
+      font-size: 14px;
+    }
+    
+    .discount-input {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+    
+    .discount-input:focus {
+      outline: none;
+      border-color: #667eea;
+      box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    }
+    
+    .error {
+      color: #d32f2f;
+      font-size: 12px;
+    }
+    
+    .success {
+      color: #4caf50;
+      font-size: 12px;
+      font-weight: 600;
+    }
+    
+    button {
+      width: 100%;
+      padding: 14px;
+      margin-top: 20px;
+      border: none;
+      border-radius: 6px;
+      background: #667eea;
+      color: white;
+      font-weight: 700;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background 0.2s;
+    }
+    
+    button:hover {
+      background: #5568d3;
+    }
+    
+    button:disabled {
+      background: #ccc;
+      cursor: not-allowed;
+    }
+    
+    .loading {
+      text-align: center;
+      color: #999;
+      font-size: 12px;
+      margin-top: 5px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h1>Simple Pricing. Big Results.</h1>
+  
+  <div class="pricing-grid">
+    
+    <!-- Essentials -->
+    <div class="pricing-card" id="essentialsCard">
+      <h3>Essentials</h3>
+      <div class="price" id="essentialsPrice">£995</div>
+      <div id="essentialsOriginal" class="original-price" style="display: none;"></div>
+      <div id="essentialsSavings" class="savings" style="display: none;"></div>
+      <p class="price-note">One-time payment</p>
+      
+      <ul class="features">
+        <li>Professional website design</li>
+        <li>AI-optimized SEO & content</li>
+        <li>Mobile responsive</li>
+        <li>Security & fast load times</li>
+        <li>Contact form included</li>
+        <li>7-day turnaround</li>
+      </ul>
+      
+      <div class="discount-section">
+        <label>Have a discount code?</label>
+        <input type="text" class="discount-input" placeholder="Enter code" data-package="essentials" onkeyup="validateCode(this.value, 'essentials')">
+        <div class="error" style="display: none;"></div>
+        <div class="success" style="display: none;"></div>
+      </div>
+      
+      <button onclick="checkout('essentials')">Get Started</button>
+    </div>
+    
+    <!-- Pro (Featured) -->
+    <div class="pricing-card featured" id="proCard">
+      <h3>Pro</h3>
+      <div class="price" id="proPrice">£1,495</div>
+      <div id="proOriginal" class="original-price" style="display: none;"></div>
+      <div id="proSavings" class="savings" style="display: none;"></div>
+      <p class="price-note">One-time payment</p>
+      
+      <ul class="features">
+        <li>Everything in Essentials</li>
+        <li><strong>AI Chatbot</strong> (24/7)</li>
+        <li><strong>Booking System</strong></li>
+        <li>Email & SMS notifications</li>
+        <li>Lead capture & CRM</li>
+        <li>90-day support</li>
+      </ul>
+      
+      <div class="discount-section">
+        <label>Have a discount code?</label>
+        <input type="text" class="discount-input" placeholder="Enter code" data-package="pro" onkeyup="validateCode(this.value, 'pro')">
+        <div class="error" style="display: none;"></div>
+        <div class="success" style="display: none;"></div>
+      </div>
+      
+      <button onclick="checkout('pro')">Get Started</button>
+    </div>
+    
+    <!-- Enterprise -->
+    <div class="pricing-card" id="enterpriseCard">
+      <h3>Enterprise</h3>
+      <div class="price" id="enterprisePrice">£1,995</div>
+      <div id="enterpriseOriginal" class="original-price" style="display: none;"></div>
+      <div id="enterpriseSavings" class="savings" style="display: none;"></div>
+      <p class="price-note">One-time payment</p>
+      
+      <ul class="features">
+        <li>Everything in Pro</li>
+        <li><strong>E-Commerce Setup</strong></li>
+        <li><strong>Payment Processing</strong></li>
+        <li>Advanced CRM & automation</li>
+        <li>Customer portal & dashboard</li>
+        <li>6-month support & optimization</li>
+      </ul>
+      
+      <div class="discount-section">
+        <label>Have a discount code?</label>
+        <input type="text" class="discount-input" placeholder="Enter code" data-package="enterprise" onkeyup="validateCode(this.value, 'enterprise')">
+        <div class="error" style="display: none;"></div>
+        <div class="success" style="display: none;"></div>
+      </div>
+      
+      <button onclick="checkout('enterprise')">Get Started</button>
+    </div>
+    
+  </div>
+</div>
+
+<script src="https://js.stripe.com/v3/"></script>
+<script>
+  const PRICES = {
+    essentials: 99500,  // £995
+    pro: 149500,        // £1,495
+    enterprise: 199500  // £1,995
+  };
+  
+  const API_URL = process.env.NODE_ENV === 'production' 
+    ? 'https://installsmart.ai/api'
+    : 'http://localhost:3000/api';
+  
+  // Store current discount codes
+  const discounts = {
+    essentials: null,
+    pro: null,
+    enterprise: null
+  };
+  
+  async function validateCode(code, pkg) {
+    const card = document.getElementById(pkg + 'Card');
+    const inputs = card.querySelectorAll('.discount-input');
+    const errorDiv = inputs[0].nextElementSibling;
+    const successDiv = inputs[0].nextElementSibling.nextElementSibling;
+    
+    // Clear messages
+    errorDiv.style.display = 'none';
+    errorDiv.textContent = '';
+    successDiv.style.display = 'none';
+    successDiv.textContent = '';
+    
+    if (!code) {
+      resetPrice(pkg);
+      return;
+    }
+    
+    try {
+      const response = await fetch(`${API_URL}/validate-code?code=${code}&package=${pkg}`);
+      const data = await response.json();
+      
+      if (data.valid) {
+        discounts[pkg] = data;
+        updatePrice(pkg, data.finalPrice, data.discount, data.discountPercentage);
+        successDiv.style.display = 'block';
+        successDiv.textContent = `✓ Code applied! Save £${data.discount}`;
+      } else {
+        resetPrice(pkg);
+        errorDiv.style.display = 'block';
+        errorDiv.textContent = `✗ ${data.error || 'Code not found'}`;
+      }
+    } catch (error) {
+      console.error('Validation error:', error);
+      resetPrice(pkg);
+    }
+  }
+  
+  function updatePrice(pkg, finalPrice, discount, percentOff) {
+    const originalPrice = PRICES[pkg];
+    const priceElement = document.getElementById(pkg + 'Price');
+    const originalElement = document.getElementById(pkg + 'Original');
+    const savingsElement = document.getElementById(pkg + 'Savings');
+    
+    // Show discounted price
+    priceElement.textContent = '£' + (finalPrice / 100).toFixed(0);
+    priceElement.classList.add('discounted');
+    
+    // Show original price strikethrough
+    originalElement.textContent = '£' + (originalPrice / 100).toFixed(0);
+    originalElement.style.display = 'inline';
+    
+    // Show savings
+    savingsElement.style.display = 'block';
+    savingsElement.textContent = `Save £${(discount / 100).toFixed(0)} (${percentOff}% off)`;
+  }
+  
+  function resetPrice(pkg) {
+    const originalPrice = PRICES[pkg];
+    const priceElement = document.getElementById(pkg + 'Price');
+    const originalElement = document.getElementById(pkg + 'Original');
+    const savingsElement = document.getElementById(pkg + 'Savings');
+    
+    priceElement.textContent = '£' + (originalPrice / 100).toFixed(0);
+    priceElement.classList.remove('discounted');
+    originalElement.style.display = 'none';
+    savingsElement.style.display = 'none';
+    
+    discounts[pkg] = null;
+  }
+  
+  async function checkout(pkg) {
+    const card = document.getElementById(pkg + 'Card');
+    const input = card.querySelector('.discount-input');
+    const code = input.value || null;
+    const email = prompt('Enter your email:');
+    
+    if (!email) return;
+    
+    try {
+      const response = await fetch(`${API_URL}/checkout`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          package: pkg,
+          discountCode: code,
+          email: email
+        })
+      });
+      
+      const data = await response.json();
+      
+      if (data.url) {
+        window.location.href = data.url;
+      } else {
+        alert('Error: ' + (data.error || 'Could not create checkout session'));
+      }
+    } catch (error) {
+      console.error('Checkout error:', error);
+      alert('Error initiating checkout');
+    }
+  }
+</script>
+
+</body>
+</html>
