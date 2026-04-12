@@ -181,13 +181,6 @@
       background: #ccc;
       cursor: not-allowed;
     }
-    
-    .loading {
-      text-align: center;
-      color: #999;
-      font-size: 12px;
-      margin-top: 5px;
-    }
   </style>
 </head>
 <body>
@@ -197,21 +190,22 @@
   
   <div class="pricing-grid">
     
-    <!-- Essentials -->
+    <!-- AI Website -->
     <div class="pricing-card" id="essentialsCard">
-      <h3>Essentials</h3>
+      <h3>AI Website</h3>
       <div class="price" id="essentialsPrice">£995</div>
       <div id="essentialsOriginal" class="original-price" style="display: none;"></div>
       <div id="essentialsSavings" class="savings" style="display: none;"></div>
       <p class="price-note">One-time payment</p>
       
       <ul class="features">
-        <li>Professional website design</li>
-        <li>AI-optimized SEO & content</li>
-        <li>Mobile responsive</li>
-        <li>Security & fast load times</li>
-        <li>Contact form included</li>
-        <li>7-day turnaround</li>
+        <li>Professional website design (custom or template)</li>
+        <li>AI-optimized SEO & content structure</li>
+        <li>Mobile responsive (all devices)</li>
+        <li>Fast page load & security built-in</li>
+        <li>Contact form with email notifications</li>
+        <li>Google Analytics tracking</li>
+        <li>7-day turnaround (48h available)</li>
       </ul>
       
       <div class="discount-section">
@@ -224,21 +218,22 @@
       <button onclick="checkout('essentials')">Get Started</button>
     </div>
     
-    <!-- Pro (Featured) -->
+    <!-- AI + Booking Bot (Featured) -->
     <div class="pricing-card featured" id="proCard">
-      <h3>Pro</h3>
+      <h3>AI + Booking Bot</h3>
       <div class="price" id="proPrice">£1,495</div>
       <div id="proOriginal" class="original-price" style="display: none;"></div>
       <div id="proSavings" class="savings" style="display: none;"></div>
       <p class="price-note">One-time payment</p>
       
       <ul class="features">
-        <li>Everything in Essentials</li>
-        <li><strong>AI Chatbot</strong> (24/7)</li>
-        <li><strong>Booking System</strong></li>
-        <li>Email & SMS notifications</li>
-        <li>Lead capture & CRM</li>
-        <li>90-day support</li>
+        <li>Everything in AI Website, plus:</li>
+        <li><strong>AI Chatbot</strong> (answers questions 24/7)</li>
+        <li><strong>Automated Booking System</strong> (calendar sync)</li>
+        <li>Email + SMS notifications</li>
+        <li>Lead capture & CRM integration</li>
+        <li>Multi-timezone support</li>
+        <li>Appointment reminders</li>
       </ul>
       
       <div class="discount-section">
@@ -251,21 +246,23 @@
       <button onclick="checkout('pro')">Get Started</button>
     </div>
     
-    <!-- Enterprise -->
+    <!-- All-in-One Sales Machine -->
     <div class="pricing-card" id="enterpriseCard">
-      <h3>Enterprise</h3>
+      <h3>All-in-One Sales Machine</h3>
       <div class="price" id="enterprisePrice">£1,995</div>
       <div id="enterpriseOriginal" class="original-price" style="display: none;"></div>
       <div id="enterpriseSavings" class="savings" style="display: none;"></div>
       <p class="price-note">One-time payment</p>
       
       <ul class="features">
-        <li>Everything in Pro</li>
-        <li><strong>E-Commerce Setup</strong></li>
-        <li><strong>Payment Processing</strong></li>
-        <li>Advanced CRM & automation</li>
-        <li>Customer portal & dashboard</li>
-        <li>6-month support & optimization</li>
+        <li>Everything in Pro, plus:</li>
+        <li><strong>E-Commerce Setup</strong> (product sales)</li>
+        <li><strong>Payment Processing</strong> (Stripe/PayPal)</li>
+        <li><strong>Advanced CRM</strong> (lead scoring)</li>
+        <li>Email marketing automation</li>
+        <li>Customer dashboard & portal</li>
+        <li>Advanced reporting & analytics</li>
+        <li>Monthly optimization calls</li>
       </ul>
       
       <div class="discount-section">
@@ -289,9 +286,8 @@
     enterprise: 199500  // £1,995
   };
   
-  const API_URL = 'http://localhost:3000/api'; // Local API server
+  const API_URL = 'http://localhost:3000/api';
   
-  // Store current discount codes
   const discounts = {
     essentials: null,
     pro: null,
@@ -304,7 +300,6 @@
     const errorDiv = inputs[0].nextElementSibling;
     const successDiv = inputs[0].nextElementSibling.nextElementSibling;
     
-    // Clear messages
     errorDiv.style.display = 'none';
     errorDiv.textContent = '';
     successDiv.style.display = 'none';
@@ -341,15 +336,12 @@
     const originalElement = document.getElementById(pkg + 'Original');
     const savingsElement = document.getElementById(pkg + 'Savings');
     
-    // Show discounted price
     priceElement.textContent = '£' + (finalPrice / 100).toFixed(0);
     priceElement.classList.add('discounted');
     
-    // Show original price strikethrough
     originalElement.textContent = '£' + (originalPrice / 100).toFixed(0);
     originalElement.style.display = 'inline';
     
-    // Show savings
     savingsElement.style.display = 'block';
     savingsElement.textContent = `Save £${(discount / 100).toFixed(0)} (${percentOff}% off)`;
   }
