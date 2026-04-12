@@ -3,7 +3,11 @@
  * Creates checkout sessions for website packages with optional discount codes
  */
 
-const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY || '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');
+const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+
+if (!process.env.STRIPE_SECRET_KEY) {
+  throw new Error('STRIPE_SECRET_KEY environment variable is required');
+}
 
 const PACKAGES = {
   essentials: { name: 'Essentials', price: 99500, priceId: 'price_1QaHxK2NFW59QiEi6qJ7kL9m' }, // £995
