@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI-Ready Website Service — Schema, Structure, AI Search Visibility</title>
+  <meta name="description" content="Make your website visible to AI-generated search answers. Google AI Overviews, ChatGPT, and Claude all pull from schema-rich, structured content. Monthly service from £495–£995.">
+  <meta property="og:title" content="AI-Ready Website Service — Schema &amp; Structure">
+  <meta property="og:description" content="Optimize your site for AI-generated search visibility with structured content and schema markup.">
+  <meta property="og:type" content="website">
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      line-height: 1.6;
+      color: #1a1a1a;
+      background: #fafafa;
+    }
+    
+    header {
+      background: white;
+      border-bottom: 1px solid #e0e0e0;
+      padding: 20px 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    
+    header .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    header h1 {
+      font-size: 18px;
+      font-weight: 600;
+    }
+    
+    header a {
+      color: #1a1a1a;
+      text-decoration: none;
+    }
+    
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    
+    section {
+      padding: 60px 0;
+    }
+    
+    .hero {
+      background: linear-gradient(135deg, #f0f4ff 0%, #fff 100%);
+      padding: 80px 0;
+    }
+    
+    .hero h2 {
+      font-size: 48px;
+      line-height: 1.2;
+      margin-bottom: 20px;
+      max-width: 800px;
+    }
+    
+    .hero p {
+      font-size: 18px;
+      color: #666;
+      max-width: 800px;
+      margin-bottom: 30px;
+    }
+    
+    .cta-button {
+      display: inline-block;
+      padding: 14px 28px;
+      background: #0066cc;
+      color: white;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      font-size: 16px;
+      transition: background 0.2s;
+    }
+    
+    .cta-button:hover {
+      background: #0052a3;
+    }
+    
+    .features {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      margin: 60px 0;
+    }
+    
+    .feature {
+      padding: 30px;
+      background: white;
+      border-radius: 8px;
+      border: 1px solid #e0e0e0;
+    }
+    
+    .feature h3 {
+      margin-bottom: 12px;
+      font-size: 18px;
+    }
+    
+    .feature p {
+      color: #666;
+      font-size: 14px;
+    }
+    
+    .pricing-card {
+      background: white;
+      border: 2px solid #0066cc;
+      border-radius: 8px;
+      padding: 40px;
+      text-align: center;
+      max-width: 400px;
+      margin: 0 auto;
+    }
+    
+    .pricing-card h3 {
+      font-size: 28px;
+      margin-bottom: 10px;
+    }
+    
+    .price {
+      font-size: 48px;
+      font-weight: bold;
+      color: #0066cc;
+      margin: 20px 0;
+    }
+    
+    .price-note {
+      font-size: 13px;
+      color: #999;
+      margin-bottom: 30px;
+    }
+    
+    .pricing-card ul {
+      list-style: none;
+      margin: 30px 0;
+      text-align: left;
+    }
+    
+    .pricing-card li {
+      padding: 10px 0;
+      border-bottom: 1px solid #f0f0f0;
+      font-size: 14px;
+    }
+    
+    .pricing-card li:last-child {
+      border-bottom: none;
+    }
+    
+    .discount-section {
+      margin: 30px 0;
+      padding: 20px;
+      background: #f5f5f5;
+      border-radius: 6px;
+    }
+    
+    .discount-input {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      margin: 10px 0;
+      font-size: 14px;
+    }
+    
+    .discount-input::placeholder {
+      color: #999;
+    }
+    
+    .faq {
+      margin-top: 60px;
+    }
+    
+    .faq-item {
+      background: white;
+      padding: 20px;
+      margin-bottom: 15px;
+      border-radius: 6px;
+      border: 1px solid #e0e0e0;
+      cursor: pointer;
+    }
+    
+    .faq-item h4 {
+      margin-bottom: 10px;
+    }
+    
+    .faq-item.closed p {
+      display: none;
+    }
+    
+    footer {
+      background: #1a1a1a;
+      color: white;
+      padding: 40px 0;
+      text-align: center;
+      font-size: 14px;
+    }
+    
+    footer a {
+      color: #0066cc;
+      text-decoration: none;
+    }
+    
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .modal.active {
+      display: flex;
+    }
+    
+    .modal-content {
+      background: white;
+      max-width: 600px;
+      max-height: 80vh;
+      overflow-y: auto;
+      border-radius: 8px;
+      padding: 40px;
+      position: relative;
+    }
+    
+    .modal-content h2 {
+      margin-bottom: 20px;
+    }
+    
+    .modal-content p {
+      margin-bottom: 15px;
+      font-size: 14px;
+      line-height: 1.8;
+    }
+    
+    .modal-buttons {
+      display: flex;
+      gap: 15px;
+      margin-top: 30px;
+    }
+    
+    .modal-buttons button {
+      flex: 1;
+      padding: 12px;
+      border: none;
+      border-radius: 4px;
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 14px;
+    }
+    
+    .accept-btn {
+      background: #0066cc;
+      color: white;
+    }
+    
+    .decline-btn {
+      background: #f0f0f0;
+      color: #1a1a1a;
+    }
+    
+    .checkbox-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 20px 0;
+    }
+    
+    .checkbox-group input {
+      width: 18px;
+      height: 18px;
+      cursor: pointer;
+    }
+    
+    @media (max-width: 768px) {
+      .hero h2 {
+        font-size: 32px;
+      }
+      
+      .features {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  
+<header>
+  <div class="container">
+    <h1>AI-Ready Websites</h1>
+    <a href="https://installsmart.ai">← Back to InstallSmart</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="container">
+    <h2>Make Your Website Visible to AI-Generated Search</h2>
+    <p>Old static sites won't appear in Google AI Overviews, ChatGPT search results, or Claude's knowledge. We keep your site AI-search-ready with schema markup and structured content — every month.</p>
+    <button class="cta-button" onclick="scrollToPrice()">See Pricing</button>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <h2 style="margin-bottom: 40px; font-size: 32px;">What We Do</h2>
+    
+    <div class="features">
+      <div class="feature">
+        <h3>📊 Schema Markup</h3>
+        <p>Structured JSON-LD for your products, services, articles, and organization. AI models can read what you offer instantly.</p>
+      </div>
+      
+      <div class="feature">
+        <h3>📝 Structured Content</h3>
+        <p>Reorganize your site's content for AI parsing — headings, bullet points, semantic HTML. Make it easy for Claude, ChatGPT, and Google to understand.</p>
+      </div>
+      
+      <div class="feature">
+        <h3>🔄 Continuous Updates</h3>
+        <p>Every month, we audit your site's schema health, update outdated information, and ensure new content is AI-indexable.</p>
+      </div>
+      
+      <div class="feature">
+        <h3>📈 AI Search Visibility</h3>
+        <p>Track mentions in AI-generated answers. See where your content appears in ChatGPT, Google AI Overviews, and similar tools.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <h2 style="margin-bottom: 40px; font-size: 32px; text-align: center;">Perfect For</h2>
+    <div class="features">
+      <div class="feature">
+        <h3>Service Businesses</h3>
+        <p>Consultants, agencies, and professionals who get found via AI-generated answers, not just Google search.</p>
+      </div>
+      <div class="feature">
+        <h3>E-Commerce</h3>
+        <p>Product sites that need rich schema so AI tools recommend your products alongside competitors.</p>
+      </div>
+      <div class="feature">
+        <h3>Content Creators</h3>
+        <p>Bloggers and publishers who want their articles cited in ChatGPT and other large language models.</p>
+      </div>
+      <div class="feature">
+        <h3>Enterprises</h3>
+        <p>Companies managing multiple sites and need unified, scalable schema and structure governance.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="pricing">
+  <div class="container">
+    <h2 style="margin-bottom: 40px; font-size: 32px; text-align: center;">Pricing</h2>
+    
+    <div class="pricing-card">
+      <h3>AI-Ready Website</h3>
+      <p style="color: #666; margin-bottom: 20px;">Monthly service</p>
+      
+      <div class="price" id="displayPrice">£995</div>
+      <div class="price-note" id="priceNote">Standard rate</div>
+      
+      <ul>
+        <li>✓ Schema audit & implementation</li>
+        <li>✓ Content structuring</li>
+        <li>✓ Monthly updates & maintenance</li>
+        <li>✓ AI search tracking</li>
+        <li>✓ Performance reports</li>
+      </ul>
+      
+      <div class="discount-section">
+        <label style="font-size: 14px; font-weight: 600;">Have a BDM discount code?</label>
+        <input type="text" id="discountCode" class="discount-input" placeholder="Enter code (optional)" onchange="validateDiscount()">
+        <div id="discountError" style="color: #d32f2f; font-size: 12px; margin-top: 5px;"></div>
+      </div>
+      
+      <div class="checkbox-group">
+        <input type="checkbox" id="acceptTerms" onchange="updateCTA()">
+        <label for="acceptTerms" style="cursor: pointer;">
+          I agree to the <a href="/websites/terms.html" target="_blank" style="color: #0066cc; text-decoration: underline;">Terms & Conditions</a>
+        </label>
+      </div>
+      
+      <button class="cta-button" id="checkoutBtn" style="width: 100%; cursor: not-allowed; opacity: 0.6;" onclick="proceedToCheckout()" disabled>
+        Read T&Cs to Continue
+      </button>
+      
+      <p style="font-size: 12px; color: #999; margin-top: 15px;">
+        £495 floor rate with qualifying BDM discounts. Stripe checkout secure.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <h2 style="margin-bottom: 40px; font-size: 32px;">FAQ</h2>
+    
+    <div class="faq-item" onclick="toggleFAQ(this)">
+      <h4>Why does my website need schema markup?</h4>
+      <p>Google AI Overviews, ChatGPT, Claude, and Perplexity pull information from schema markup to answer user questions. Without it, your site is invisible to AI search.</p>
+    </div>
+    
+    <div class="faq-item" onclick="toggleFAQ(this)">
+      <h4>What if I already have good SEO?</h4>
+      <p>Traditional SEO gets you in Google search results. AI readiness gets you cited directly in AI-generated answers — a completely different channel with growing importance.</p>
+    </div>
+    
+    <div class="faq-item" onclick="toggleFAQ(this)">
+      <h4>How long does implementation take?</h4>
+      <p>Initial schema setup takes 2–4 weeks. Ongoing monthly maintenance is 4–8 hours/month depending on site complexity.</p>
+    </div>
+    
+    <div class="faq-item" onclick="toggleFAQ(this)">
+      <h4>Can I cancel anytime?</h4>
+      <p>Yes. There's no lock-in. You can pause or cancel at any time. Monthly billing.</p>
+    </div>
+    
+    <div class="faq-item" onclick="toggleFAQ(this)">
+      <h4>Do you handle the whole website or just schema?</h4>
+      <p>We handle all the structured content and schema work. You keep control of your site. We work via GitHub or direct file uploads.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <p>AI-Ready Website Service by <a href="https://installsmart.ai">InstallSmart.AI</a></p>
+    <p style="margin-top: 10px; font-size: 12px;">
+      <a href="/websites/terms.html">Terms & Conditions</a> • 
+      <a href="https://installsmart.ai">Back to InstallSmart</a>
+    </p>
+  </div>
+</footer>
+
+<div id="termsModal" class="modal">
+  <div class="modal-content">
+    <h2>Terms & Conditions</h2>
+    <p><strong>AI-Ready Website Service Agreement</strong></p>
+    
+    <p>By using this service, you agree to the following terms:</p>
+    
+    <h3 style="margin-top: 20px; font-size: 16px;">Service Description</h3>
+    <p>InstallSmart provides schema markup, structured content optimization, and monthly maintenance to make your website visible to AI-generated search results (Google AI Overviews, ChatGPT, Claude, etc.).</p>
+    
+    <h3 style="margin-top: 20px; font-size: 16px;">Pricing & Billing</h3>
+    <p>Standard rate: £995/month. BDM discount rates: £495–£995/month (as agreed). Billing is monthly, non-refundable except as required by law. Payment via Stripe.</p>
+    
+    <h3 style="margin-top: 20px; font-size: 16px;">Cancellation</h3>
+    <p>You may cancel anytime with 7 days' notice. No long-term commitment required.</p>
+    
+    <h3 style="margin-top: 20px; font-size: 16px;">Deliverables</h3>
+    <p>We will implement and maintain schema markup, organize content for AI parsing, and provide monthly reports on AI search visibility. We do not guarantee ranking in AI-generated answers, as placement is controlled by AI model providers.</p>
+    
+    <h3 style="margin-top: 20px; font-size: 16px;">Intellectual Property</h3>
+    <p>You retain all rights to your content and website. We retain rights to our tools and methodologies.</p>
+    
+    <h3 style="margin-top: 20px; font-size: 16px;">Limitation of Liability</h3>
+    <p>Our liability is limited to the fees paid in the preceding 3 months. We are not responsible for AI model decisions or search algorithm changes beyond our control.</p>
+    
+    <h3 style="margin-top: 20px; font-size: 16px;">Data & Privacy</h3>
+    <p>We will not share your site data with third parties. We comply with UK GDPR and data protection laws.</p>
+    
+    <div class="checkbox-group" style="margin-top: 30px;">
+      <input type="checkbox" id="agreeCheckbox" onchange="updateModal()">
+      <label for="agreeCheckbox" style="cursor: pointer;">
+        I have read and agree to these Terms & Conditions
+      </label>
+    </div>
+    
+    <div class="modal-buttons">
+      <button class="decline-btn" onclick="closeTermsModal()">Back</button>
+      <button class="accept-btn" id="confirmBtn" onclick="confirmTerms()" disabled style="opacity: 0.6; cursor: not-allowed;">
+        I Agree & Continue
+      </button>
+    </div>
+  </div>
+</div>
+
+<script src="https://js.stripe.com/v3/"></script>
+<script>
+  const STANDARD_PRICE = 99500; // £995 in pence
+  const FLOOR_PRICE = 49500; // £495 in pence
+  
+  function scrollToPrice() {
+    document.getElementById('pricing').scrollIntoView({ behavior: 'smooth' });
+  }
+  
+  function toggleFAQ(element) {
+    element.classList.toggle('closed');
+  }
+  
+  function updateCTA() {
+    const checkbox = document.getElementById('acceptTerms');
+    const btn = document.getElementById('checkoutBtn');
+    
+    if (checkbox.checked) {
+      btn.disabled = false;
+      btn.style.opacity = '1';
+      btn.style.cursor = 'pointer';
+      btn.textContent = 'Proceed to Checkout';
+    } else {
+      btn.disabled = true;
+      btn.style.opacity = '0.6';
+      btn.style.cursor = 'not-allowed';
+      btn.textContent = 'Read T&Cs to Continue';
+    }
+  }
+  
+  function proceedToCheckout() {
+    const checkbox = document.getElementById('acceptTerms');
+    if (!checkbox.checked) {
+      alert('Please agree to the Terms & Conditions');
+      return;
+    }
+    openTermsModal();
+  }
+  
+  function openTermsModal() {
+    document.getElementById('termsModal').classList.add('active');
+  }
+  
+  function closeTermsModal() {
+    document.getElementById('termsModal').classList.remove('active');
+    document.getElementById('agreeCheckbox').checked = false;
+    updateModal();
+  }
+  
+  function updateModal() {
+    const checkbox = document.getElementById('agreeCheckbox');
+    const btn = document.getElementById('confirmBtn');
+    
+    if (checkbox.checked) {
+      btn.disabled = false;
+      btn.style.opacity = '1';
+      btn.style.cursor = 'pointer';
+    } else {
+      btn.disabled = true;
+      btn.style.opacity = '0.6';
+      btn.style.cursor = 'not-allowed';
+    }
+  }
+  
+  function confirmTerms() {
+    document.getElementById('termsModal').classList.remove('active');
+    redirectToStripe();
+  }
+  
+  function validateDiscount() {
+    const code = document.getElementById('discountCode').value.trim();
+    const errorDiv = document.getElementById('discountError');
+    
+    if (!code) {
+      updatePriceDisplay(STANDARD_PRICE);
+      errorDiv.textContent = '';
+      return;
+    }
+    
+    // Simple validation: discount codes should be alphanumeric, 6-20 chars
+    if (!/^[A-Z0-9]{6,20}$/.test(code.toUpperCase())) {
+      errorDiv.textContent = 'Invalid code format';
+      updatePriceDisplay(STANDARD_PRICE);
+      return;
+    }
+    
+    // TODO: Validate against backend
+    // For now, we'll accept it and show a note
+    errorDiv.textContent = 'Code will be validated at checkout';
+    errorDiv.style.color = '#0066cc';
+  }
+  
+  function updatePriceDisplay(pricePence) {
+    const pricePounds = (pricePence / 100).toFixed(0);
+    document.getElementById('displayPrice').textContent = '£' + pricePounds;
+    
+    if (pricePence < STANDARD_PRICE) {
+      document.getElementById('priceNote').textContent = 'BDM discount applied';
+      document.getElementById('priceNote').style.color = '#4caf50';
+    } else {
+      document.getElementById('priceNote').textContent = 'Standard rate';
+      document.getElementById('priceNote').style.color = '#999';
+    }
+  }
+  
+  function redirectToStripe() {
+    const code = document.getElementById('discountCode').value.trim();
+    
+    // Build Stripe checkout link
+    // For now, direct to a single checkout; backend should handle discount codes
+    const params = new URLSearchParams();
+    params.append('price', 'price_1234567890'); // Replace with actual Stripe price ID
+    
+    if (code) {
+      params.append('promo_code', code);
+    }
+    
+    // This would redirect to Stripe checkout
+    // window.location.href = `https://checkout.stripe.com/pay/${sessionId}?${params.toString()}`;
+    
+    // Placeholder for now
+    alert('Redirect to Stripe with code: ' + (code || 'none'));
+  }
+  
+  // Initialize FAQs as closed
+  document.querySelectorAll('.faq-item').forEach(item => {
+    item.classList.add('closed');
+  });
+</script>
+
+</body>
+</html>
