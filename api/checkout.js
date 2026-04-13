@@ -10,9 +10,9 @@ if (!process.env.STRIPE_SECRET_KEY) {
 }
 
 const PACKAGES = {
-  essentials: { name: 'Essentials', price: 99500, priceId: 'price_1QaHxK2NFW59QiEi6qJ7kL9m' }, // £995
-  pro: { name: 'Pro', price: 149500, priceId: 'price_1QaHxK2NFW59QiEi8nO2pQ5r' }, // £1,495
-  enterprise: { name: 'Enterprise', price: 199500, priceId: 'price_1QaHxK2NFW59QiEi9sT3vW8s' } // £1,995
+  silver: { name: 'Silver - AI Website', price: 99500, priceId: 'price_1QaHxK2NFW59QiEi6qJ7kL9m' }, // £995
+  gold: { name: 'Gold - AI + Booking Bot', price: 149500, priceId: 'price_1QaHxK2NFW59QiEi8nO2pQ5r' }, // £1,495
+  platinum: { name: 'Platinum - All-in-One Sales Machine', price: 199500, priceId: 'price_1QaHxK2NFW59QiEi9sT3vW8s' } // £1,995
 };
 
 // Store for BDM discount codes (in production: database)
@@ -112,8 +112,9 @@ async function createCheckoutSession(req, res) {
     const session = await stripe.checkout.sessions.create(sessionConfig);
     
     // Mark code as used if valid
-    if (validation.valid && discountRecord) {
-      discountRecord.usedCount += 1;
+    if (validation.valid && discountCode) {
+      const record = discountCodes.get(discountCode.toUpperCase());
+      if (record) record.usedCount += 1;
     }
     
     res.json({
@@ -156,6 +157,7 @@ function validateCode(req, res) {
       code: code.toUpperCase(),
       discount: validation.discount ? (validation.discount / 100).toFixed(2) : null,
       finalPrice: validation.finalPrice ? (validation.finalPrice / 100).toFixed(2) : null,
+      discountPercentage: validation.percentOff || 0,
       error: validation.error || null
     });
   } catch (error) {
