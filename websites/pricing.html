@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" type="image/png" href="/websites/favicon.png">
+  <link rel="icon" type="image/png" href="./favicon.png">
   <title>Pricing — AI-Powered Websites</title>
   <style>
     * {
@@ -43,6 +43,7 @@
       border-radius: 12px;
       padding: 40px;
       transition: all 0.3s;
+      position: relative;
     }
     
     .pricing-card.featured {
@@ -69,17 +70,21 @@
       font-size: 24px;
       margin-bottom: 10px;
     }
+
+    .pricing-card .tier-name {
+      font-size: 12px;
+      color: #999;
+      font-weight: 600;
+      margin-bottom: 5px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
     
     .price {
       font-size: 48px;
       font-weight: bold;
       color: #0066cc;
       margin: 20px 0;
-      position: relative;
-    }
-    
-    .price.discounted {
-      font-size: 52px;
     }
     
     .original-price {
@@ -137,10 +142,11 @@
     .discount-input {
       width: 100%;
       padding: 10px;
-      border: 1px solid #ddd;
+      border: 2px solid #ddd;
       border-radius: 4px;
       font-size: 14px;
       margin-bottom: 10px;
+      transition: border-color 0.2s;
     }
     
     .discount-input:focus {
@@ -182,6 +188,93 @@
       background: #ccc;
       cursor: not-allowed;
     }
+
+    /* T&Cs Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+    
+    .modal-content {
+      background-color: white;
+      margin: 5% auto;
+      padding: 40px;
+      border-radius: 12px;
+      width: 90%;
+      max-width: 600px;
+      max-height: 80vh;
+      overflow-y: auto;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    }
+    
+    .modal h2 {
+      font-size: 28px;
+      margin-bottom: 20px;
+      color: #1a1a1a;
+    }
+    
+    .modal-body {
+      font-size: 14px;
+      color: #555;
+      line-height: 1.6;
+      margin-bottom: 30px;
+    }
+    
+    .modal-body p {
+      margin-bottom: 15px;
+    }
+    
+    .modal-body ul {
+      margin-left: 20px;
+      margin-bottom: 15px;
+    }
+    
+    .modal-body ul li {
+      margin-bottom: 8px;
+    }
+    
+    .modal-buttons {
+      display: flex;
+      gap: 15px;
+    }
+    
+    .modal-buttons button {
+      flex: 1;
+      padding: 12px;
+    }
+    
+    .modal-buttons button.cancel {
+      background: #999;
+    }
+    
+    .modal-buttons button.cancel:hover {
+      background: #777;
+    }
+    
+    .agree-checkbox {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    
+    .agree-checkbox input {
+      width: 20px;
+      height: 20px;
+      cursor: pointer;
+    }
+    
+    .agree-checkbox label {
+      margin: 0;
+      font-size: 14px;
+      cursor: pointer;
+    }
   </style>
 </head>
 <body>
@@ -191,12 +284,13 @@
   
   <div class="pricing-grid">
     
-    <!-- AI Website -->
-    <div class="pricing-card" id="essentialsCard">
+    <!-- Silver: AI Website -->
+    <div class="pricing-card" id="silverCard">
+      <div class="tier-name">Silver</div>
       <h3>AI Website</h3>
-      <div class="price" id="essentialsPrice">£995</div>
-      <div id="essentialsOriginal" class="original-price" style="display: none;"></div>
-      <div id="essentialsSavings" class="savings" style="display: none;"></div>
+      <div class="price" id="silverPrice">£995</div>
+      <div id="silverOriginal" class="original-price" style="display: none;"></div>
+      <div id="silverSavings" class="savings" style="display: none;"></div>
       <p class="price-note">One-time payment</p>
       
       <ul class="features">
@@ -211,20 +305,21 @@
       
       <div class="discount-section">
         <label>Have a discount code?</label>
-        <input type="text" class="discount-input" placeholder="Enter code" data-package="essentials" onkeyup="validateCode(this.value, 'essentials')">
+        <input type="text" class="discount-input" placeholder="Enter code" data-package="silver" onkeyup="validateCode(this.value, 'silver')">
         <div class="error" style="display: none;"></div>
         <div class="success" style="display: none;"></div>
       </div>
       
-      <button onclick="checkout('essentials')">Get Started</button>
+      <button onclick="initiateCheckout('silver')">Get Started</button>
     </div>
     
-    <!-- AI + Booking Bot (Featured) -->
-    <div class="pricing-card featured" id="proCard">
+    <!-- Gold: AI + Booking Bot (Featured) -->
+    <div class="pricing-card featured" id="goldCard">
+      <div class="tier-name">Gold</div>
       <h3>AI + Booking Bot</h3>
-      <div class="price" id="proPrice">£1,495</div>
-      <div id="proOriginal" class="original-price" style="display: none;"></div>
-      <div id="proSavings" class="savings" style="display: none;"></div>
+      <div class="price" id="goldPrice">£1,495</div>
+      <div id="goldOriginal" class="original-price" style="display: none;"></div>
+      <div id="goldSavings" class="savings" style="display: none;"></div>
       <p class="price-note">One-time payment</p>
       
       <ul class="features">
@@ -239,24 +334,25 @@
       
       <div class="discount-section">
         <label>Have a discount code?</label>
-        <input type="text" class="discount-input" placeholder="Enter code" data-package="pro" onkeyup="validateCode(this.value, 'pro')">
+        <input type="text" class="discount-input" placeholder="Enter code" data-package="gold" onkeyup="validateCode(this.value, 'gold')">
         <div class="error" style="display: none;"></div>
         <div class="success" style="display: none;"></div>
       </div>
       
-      <button onclick="checkout('pro')">Get Started</button>
+      <button onclick="initiateCheckout('gold')">Get Started</button>
     </div>
     
-    <!-- All-in-One Sales Machine -->
-    <div class="pricing-card" id="enterpriseCard">
+    <!-- Platinum: All-in-One Sales Machine -->
+    <div class="pricing-card" id="platinumCard">
+      <div class="tier-name">Platinum</div>
       <h3>All-in-One Sales Machine</h3>
-      <div class="price" id="enterprisePrice">£1,995</div>
-      <div id="enterpriseOriginal" class="original-price" style="display: none;"></div>
-      <div id="enterpriseSavings" class="savings" style="display: none;"></div>
+      <div class="price" id="platinumPrice">£1,995</div>
+      <div id="platinumOriginal" class="original-price" style="display: none;"></div>
+      <div id="platinumSavings" class="savings" style="display: none;"></div>
       <p class="price-note">One-time payment</p>
       
       <ul class="features">
-        <li>Everything in Pro, plus:</li>
+        <li>Everything in AI + Booking Bot, plus:</li>
         <li><strong>E-Commerce Setup</strong> (product sales)</li>
         <li><strong>Payment Processing</strong> (Stripe/PayPal)</li>
         <li><strong>Advanced CRM</strong> (lead scoring)</li>
@@ -268,32 +364,83 @@
       
       <div class="discount-section">
         <label>Have a discount code?</label>
-        <input type="text" class="discount-input" placeholder="Enter code" data-package="enterprise" onkeyup="validateCode(this.value, 'enterprise')">
+        <input type="text" class="discount-input" placeholder="Enter code" data-package="platinum" onkeyup="validateCode(this.value, 'platinum')">
         <div class="error" style="display: none;"></div>
         <div class="success" style="display: none;"></div>
       </div>
       
-      <button onclick="checkout('enterprise')">Get Started</button>
+      <button onclick="initiateCheckout('platinum')">Get Started</button>
     </div>
     
   </div>
 </div>
 
-<script src="https://js.stripe.com/v3/"></script>
+<!-- T&Cs Modal -->
+<div id="termsModal" class="modal">
+  <div class="modal-content">
+    <h2>Terms & Conditions</h2>
+    <div class="modal-body">
+      <p><strong>You're about to purchase a website package from InstallSmart.AI.</strong></p>
+      <p>By proceeding, you agree to:</p>
+      <ul>
+        <li>Payment terms as outlined in our full T&Cs</li>
+        <li>Project timeline and deliverables (see pricing page)</li>
+        <li>Support period included with your tier</li>
+        <li>Additional support at £150/hour (or part thereof)</li>
+      </ul>
+      <p><strong>Key Points:</strong></p>
+      <ul>
+        <li>If work hasn't started, full refund available</li>
+        <li>If in progress, 50% refund if cancelled before launch</li>
+        <li>You own your content; we retain code/technology ownership</li>
+        <li>Domain setup and SSL included</li>
+        <li>Ongoing hosting updates available as monthly maintenance plan</li>
+      </ul>
+      <p style="margin-top: 20px; font-size: 13px; color: #999;">
+        <a href="./terms.html" target="_blank">View full Terms & Conditions →</a>
+      </p>
+    </div>
+    
+    <div class="agree-checkbox">
+      <input type="checkbox" id="agreeCheckbox">
+      <label for="agreeCheckbox">I have read and agree to the Terms & Conditions</label>
+    </div>
+    
+    <div class="modal-buttons">
+      <button class="cancel" onclick="closeModal()">Cancel</button>
+      <button id="proceedBtn" onclick="proceedToCheckout()" disabled>I Agree & Proceed to Checkout</button>
+    </div>
+  </div>
+</div>
+
 <script>
   const PRICES = {
-    essentials: 99500,  // £995
-    pro: 149500,        // £1,495
-    enterprise: 199500  // £1,995
+    silver: 99500,     // £995 RRP
+    gold: 149500,      // £1,495 RRP
+    platinum: 199500   // £1,995 RRP
+  };
+  
+  const STRIPE_LINKS = {
+    silver: 'https://buy.stripe.com/4gMdR2aQ8aQngvtc1r5ZC0j',
+    gold: 'https://buy.stripe.com/6oUbIU8I0bUrenlfdD5ZC0k',
+    platinum: 'https://buy.stripe.com/00w4gs0bubUra751mN5ZC0l'
   };
   
   const API_URL = 'http://localhost:3000/api';
   
   const discounts = {
-    essentials: null,
-    pro: null,
-    enterprise: null
+    silver: null,
+    gold: null,
+    platinum: null
   };
+  
+  let pendingPackage = null;
+  let pendingCode = null;
+  
+  // Agreement checkbox handler
+  document.getElementById('agreeCheckbox').addEventListener('change', function() {
+    document.getElementById('proceedBtn').disabled = !this.checked;
+  });
   
   async function validateCode(code, pkg) {
     const card = document.getElementById(pkg + 'Card');
@@ -317,7 +464,7 @@
       
       if (data.valid) {
         discounts[pkg] = data;
-        updatePrice(pkg, data.finalPrice, data.discount, data.discountPercentage);
+        updatePrice(pkg, parseFloat(data.finalPrice) * 100, parseFloat(data.discount) * 100, data.discountPercentage);
         successDiv.style.display = 'block';
         successDiv.textContent = `✓ Code applied! Save £${data.discount}`;
       } else {
@@ -338,7 +485,6 @@
     const savingsElement = document.getElementById(pkg + 'Savings');
     
     priceElement.textContent = '£' + (finalPrice / 100).toFixed(0);
-    priceElement.classList.add('discounted');
     
     originalElement.textContent = '£' + (originalPrice / 100).toFixed(0);
     originalElement.style.display = 'inline';
@@ -354,42 +500,45 @@
     const savingsElement = document.getElementById(pkg + 'Savings');
     
     priceElement.textContent = '£' + (originalPrice / 100).toFixed(0);
-    priceElement.classList.remove('discounted');
     originalElement.style.display = 'none';
     savingsElement.style.display = 'none';
     
     discounts[pkg] = null;
   }
   
-  async function checkout(pkg) {
+  function initiateCheckout(pkg) {
     const card = document.getElementById(pkg + 'Card');
     const input = card.querySelector('.discount-input');
-    const code = input.value || null;
-    const email = prompt('Enter your email:');
+    pendingCode = input.value || null;
+    pendingPackage = pkg;
     
-    if (!email) return;
+    // Show T&Cs modal
+    document.getElementById('termsModal').style.display = 'block';
+    document.getElementById('agreeCheckbox').checked = false;
+    document.getElementById('proceedBtn').disabled = true;
+  }
+  
+  function closeModal() {
+    document.getElementById('termsModal').style.display = 'none';
+    pendingPackage = null;
+    pendingCode = null;
+  }
+  
+  function proceedToCheckout() {
+    if (!pendingPackage || !STRIPE_LINKS[pendingPackage]) {
+      alert('Invalid package');
+      return;
+    }
     
-    try {
-      const response = await fetch(`${API_URL}/checkout`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          package: pkg,
-          discountCode: code,
-          email: email
-        })
-      });
-      
-      const data = await response.json();
-      
-      if (data.url) {
-        window.location.href = data.url;
-      } else {
-        alert('Error: ' + (data.error || 'Could not create checkout session'));
-      }
-    } catch (error) {
-      console.error('Checkout error:', error);
-      alert('Error initiating checkout');
+    closeModal();
+    window.location.href = STRIPE_LINKS[pendingPackage];
+  }
+  
+  // Close modal when clicking outside
+  window.onclick = function(event) {
+    const modal = document.getElementById('termsModal');
+    if (event.target == modal) {
+      closeModal();
     }
   }
 </script>
