@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Miriam's Collection — AI Growth Proposal | InstallSmart.AI</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f9fa;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            background: white;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 60px;
+            padding-bottom: 40px;
+            border-bottom: 3px solid #667eea;
+        }
+
+        h1 {
+            font-size: 48px;
+            color: #1a1a1a;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 5px;
+        }
+
+        .tagline {
+            font-size: 14px;
+            color: #999;
+            margin-top: 10px;
+        }
+
+        h2 {
+            font-size: 32px;
+            color: #1a1a1a;
+            margin-top: 50px;
+            margin-bottom: 20px;
+            border-left: 4px solid #667eea;
+            padding-left: 20px;
+        }
+
+        h3 {
+            font-size: 20px;
+            color: #667eea;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        p {
+            margin-bottom: 15px;
+            font-size: 16px;
+            line-height: 1.8;
+        }
+
+        .highlight {
+            background: #f0f4ff;
+            padding: 30px;
+            border-radius: 8px;
+            margin: 30px 0;
+            border-left: 4px solid #667eea;
+        }
+
+        .highlight strong {
+            color: #667eea;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+            font-size: 14px;
+        }
+
+        table th {
+            background: #667eea;
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #eee;
+        }
+
+        table tr:hover {
+            background: #f8f9fa;
+        }
+
+        .metric-box {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .metric {
+            background: #f0f4ff;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .metric-number {
+            font-size: 28px;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 5px;
+        }
+
+        .metric-label {
+            font-size: 12px;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .timeline {
+            margin: 30px 0;
+            position: relative;
+        }
+
+        .timeline-item {
+            margin-bottom: 30px;
+            padding-left: 40px;
+            position: relative;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 5px;
+            width: 20px;
+            height: 20px;
+            background: #667eea;
+            border-radius: 50%;
+            border: 3px solid white;
+            box-shadow: 0 0 0 3px #667eea;
+        }
+
+        .timeline-item:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            left: 9px;
+            top: 25px;
+            width: 2px;
+            height: calc(100% + 20px);
+            background: #ddd;
+        }
+
+        .timeline-title {
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 5px;
+        }
+
+        .timeline-description {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .cta-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 60px 40px;
+            border-radius: 12px;
+            text-align: center;
+            margin-top: 60px;
+        }
+
+        .cta-section h2 {
+            color: white;
+            border-left: none;
+            padding-left: 0;
+        }
+
+        .cta-section p {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 18px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: white;
+            color: #667eea;
+            padding: 14px 40px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 700;
+            margin-top: 20px;
+            transition: transform 0.2s;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+        }
+
+        .package-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .package-card {
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .package-card:hover {
+            border-color: #667eea;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.2);
+            transform: translateY(-5px);
+        }
+
+        .package-card.featured {
+            border-color: #667eea;
+            background: #f0f4ff;
+        }
+
+        .package-card h3 {
+            color: #1a1a1a;
+            margin-top: 0;
+        }
+
+        .package-price {
+            font-size: 32px;
+            font-weight: bold;
+            color: #667eea;
+            margin: 15px 0;
+        }
+
+        .package-price small {
+            font-size: 14px;
+            color: #666;
+            display: block;
+        }
+
+        .badge {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-top: 10px;
+        }
+
+        ul {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        .check {
+            color: #4caf50;
+            font-weight: bold;
+        }
+
+        .cross {
+            color: #f44336;
+            font-weight: bold;
+        }
+
+        .footer {
+            text-align: center;
+            padding-top: 40px;
+            border-top: 1px solid #eee;
+            margin-top: 60px;
+            color: #666;
+            font-size: 14px;
+        }
+
+        .footer strong {
+            display: block;
+            color: #1a1a1a;
+            margin-bottom: 5px;
+        }
+
+        .roi-callout {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        .roi-callout strong {
+            color: #856404;
+        }
+
+        .strategic-insight {
+            background: #f0f4ff;
+            padding: 30px;
+            border-radius: 8px;
+            margin: 30px 0;
+            border-left: 4px solid #667eea;
+            font-size: 16px;
+            line-height: 1.8;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px 10px;
+            }
+
+            h1 {
+                font-size: 32px;
+            }
+
+            h2 {
+                font-size: 24px;
+            }
+
+            .metric-box {
+                grid-template-columns: 1fr;
+            }
+
+            .package-cards {
+                grid-template-columns: 1fr;
+            }
+
+            table {
+                font-size: 12px;
+            }
+
+            table th, table td {
+                padding: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🚀 Miriam's Collection</h1>
+            <p class="subtitle">Strategic Growth Repositioning</p>
+            <p class="tagline">From Product Store to Search-Led Brand</p>
+        </header>
+
+        <section>
+            <h2>The Core Challenge</h2>
+            <p>Miriam's Collection has built a premium product. But your website is positioned as a store waiting for customers to arrive — customers who already know the brand or are searching for the product.</p>
+            <p>This limits growth. Broad, competitive terms like "rice water shampoo" are saturated. Without a stronger organic positioning, your acquisition relies on repeat visitors and direct traffic, not the discovery and reach that would scale the business.</p>
+            <p><strong>The real opportunity is different.</strong> It's not about competing harder for product terms. It's about owning the problem-space your products solve — and being found by customers when they're searching for solutions, not brands.</p>
+        </section>
+
+        <section>
+            <h2>The Strategic Shift</h2>
+            <div class="strategic-insight">
+                <strong>Stop competing for product names. Own the problem space.</strong><br><br>
+                Your customers aren't searching "rice water shampoo." They're searching:<br><br>
+                • "How to repair damaged hair after bleaching"<br>
+                • "Best natural alternative to keratin treatments"<br>
+                • "How to reduce frizz without chemicals"<br>
+                • "Hair recovery after heat damage"<br>
+                • "Natural post-bleach repair treatment"<br><br>
+                These searches are less competitive, higher-intent, and full of qualified customers looking for exactly what you sell — they just don't know your brand yet.
+            </div>
+            <p>This is the shift: <strong>from a product store to a search-led discovery platform</strong> where customers find you because you answer their actual problem, not because they already know your name.</p>
+        </section>
+
+        <section>
+            <h2>The Outcome: Search-Led Acquisition at Scale</h2>
+            <p>When you own the problem-space, three things change:</p>
+            <ul>
+                <li><strong>Better timing.</strong> You're found earlier in the customer journey, when they're still evaluating solutions, not just looking for a specific brand.</li>
+                <li><strong>Consistent discovery.</strong> Organic traffic compounds over time. Each blog post ranks, drives traffic, and builds authority. You're not starting from zero each month.</li>
+                <li><strong>Qualified inbound.</strong> Customers who find you via "natural hair repair" are more ready to buy than cold traffic. They're pre-qualified and educated.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>By the Numbers: 90-Day Transformation</h2>
+            <div class="metric-box">
+                <div class="metric">
+                    <div class="metric-number">£2,500</div>
+                    <div class="metric-label">Current Monthly Organic Revenue</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-number">→</div>
+                    <div class="metric-label">In 90 Days</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-number">£6,000+</div>
+                    <div class="metric-label">Monthly Organic Revenue</div>
+                </div>
+            </div>
+
+            <table>
+                <tr>
+                    <th>Metric</th>
+                    <th>Now</th>
+                    <th>After 90 Days</th>
+                    <th>Growth</th>
+                </tr>
+                <tr>
+                    <td>Monthly Organic Traffic</td>
+                    <td>200-400</td>
+                    <td>800-1,200</td>
+                    <td><span class="check">+300%</span></td>
+                </tr>
+                <tr>
+                    <td>Problem-Space Content</td>
+                    <td>0</td>
+                    <td>20 Articles</td>
+                    <td><span class="check">New Funnel</span></td>
+                </tr>
+                <tr>
+                    <td>Email Subscribers</td>
+                    <td>0</td>
+                    <td>500+</td>
+                    <td><span class="check">£1,200/mo</span></td>
+                </tr>
+                <tr>
+                    <td>Domain Authority</td>
+                    <td>Low</td>
+                    <td>30-40 Backlinks</td>
+                    <td><span class="check">Growing</span></td>
+                </tr>
+            </table>
+        </section>
+
+        <section>
+            <h2>How This Works: Four-Phase Strategic Build</h2>
+
+            <h3>Phase 1: Conversion Optimization (Weeks 1-4)</h3>
+            <p>Tighten website messaging and increase conversion from existing traffic:</p>
+            <ul>
+                <li>Add customer testimonials with results (real proof)</li>
+                <li>Deploy AI chatbot to answer product questions 24/7</li>
+                <li>Optimize product pages with clear benefit statements</li>
+            </ul>
+            <p><strong>Result:</strong> Convert 3% → 6% of existing traffic. +£1,000-1,500/month immediately.</p>
+
+            <h3>Phase 2: Problem-Space Content (Weeks 2-8)</h3>
+            <p>Build 20 SEO-optimized articles that own the problem-space:</p>
+            <ul>
+                <li>"How to Repair Hair After Bleaching: Science-Backed Solutions"</li>
+                <li>"Natural Alternatives to Keratin Treatments [Complete Guide]"</li>
+                <li>"Post-Heat Damage Recovery: Step-by-Step Hair Repair"</li>
+                <li>"Chemical-Free Frizz Control: The Rice Water Solution"</li>
+                <li>+ 16 more high-intent, lower-competition keywords</li>
+            </ul>
+            <p><strong>Result:</strong> +300-500 qualified monthly visits by week 12. +£1,200/month revenue.</p>
+
+            <h3>Phase 3: Authority Building (Weeks 4-12)</h3>
+            <p>Earn backlinks and credibility from beauty influencers and publications:</p>
+            <ul>
+                <li>Partner with 20-30 micro-influencers in haircare</li>
+                <li>Press outreach to UK beauty publications</li>
+                <li>Build 30-40 high-quality backlinks</li>
+            </ul>
+            <p><strong>Result:</strong> +£800-1,200/month referral traffic. Improved search rankings.</p>
+
+            <h3>Phase 4: Email Retention (Ongoing)</h3>
+            <p>Convert blog visitors into repeat customers:</p>
+            <ul>
+                <li>Automated welcome sequence with product recommendations</li>
+                <li>Bi-weekly email nurture (educational content, product tips)</li>
+                <li>Repeat customer discounts and exclusive access</li>
+            </ul>
+            <p><strong>Result:</strong> 500+ subscribers by week 12. +£1,200-1,500/month recurring revenue.</p>
+        </section>
+
+        <section>
+            <h2>The Investment & Return</h2>
+            <div class="roi-callout">
+                <strong>Total 90-Day Investment: £7,000-10,000</strong><br>
+                Monthly revenue increase: +£4,200-5,400<br>
+                Year 1 additional revenue: £40,000-60,000<br>
+                <strong>ROI: 4-6x in 12 months</strong><br><br>
+                <em>This is a transformation, not a service contract.</em>
+            </div>
+        </section>
+
+        <section>
+            <h2>Partnership Options</h2>
+            <div class="package-cards">
+                <div class="package-card">
+                    <h3>Website Refresh</h3>
+                    <div class="package-price">£1,495</div>
+                    <p>Quick-win optimization</p>
+                    <ul style="text-align: left; font-size: 14px;">
+                        <li>AI Chatbot</li>
+                        <li>Conversion improvements</li>
+                        <li>Blog platform setup</li>
+                    </ul>
+                    <small style="color: #999;">Missing: Problem-space content strategy</small>
+                </div>
+
+                <div class="package-card">
+                    <h3>Full 90-Day Build</h3>
+                    <div class="package-price">£5,000-7,000</div>
+                    <p>Complete strategic repositioning</p>
+                    <ul style="text-align: left; font-size: 14px;">
+                        <li>20 problem-space articles</li>
+                        <li>Video content + distribution</li>
+                        <li>Email funnel setup</li>
+                        <li>Influencer outreach</li>
+                    </ul>
+                    <small style="color: #999;">Then £500-800/mo ongoing</small>
+                </div>
+
+                <div class="package-card featured">
+                    <h3>ISA Growth Partnership</h3>
+                    <div class="package-price">£3,500 + £600/mo</div>
+                    <p>Long-term strategic partner</p>
+                    <div class="badge">RECOMMENDED</div>
+                    <ul style="text-align: left; font-size: 14px;">
+                        <li>Full implementation + strategy</li>
+                        <li>Ongoing optimization & testing</li>
+                        <li>Monthly performance reviews</li>
+                        <li>Pay for growth model</li>
+                    </ul>
+                    <small style="color: #667eea;"><strong>4-6x ROI guaranteed</strong></small>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Why This Works</h2>
+            <ul>
+                <li><span class="check">✓</span> <strong>Strong product-market fit.</strong> You have great products. The gap is discovery.</li>
+                <li><span class="check">✓</span> <strong>Underserved market.</strong> Most competitors compete on brand names, not problem-spaces. This is the gap.</li>
+                <li><span class="check">✓</span> <strong>Compounding growth.</strong> Blog content doesn't expire. Each article continues working for months.</li>
+                <li><span class="check">✓</span> <strong>Qualified traffic.</strong> Customers found via "hair repair" are more ready to buy than cold ads.</li>
+                <li><span class="check">✓</span> <strong>Defensible positioning.</strong> Once you own the problem-space, competitors have to fight harder.</li>
+            </ul>
+        </section>
+
+        <div class="cta-section">
+            <h2>Ready to Transform Your Discovery?</h2>
+            <p>Let's schedule a 20-minute conversation to walk through the strategy and explore which partnership makes sense for Miriam's Collection.</p>
+            <a href="mailto:sat@installsmart.ai?subject=Miriam's%20Collection%20Growth%20Strategy" class="cta-button">Schedule Your Call</a>
+        </div>
+
+        <footer class="footer">
+            <strong>InstallSmart.AI</strong>
+            Sat Lally, Growth Strategist<br>
+            Email: sat@installsmart.ai<br>
+            Phone: +447768891111<br>
+            <br>
+            <small>© 2026 InstallSmart.AI. All rights reserved. | Proposal V1.1</small>
+        </footer>
+    </div>
+</body>
+</html>
