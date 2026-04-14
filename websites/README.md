@@ -139,3 +139,4 @@ Located at `/websites/admin/`
 **Last Updated:** April 2026  
 **Status:** Static pages live, dynamic pricing in development
 # Last updated: Mon Apr 13 10:40:03 BST 2026
+<!-- Rebuild trigger Tue Apr 14 19:42:00 BST 2026 -->
