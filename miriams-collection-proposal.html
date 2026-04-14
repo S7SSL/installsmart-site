@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Miriam's Collection — AI Growth Proposal | InstallSmart.AI</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f9fa;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            background: white;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 60px;
+            padding-bottom: 40px;
+            border-bottom: 3px solid #667eea;
+        }
+
+        h1 {
+            font-size: 48px;
+            color: #1a1a1a;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 5px;
+        }
+
+        .tagline {
+            font-size: 14px;
+            color: #999;
+            margin-top: 10px;
+        }
+
+        h2 {
+            font-size: 32px;
+            color: #1a1a1a;
+            margin-top: 50px;
+            margin-bottom: 20px;
+            border-left: 4px solid #667eea;
+            padding-left: 20px;
+        }
+
+        h3 {
+            font-size: 20px;
+            color: #667eea;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        p {
+            margin-bottom: 15px;
+            font-size: 16px;
+            line-height: 1.8;
+        }
+
+        .highlight {
+            background: #f0f4ff;
+            padding: 30px;
+            border-radius: 8px;
+            margin: 30px 0;
+            border-left: 4px solid #667eea;
+        }
+
+        .highlight strong {
+            color: #667eea;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+            font-size: 14px;
+        }
+
+        table th {
+            background: #667eea;
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #eee;
+        }
+
+        table tr:hover {
+            background: #f8f9fa;
+        }
+
+        .metric-box {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .metric {
+            background: #f0f4ff;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .metric-number {
+            font-size: 28px;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 5px;
+        }
+
+        .metric-label {
+            font-size: 12px;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .timeline {
+            margin: 30px 0;
+            position: relative;
+        }
+
+        .timeline-item {
+            margin-bottom: 30px;
+            padding-left: 40px;
+            position: relative;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 5px;
+            width: 20px;
+            height: 20px;
+            background: #667eea;
+            border-radius: 50%;
+            border: 3px solid white;
+            box-shadow: 0 0 0 3px #667eea;
+        }
+
+        .timeline-item:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            left: 9px;
+            top: 25px;
+            width: 2px;
+            height: calc(100% + 20px);
+            background: #ddd;
+        }
+
+        .timeline-title {
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 5px;
+        }
+
+        .timeline-description {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .cta-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 60px 40px;
+            border-radius: 12px;
+            text-align: center;
+            margin-top: 60px;
+        }
+
+        .cta-section h2 {
+            color: white;
+            border-left: none;
+            padding-left: 0;
+        }
+
+        .cta-section p {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 18px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: white;
+            color: #667eea;
+            padding: 14px 40px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 700;
+            margin-top: 20px;
+            transition: transform 0.2s;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+        }
+
+        .package-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .package-card {
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .package-card:hover {
+            border-color: #667eea;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.2);
+            transform: translateY(-5px);
+        }
+
+        .package-card.featured {
+            border-color: #667eea;
+            background: #f0f4ff;
+        }
+
+        .package-card h3 {
+            color: #1a1a1a;
+            margin-top: 0;
+        }
+
+        .package-price {
+            font-size: 32px;
+            font-weight: bold;
+            color: #667eea;
+            margin: 15px 0;
+        }
+
+        .package-price small {
+            font-size: 14px;
+            color: #666;
+            display: block;
+        }
+
+        .badge {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-top: 10px;
+        }
+
+        ul {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        .check {
+            color: #4caf50;
+            font-weight: bold;
+        }
+
+        .cross {
+            color: #f44336;
+            font-weight: bold;
+        }
+
+        .footer {
+            text-align: center;
+            padding-top: 40px;
+            border-top: 1px solid #eee;
+            margin-top: 60px;
+            color: #666;
+            font-size: 14px;
+        }
+
+        .footer strong {
+            display: block;
+            color: #1a1a1a;
+            margin-bottom: 5px;
+        }
+
+        .roi-callout {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        .roi-callout strong {
+            color: #856404;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px 10px;
+            }
+
+            h1 {
+                font-size: 32px;
+            }
+
+            h2 {
+                font-size: 24px;
+            }
+
+            .metric-box {
+                grid-template-columns: 1fr;
+            }
+
+            .package-cards {
+                grid-template-columns: 1fr;
+            }
+
+            table {
+                font-size: 12px;
+            }
+
+            table th, table td {
+                padding: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🚀 Miriam's Collection</h1>
+            <p class="subtitle">AI-Powered Growth Strategy</p>
+            <p class="tagline">Turn Your Website Into a 24/7 Sales Machine</p>
+        </header>
+
+        <section>
+            <h2>The Opportunity</h2>
+            <p>Your rice water haircare + skincare products are <strong>premium quality with strong product-market fit.</strong> But your website is only converting <strong>5-10% of the organic search traffic potential.</strong></p>
+            <p>The dream? Turn your website into a <strong>24/7 sales machine</strong> that educates customers, builds trust, and converts browsers into loyal repeat buyers.</p>
+        </section>
+
+        <section>
+            <h2>Current State vs. Dream State</h2>
+            <div class="metric-box">
+                <div class="metric">
+                    <div class="metric-number">£2,500</div>
+                    <div class="metric-label">Monthly Organic Revenue (Now)</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-number">→</div>
+                    <div class="metric-label">In 90 Days</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-number">£6,000+</div>
+                    <div class="metric-label">Monthly Organic Revenue (Dream)</div>
+                </div>
+            </div>
+
+            <table>
+                <tr>
+                    <th>Metric</th>
+                    <th>Now</th>
+                    <th>After 90 Days</th>
+                    <th>Growth</th>
+                </tr>
+                <tr>
+                    <td>Monthly Organic Traffic</td>
+                    <td>200-400</td>
+                    <td>800-1,200</td>
+                    <td><span class="check">+300%</span></td>
+                </tr>
+                <tr>
+                    <td>Monthly Organic Revenue</td>
+                    <td>£2,500</td>
+                    <td>£6,000+</td>
+                    <td><span class="check">+140%</span></td>
+                </tr>
+                <tr>
+                    <td>Blog Articles</td>
+                    <td>0</td>
+                    <td>20</td>
+                    <td><span class="check">New Channel</span></td>
+                </tr>
+                <tr>
+                    <td>Email Subscribers</td>
+                    <td>0</td>
+                    <td>500+</td>
+                    <td><span class="check">£1,200/mo</span></td>
+                </tr>
+                <tr>
+                    <td>Backlinks</td>
+                    <td>0</td>
+                    <td>30-40</td>
+                    <td><span class="check">Authority</span></td>
+                </tr>
+            </table>
+        </section>
+
+        <section>
+            <h2>The Optimal Conversion Strategy</h2>
+            <p>Four phases of strategic growth over 90 days:</p>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-title">Phase 1: Website Optimization + AI Chatbot</div>
+                    <div class="timeline-description">Weeks 1-4 | Increase conversion rate 3% → 6% | +£1,000-1,500/month</div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-title">Phase 2: Content Engine (20 Blog Posts + Videos)</div>
+                    <div class="timeline-description">Weeks 2-8 | Capture 20+ high-intent keywords | +£1,200/month + compound growth</div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-title">Phase 3: Authority Building (Influencer + PR)</div>
+                    <div class="timeline-description">Weeks 4-12 | 30-40 backlinks from beauty media | +£800-1,200/month</div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-title">Phase 4: Email Marketing Funnel</div>
+                    <div class="timeline-description">Ongoing | Convert 10% of blog visitors to subscribers | +£1,200-1,500/month</div>
+                </div>
+            </div>
+
+            <div class="highlight">
+                <strong>Total Investment:</strong> £7,000-10,000<br>
+                <strong>Monthly Revenue Increase:</strong> +£4,200-5,400<br>
+                <strong>Year 1 Additional Revenue:</strong> £40,000-60,000<br>
+                <strong>ROI:</strong> 4-6x in 12 months
+            </div>
+        </section>
+
+        <section>
+            <h2>Phase 1: Website Optimization (Weeks 1-4)</h2>
+            <p>Increase conversion rate from 3% to 6% immediately:</p>
+            <ul>
+                <li><span class="check">✓</span> Add customer testimonials with photos & star ratings</li>
+                <li><span class="check">✓</span> Add trust badges ("Dermatologist Tested," "Cruelty-Free")</li>
+                <li><span class="check">✓</span> Optimize product pages with video guides + FAQ</li>
+                <li><span class="check">✓</span> Deploy AI chatbot for 24/7 customer support</li>
+                <li><span class="check">✓</span> Create urgency with stock indicators & limited bundles</li>
+            </ul>
+            <p><strong>Expected Result:</strong> 100% increase in revenue from same traffic = +£1,000-1,500/month</p>
+        </section>
+
+        <section>
+            <h2>Phase 2: Content Engine (Weeks 2-8)</h2>
+            <p>Capture high-intent search traffic with 20 SEO-optimized blog posts:</p>
+            <h3>Example Blog Topics (High-Intent):</h3>
+            <ul>
+                <li>"Best Rice Water Shampoo for Frizzy Hair" (1,000+ searches/mo)</li>
+                <li>"Does Rice Water Help Hair Growth? [Science + Results]" (500+ searches/mo)</li>
+                <li>"Rice Water Shampoo for Curly Hair: Complete Guide" (400+ searches/mo)</li>
+                <li>"How to Use Rice Water for Hair [Step-by-Step]" (300+ searches/mo)</li>
+                <li>+ 16 more long-tail keywords...</li>
+            </ul>
+            <p><strong>Expected Result:</strong> +300-500 organic visitors/month by week 12 | +£1,200/month revenue</p>
+        </section>
+
+        <section>
+            <h2>Phase 3: Authority Building (Weeks 4-12)</h2>
+            <p>Build brand credibility through influencer partnerships & press coverage:</p>
+            <ul>
+                <li><span class="check">✓</span> Outreach to 20-30 micro-influencers (10K-100K followers)</li>
+                <li><span class="check">✓</span> Pitch to UK beauty bloggers & publications</li>
+                <li><span class="check">✓</span> Press release to Grazia, Metro, Refinery29</li>
+                <li><span class="check">✓</span> Build 30-40 high-quality backlinks</li>
+            </ul>
+            <p><strong>Expected Result:</strong> +50-150 referral traffic/month | +£800-1,200/month | Improved search rankings</p>
+        </section>
+
+        <section>
+            <h2>Phase 4: Email Marketing (Ongoing)</h2>
+            <p>Convert blog visitors into loyal repeat customers:</p>
+            <ul>
+                <li>Welcome email sequence (5 emails, AI-powered product quiz)</li>
+                <li>Bi-weekly nurture emails (blog posts, testimonials, offers)</li>
+                <li>Repeat customer funnel (discount codes, exclusive access)</li>
+            </ul>
+            <p><strong>Expected Result:</strong> 500+ subscribers by week 12 | +£1,200-1,500/month from email alone</p>
+        </section>
+
+        <section>
+            <h2>Your Investment & ROI</h2>
+            <div class="roi-callout">
+                <strong>Total 90-Day Investment: £7,000-10,000</strong><br>
+                Monthly revenue increase: +£4,200-5,400<br>
+                Year 1 additional revenue: £40,000-60,000<br>
+                <strong>ROI: 4-6x in 12 months</strong>
+            </div>
+        </section>
+
+        <section>
+            <h2>Package Options</h2>
+            <div class="package-cards">
+                <div class="package-card">
+                    <h3>Gold Tier</h3>
+                    <div class="package-price">£1,495</div>
+                    <p>Quick website refresh</p>
+                    <ul style="text-align: left; font-size: 14px;">
+                        <li>AI Chatbot</li>
+                        <li>Website redesign</li>
+                        <li>Blog system setup</li>
+                    </ul>
+                    <small style="color: #999;">✗ Missing: Blog content</small>
+                </div>
+
+                <div class="package-card">
+                    <h3>Custom Growth</h3>
+                    <div class="package-price">£5,000-7,000</div>
+                    <p>Full 90-day package</p>
+                    <ul style="text-align: left; font-size: 14px;">
+                        <li>20 blog posts</li>
+                        <li>5 video scripts</li>
+                        <li>Email funnel</li>
+                        <li>Influencer outreach</li>
+                    </ul>
+                    <small style="color: #999;">Then £500-800/mo retainer</small>
+                </div>
+
+                <div class="package-card featured">
+                    <h3>ITSA Partnership</h3>
+                    <div class="package-price">£3,500 + £600/mo</div>
+                    <p>Long-term growth partner</p>
+                    <div class="badge">RECOMMENDED</div>
+                    <ul style="text-align: left; font-size: 14px;">
+                        <li>Full implementation</li>
+                        <li>Ongoing optimization</li>
+                        <li>Monthly reviews</li>
+                        <li>Pay-for-growth</li>
+                    </ul>
+                    <small style="color: #667eea;"><strong>4-6x ROI</strong></small>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Why This Works for Miriam's Collection</h2>
+            <ul>
+                <li><span class="check">✓</span> <strong>Existing Product-Market Fit</strong> — Great products, people just don't know about you</li>
+                <li><span class="check">✓</span> <strong>Underserved Market</strong> — Competitors sleeping on long-tail keywords</li>
+                <li><span class="check">✓</span> <strong>High-Intent Customers</strong> — People searching "rice water for curly hair" WANT to buy</li>
+                <li><span class="check">✓</span> <strong>Scalable Model</strong> — Blog traffic = passive revenue 24/7</li>
+                <li><span class="check">✓</span> <strong>AI Advantage</strong> — AI chatbot + content = competitive edge</li>
+                <li><span class="check">✓</span> <strong>Repeat Purchase</strong> — Email funnel turns 1-time buyers into loyal subscribers</li>
+            </ul>
+        </section>
+
+        <div class="cta-section">
+            <h2>Ready to 3x Your Organic Revenue?</h2>
+            <p>Let's schedule a 20-minute call to walk through the strategy, answer your questions, and explore which package is right for you.</p>
+            <a href="mailto:sat@installsmart.ai?subject=Miriam's%20Collection%20Growth%20Strategy" class="cta-button">Schedule Your Call</a>
+        </div>
+
+        <footer class="footer">
+            <strong>InstallSmart.AI</strong>
+            Sat Lally, AI Growth Partner<br>
+            Email: sat@installsmart.ai<br>
+            Phone: +447768891111<br>
+            <br>
+            <small>© 2026 InstallSmart.AI. All rights reserved.</small>
+        </footer>
+    </div>
+</body>
+</html>

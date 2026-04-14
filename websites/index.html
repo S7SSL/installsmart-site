@@ -625,7 +625,6 @@
   </div>
 </div>
 
-<script src="https://js.stripe.com/v3/"></script>
 <script>
   function scrollToPricing() {
     document.getElementById('pricing').scrollIntoView({ behavior: 'smooth' });
@@ -679,13 +678,16 @@
     }
   }
   
+  const STRIPE_LINKS = {
+    essentials: 'https://buy.stripe.com/4gMdR2aQ8aQngvtc1r5ZC0j',
+    pro: 'https://buy.stripe.com/6oUbIU8I0bUrenlfdD5ZC0k',
+    enterprise: 'https://buy.stripe.com/00w4gs0bubUra751mN5ZC0l'
+  };
+
   function confirmTerms() {
-    if (selectedPrice && selectedPackage) {
-      // TODO: Replace with real Stripe checkout
-      alert(`Proceeding to checkout for ${selectedPackage.toUpperCase()} package — £${selectedPrice}`);
-      
-      // For now, show placeholder message
-      // In production, call backend to create Stripe session and redirect
+    if (selectedPackage && STRIPE_LINKS[selectedPackage]) {
+      closeTermsModal();
+      window.location.href = STRIPE_LINKS[selectedPackage];
     }
   }
 </script>

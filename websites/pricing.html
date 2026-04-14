@@ -87,20 +87,6 @@
       margin: 20px 0;
     }
     
-    .original-price {
-      font-size: 24px;
-      text-decoration: line-through;
-      color: #999;
-      margin-left: 10px;
-    }
-    
-    .savings {
-      font-size: 14px;
-      color: #4caf50;
-      font-weight: 600;
-      margin-top: 5px;
-    }
-    
     .price-note {
       font-size: 13px;
       color: #999;
@@ -123,47 +109,6 @@
       color: #667eea;
       font-weight: 700;
       margin-right: 10px;
-    }
-    
-    .discount-section {
-      background: #f5f5f5;
-      padding: 20px;
-      border-radius: 6px;
-      margin: 20px 0;
-    }
-    
-    .discount-section label {
-      display: block;
-      margin-bottom: 10px;
-      font-weight: 600;
-      font-size: 14px;
-    }
-    
-    .discount-input {
-      width: 100%;
-      padding: 10px;
-      border: 2px solid #ddd;
-      border-radius: 4px;
-      font-size: 14px;
-      margin-bottom: 10px;
-      transition: border-color 0.2s;
-    }
-    
-    .discount-input:focus {
-      outline: none;
-      border-color: #667eea;
-      box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
-    }
-    
-    .error {
-      color: #d32f2f;
-      font-size: 12px;
-    }
-    
-    .success {
-      color: #4caf50;
-      font-size: 12px;
-      font-weight: 600;
     }
     
     button {
@@ -288,9 +233,7 @@
     <div class="pricing-card" id="silverCard">
       <div class="tier-name">Silver</div>
       <h3>AI Website</h3>
-      <div class="price" id="silverPrice">£995</div>
-      <div id="silverOriginal" class="original-price" style="display: none;"></div>
-      <div id="silverSavings" class="savings" style="display: none;"></div>
+      <div class="price">£995</div>
       <p class="price-note">One-time payment</p>
       
       <ul class="features">
@@ -303,13 +246,6 @@
         <li>7-day turnaround (48h available)</li>
       </ul>
       
-      <div class="discount-section">
-        <label>Have a discount code?</label>
-        <input type="text" class="discount-input" placeholder="Enter code" data-package="silver" onkeyup="validateCode(this.value, 'silver')">
-        <div class="error" style="display: none;"></div>
-        <div class="success" style="display: none;"></div>
-      </div>
-      
       <button onclick="initiateCheckout('silver')">Get Started</button>
     </div>
     
@@ -317,9 +253,7 @@
     <div class="pricing-card featured" id="goldCard">
       <div class="tier-name">Gold</div>
       <h3>AI + Booking Bot</h3>
-      <div class="price" id="goldPrice">£1,495</div>
-      <div id="goldOriginal" class="original-price" style="display: none;"></div>
-      <div id="goldSavings" class="savings" style="display: none;"></div>
+      <div class="price">£1,495</div>
       <p class="price-note">One-time payment</p>
       
       <ul class="features">
@@ -332,13 +266,6 @@
         <li>Appointment reminders</li>
       </ul>
       
-      <div class="discount-section">
-        <label>Have a discount code?</label>
-        <input type="text" class="discount-input" placeholder="Enter code" data-package="gold" onkeyup="validateCode(this.value, 'gold')">
-        <div class="error" style="display: none;"></div>
-        <div class="success" style="display: none;"></div>
-      </div>
-      
       <button onclick="initiateCheckout('gold')">Get Started</button>
     </div>
     
@@ -346,9 +273,7 @@
     <div class="pricing-card" id="platinumCard">
       <div class="tier-name">Platinum</div>
       <h3>All-in-One Sales Machine</h3>
-      <div class="price" id="platinumPrice">£1,995</div>
-      <div id="platinumOriginal" class="original-price" style="display: none;"></div>
-      <div id="platinumSavings" class="savings" style="display: none;"></div>
+      <div class="price">£1,995</div>
       <p class="price-note">One-time payment</p>
       
       <ul class="features">
@@ -361,13 +286,6 @@
         <li>Advanced reporting & analytics</li>
         <li>Monthly optimization calls</li>
       </ul>
-      
-      <div class="discount-section">
-        <label>Have a discount code?</label>
-        <input type="text" class="discount-input" placeholder="Enter code" data-package="platinum" onkeyup="validateCode(this.value, 'platinum')">
-        <div class="error" style="display: none;"></div>
-        <div class="success" style="display: none;"></div>
-      </div>
       
       <button onclick="initiateCheckout('platinum')">Get Started</button>
     </div>
@@ -414,126 +332,40 @@
 </div>
 
 <script>
-  const PRICES = {
-    silver: 99500,     // £995 RRP
-    gold: 149500,      // £1,495 RRP
-    platinum: 199500   // £1,995 RRP
-  };
-  
   const STRIPE_LINKS = {
     silver: 'https://buy.stripe.com/4gMdR2aQ8aQngvtc1r5ZC0j',
     gold: 'https://buy.stripe.com/6oUbIU8I0bUrenlfdD5ZC0k',
     platinum: 'https://buy.stripe.com/00w4gs0bubUra751mN5ZC0l'
   };
-  
-  const API_URL = 'http://localhost:3000/api';
-  
-  const discounts = {
-    silver: null,
-    gold: null,
-    platinum: null
-  };
-  
+
   let pendingPackage = null;
-  let pendingCode = null;
-  
+
   // Agreement checkbox handler
   document.getElementById('agreeCheckbox').addEventListener('change', function() {
     document.getElementById('proceedBtn').disabled = !this.checked;
   });
-  
-  async function validateCode(code, pkg) {
-    const card = document.getElementById(pkg + 'Card');
-    const inputs = card.querySelectorAll('.discount-input');
-    const errorDiv = inputs[0].nextElementSibling;
-    const successDiv = inputs[0].nextElementSibling.nextElementSibling;
-    
-    errorDiv.style.display = 'none';
-    errorDiv.textContent = '';
-    successDiv.style.display = 'none';
-    successDiv.textContent = '';
-    
-    if (!code) {
-      resetPrice(pkg);
-      return;
-    }
-    
-    try {
-      const response = await fetch(`${API_URL}/validate-code?code=${code}&package=${pkg}`);
-      const data = await response.json();
-      
-      if (data.valid) {
-        discounts[pkg] = data;
-        updatePrice(pkg, parseFloat(data.finalPrice) * 100, parseFloat(data.discount) * 100, data.discountPercentage);
-        successDiv.style.display = 'block';
-        successDiv.textContent = `✓ Code applied! Save £${data.discount}`;
-      } else {
-        resetPrice(pkg);
-        errorDiv.style.display = 'block';
-        errorDiv.textContent = `✗ ${data.error || 'Code not found'}`;
-      }
-    } catch (error) {
-      console.error('Validation error:', error);
-      resetPrice(pkg);
-    }
-  }
-  
-  function updatePrice(pkg, finalPrice, discount, percentOff) {
-    const originalPrice = PRICES[pkg];
-    const priceElement = document.getElementById(pkg + 'Price');
-    const originalElement = document.getElementById(pkg + 'Original');
-    const savingsElement = document.getElementById(pkg + 'Savings');
-    
-    priceElement.textContent = '£' + (finalPrice / 100).toFixed(0);
-    
-    originalElement.textContent = '£' + (originalPrice / 100).toFixed(0);
-    originalElement.style.display = 'inline';
-    
-    savingsElement.style.display = 'block';
-    savingsElement.textContent = `Save £${(discount / 100).toFixed(0)} (${percentOff}% off)`;
-  }
-  
-  function resetPrice(pkg) {
-    const originalPrice = PRICES[pkg];
-    const priceElement = document.getElementById(pkg + 'Price');
-    const originalElement = document.getElementById(pkg + 'Original');
-    const savingsElement = document.getElementById(pkg + 'Savings');
-    
-    priceElement.textContent = '£' + (originalPrice / 100).toFixed(0);
-    originalElement.style.display = 'none';
-    savingsElement.style.display = 'none';
-    
-    discounts[pkg] = null;
-  }
-  
+
   function initiateCheckout(pkg) {
-    const card = document.getElementById(pkg + 'Card');
-    const input = card.querySelector('.discount-input');
-    pendingCode = input.value || null;
     pendingPackage = pkg;
-    
-    // Show T&Cs modal
     document.getElementById('termsModal').style.display = 'block';
     document.getElementById('agreeCheckbox').checked = false;
     document.getElementById('proceedBtn').disabled = true;
   }
-  
+
   function closeModal() {
     document.getElementById('termsModal').style.display = 'none';
     pendingPackage = null;
-    pendingCode = null;
   }
-  
+
   function proceedToCheckout() {
     if (!pendingPackage || !STRIPE_LINKS[pendingPackage]) {
       alert('Invalid package');
       return;
     }
-    
     closeModal();
     window.location.href = STRIPE_LINKS[pendingPackage];
   }
-  
+
   // Close modal when clicking outside
   window.onclick = function(event) {
     const modal = document.getElementById('termsModal');
