@@ -22,6 +22,8 @@
       line-height: 1.6;
       color: #1a1a1a;
       background: #fafafa;
+      overflow-x: hidden;
+      width: 100%;
     }
     
     header {
@@ -56,6 +58,8 @@
       max-width: 1200px;
       margin: 0 auto;
       padding: 0 20px;
+      width: 100%;
+      box-sizing: border-box;
     }
     
     section {
@@ -117,7 +121,18 @@
       padding: 30px 20px;
       background: linear-gradient(to bottom, #f8f9fa, white);
       border-bottom: 1px solid #e0e0e0;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      overflow-x: hidden;
     }
+    
+    .credential-badge > div {
+      transform: scale(0.9);
+      transform-origin: top center;
+    }
+    
+
     
     .pricing {
       padding: 100px 0;
@@ -382,16 +397,207 @@
     }
     
     @media (max-width: 768px) {
+      header .container {
+        flex-direction: column;
+        gap: 15px;
+        align-items: flex-start;
+      }
+      
+      header h1 {
+        font-size: 16px;
+      }
+      
+      header a {
+        font-size: 12px;
+      }
+      
+      section {
+        padding: 50px 0;
+      }
+      
+      .hero {
+        padding: 60px 0;
+      }
+      
       .hero h2 {
         font-size: 36px;
+        margin-bottom: 15px;
+      }
+      
+      .hero p {
+        font-size: 16px;
+        margin-bottom: 20px;
+      }
+      
+      .cta-button {
+        padding: 12px 24px;
+        font-size: 14px;
+        display: block;
+        width: 100%;
+        margin-bottom: 10px;
+      }
+      
+      .container {
+        padding: 0 15px;
+      }
+      
+      .pricing-header h2 {
+        font-size: 28px;
       }
       
       .pricing-grid {
         grid-template-columns: 1fr;
+        gap: 20px;
+      }
+      
+      .pricing-card {
+        padding: 25px;
       }
       
       .pricing-card.featured {
         transform: none;
+      }
+      
+      .why-grid {
+        grid-template-columns: 1fr;
+        gap: 25px;
+      }
+      
+      .faq-item {
+        padding: 16px;
+        margin-bottom: 10px;
+      }
+      
+      .faq-item h4 {
+        font-size: 14px;
+      }
+      
+      .faq-item p {
+        font-size: 13px;
+      }
+      
+      footer {
+        padding: 30px 0;
+      }
+      
+      .credential-badge {
+        padding: 20px 10px;
+      }
+      
+      .credential-badge > div {
+        transform: scale(0.75);
+      }
+      
+      .modal-content {
+        max-width: 90vw;
+        max-height: 85vh;
+        padding: 25px;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      header .container {
+        padding: 0 10px;
+      }
+      
+      header h1 {
+        font-size: 14px;
+      }
+      
+      section {
+        padding: 30px 0;
+      }
+      
+      .hero {
+        padding: 40px 0;
+      }
+      
+      .hero h2 {
+        font-size: 24px;
+        line-height: 1.2;
+      }
+      
+      .hero p {
+        font-size: 14px;
+      }
+      
+      .container {
+        padding: 0 10px;
+      }
+      
+      .pricing-header h2 {
+        font-size: 20px;
+      }
+      
+      .pricing-header p {
+        font-size: 14px;
+      }
+      
+      .price {
+        font-size: 36px;
+      }
+      
+      .price-tier {
+        font-size: 12px;
+      }
+      
+      .features li {
+        font-size: 13px;
+      }
+      
+      .why-item {
+        padding: 12px;
+      }
+      
+      .why-item h3 {
+        font-size: 14px;
+      }
+      
+      .why-item p {
+        font-size: 12px;
+      }
+      
+      .faq-item {
+        padding: 12px;
+      }
+      
+      .faq-item h4 {
+        font-size: 13px;
+      }
+      
+      .faq-item p {
+        font-size: 12px;
+      }
+      
+      footer p {
+        font-size: 11px;
+      }
+      
+      .credential-badge {
+        padding: 15px 5px;
+      }
+      
+      .credential-badge > div {
+        transform: scale(0.65);
+      }
+      
+      .modal-content {
+        max-width: 95vw;
+        max-height: 90vh;
+        padding: 20px;
+      }
+      
+      .modal-content h2 {
+        font-size: 18px;
+      }
+      
+      .modal-buttons {
+        flex-direction: column;
+        gap: 10px;
+      }
+      
+      .modal-buttons button {
+        padding: 10px;
       }
     }
   </style>
