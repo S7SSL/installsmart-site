@@ -118,18 +118,20 @@
     
     .credential-badge {
       text-align: center;
-      padding: 30px 20px;
+      padding: 20px 10px;
       background: linear-gradient(to bottom, #f8f9fa, white);
       border-bottom: 1px solid #e0e0e0;
       display: flex;
       justify-content: center;
-      align-items: flex-start;
-      overflow-x: hidden;
+      align-items: center;
+      min-height: 320px;
+      width: 100%;
+      box-sizing: border-box;
     }
     
     .credential-badge > div {
       transform: scale(0.9);
-      transform-origin: top center;
+      transform-origin: center;
     }
     
 
@@ -481,11 +483,12 @@
       }
       
       .credential-badge {
-        padding: 20px 10px;
+        padding: 15px 5px;
+        min-height: 280px;
       }
       
       .credential-badge > div {
-        transform: scale(0.75);
+        transform: scale(0.8);
       }
       
       .modal-content {
@@ -614,11 +617,12 @@
       }
       
       .credential-badge {
-        padding: 15px 5px;
+        padding: 12px 0;
+        min-height: 250px;
       }
       
       .credential-badge > div {
-        transform: scale(0.65);
+        transform: scale(0.7);
       }
       
       /* Touch-friendly targets */
