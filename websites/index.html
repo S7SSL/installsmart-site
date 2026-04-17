@@ -86,8 +86,14 @@
       opacity: 0.95;
     }
     
+    .hero-buttons {
+      display: flex;
+      gap: 15px;
+      margin-top: 30px;
+    }
+    
     .cta-button {
-      display: inline-block;
+      flex: 1;
       padding: 14px 32px;
       background: white;
       color: #667eea;
@@ -98,6 +104,7 @@
       border: none;
       font-size: 16px;
       transition: transform 0.2s, box-shadow 0.2s;
+      text-align: center;
     }
     
     .cta-button:hover {
@@ -109,6 +116,11 @@
       background: rgba(255, 255, 255, 0.2);
       color: white;
       border: 2px solid white;
+    }
+    
+    .secondary-btn:hover {
+      background: white;
+      color: #667eea;
     }
     
     .secondary-btn:hover {
@@ -434,12 +446,15 @@
         margin-bottom: 20px;
       }
       
+      .hero-buttons {
+        flex-direction: column;
+        gap: 10px;
+      }
+      
       .cta-button {
         padding: 12px 24px;
         font-size: 14px;
-        display: block;
         width: 100%;
-        margin-bottom: 10px;
       }
       
       .container {
@@ -535,9 +550,13 @@
         margin-bottom: 15px;
       }
       
+      .hero-buttons {
+        flex-direction: column;
+        gap: 8px;
+      }
+      
       .hero .cta-button {
         width: 100%;
-        margin-bottom: 8px;
       }
       
       .container {
@@ -714,8 +733,10 @@
   <div class="container">
     <h2>Your Website Works While You Sleep</h2>
     <p>AI-powered websites that capture leads, book appointments, and close sales. Built in 7 days. No ongoing fees. Zero technical knowledge needed.</p>
-    <button class="cta-button" onclick="scrollToPricing()">View Pricing</button>
-    <button class="cta-button secondary-btn" style="margin-left: 15px;" onclick="scrollToFAQ()">Common Questions</button>
+    <div class="hero-buttons">
+      <button class="cta-button" onclick="scrollToPricing()">View Pricing</button>
+      <button class="cta-button secondary-btn" onclick="scrollToFAQ()">Common Questions</button>
+    </div>
   </div>
 </section>
 
