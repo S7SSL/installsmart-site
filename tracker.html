@@ -222,10 +222,16 @@ return;
 var total = Object.values(ipssAnswers).reduce((a, b) => a + b, 0);
 var timestamp = new Date().toLocaleString('en-GB');
 ipssHistory.push({timestamp: timestamp, score: total, answers: JSON.parse(JSON.stringify(ipssAnswers))});
+try {
 localStorage.setItem('ipssHistory', JSON.stringify(ipssHistory));
-document.getElementById('ipssMsg').textContent = 'IPSS score ' + total + ' saved at ' + timestamp;
+localStorage.setItem('ipss', JSON.stringify(ipssAnswers));
+} catch(e) {
+alert('Error saving - storage full or disabled');
+return;
+}
+document.getElementById('ipssMsg').textContent = 'IPSS score ' + total + ' saved at ' + timestamp + ' ✓';
 document.getElementById('ipssMsg').style.display = 'block';
-setTimeout(() => document.getElementById('ipssMsg').style.display = 'none', 3000);
+alert('Saved: IPSS ' + total + ' at ' + timestamp);
 renderIPSSHistory();
 }
 function renderIPSSHistory() {
