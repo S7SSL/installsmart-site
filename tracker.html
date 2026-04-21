@@ -124,7 +124,16 @@ button:hover { transform: translateY(-2px); }
 </div>
 </div>
 <script>
-var entries = JSON.parse(localStorage.getItem('entries')) || [];
+var defaultEntries = [
+{time: '2026-04-20T19:18', type: 'urine', volume: 180, desc: '', id: 1},
+{time: '2026-04-20T19:30', type: 'intake', volume: 250, desc: 'Creatine & Water', id: 2},
+{time: '2026-04-20T22:55', type: 'urine', volume: 90, desc: '', id: 3},
+{time: '2026-04-21T05:10', type: 'urine', volume: 300, desc: '', id: 4},
+{time: '2026-04-21T07:54', type: 'urine', volume: 200, desc: '', id: 5},
+{time: '2026-04-21T09:20', type: 'urine', volume: 100, desc: '', id: 6},
+{time: '2026-04-21T09:46', type: 'intake', volume: 500, desc: 'Voss Water + Neutronic Focus', id: 7}
+];
+var entries = JSON.parse(localStorage.getItem('entries')) || defaultEntries;
 var ipssAnswers = JSON.parse(localStorage.getItem('ipss')) || {};
 var ipssHistory = JSON.parse(localStorage.getItem('ipssHistory')) || [];
 var ipssQuestions = [
