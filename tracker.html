@@ -37,13 +37,18 @@ button:hover { transform: translateY(-2px); }
 .entry-volume { color: #555; font-size: 12px; }
 .delete-btn { background: #ff6b6b; padding: 5px 10px; font-size: 11px; }
 .ipss-question { background: #f9f9f9; padding: 15px; margin-bottom: 12px; border-left: 4px solid #667eea; border-radius: 4px; }
-.ipss-label { font-weight: 600; color: #333; font-size: 13px; margin-bottom: 8px; }
-.ipss-options { display: flex; gap: 8px; flex-wrap: wrap; }
-.ipss-btn { padding: 6px 10px; border: 2px solid #e0e0e0; border-radius: 4px; background: white; cursor: pointer; font-size: 12px; font-weight: 600; }
+.ipss-label { font-weight: 600; color: #333; font-size: 13px; margin-bottom: 10px; }
+.ipss-options { display: grid; grid-template-columns: repeat(auto-fit, minmax(45px, 1fr)); gap: 8px; }
+.ipss-btn { padding: 10px; border: 2px solid #e0e0e0; border-radius: 4px; background: white; cursor: pointer; font-size: 13px; font-weight: 600; text-align: center; }
+.ipss-btn:hover { border-color: #667eea; }
 .ipss-btn.selected { background: #667eea; color: white; border-color: #667eea; }
 .ipss-score { background: #f0f7ff; padding: 15px; border-radius: 6px; text-align: center; margin-top: 15px; }
 .ipss-total { font-size: 28px; font-weight: 700; color: #667eea; }
 .msg { background: #d4edda; color: #155724; padding: 10px; border-radius: 6px; margin-top: 10px; display: none; }
+.ipss-history { max-height: 300px; overflow-y: auto; border: 1px solid #e0e0e0; border-radius: 6px; padding: 10px; margin-top: 20px; }
+.ipss-entry { background: #f9f9f9; padding: 12px; margin-bottom: 8px; border-left: 4px solid #667eea; border-radius: 4px; }
+.ipss-entry-time { font-weight: 600; color: #667eea; font-size: 12px; }
+.ipss-entry-score { color: #555; font-size: 13px; margin-top: 4px; }
 </style>
 </head>
 <body>
@@ -61,7 +66,6 @@ button:hover { transform: translateY(-2px); }
 <button class="nav-tab active" onclick="switchTab('tracking')">Tracking</button>
 <button class="nav-tab" onclick="switchTab('ipss')">IPSS</button>
 </div>
-
 <div id="tracking" class="tab-content active">
 <div class="section">
 <h2>Statistics</h2>
@@ -72,7 +76,6 @@ button:hover { transform: translateY(-2px); }
 <div class="stat-box"><div class="stat-label">With Symptoms</div><div class="stat-value" id="withSymptoms">0</div></div>
 </div>
 </div>
-
 <div class="section">
 <h2>Add Entry</h2>
 <div class="form-group">
@@ -97,13 +100,11 @@ button:hover { transform: translateY(-2px); }
 <button onclick="addEntry()">Add Entry</button>
 <div id="addMsg" class="msg"></div>
 </div>
-
 <div class="section">
 <h2>All Entries</h2>
 <div class="entries" id="entriesList"></div>
 </div>
 </div>
-
 <div id="ipss" class="tab-content">
 <div class="section">
 <h2>IPSS Questionnaire</h2>
@@ -112,46 +113,46 @@ button:hover { transform: translateY(-2px); }
 <div style="font-size: 12px; color: #666; text-transform: uppercase; margin-bottom: 8px;">Total Score</div>
 <div class="ipss-total" id="ipssTotal">-</div>
 </div>
-<button onclick="saveIPSS()" style="width: 100%; margin-top: 15px;">Save IPSS</button>
+<button onclick="saveIPSS()" style="width: 100%; margin-top: 15px;">Save IPSS Results</button>
 <div id="ipssMsg" class="msg"></div>
 </div>
+<div class="section">
+<h2>IPSS History</h2>
+<div class="ipss-history" id="ipssHistory"></div>
 </div>
-
 </div>
 </div>
-
+</div>
 <script>
 var entries = JSON.parse(localStorage.getItem('entries')) || [];
 var ipssAnswers = JSON.parse(localStorage.getItem('ipss')) || {};
+var ipssHistory = JSON.parse(localStorage.getItem('ipssHistory')) || [];
 var ipssQuestions = [
-{q: '1. Incomplete emptying: How often have you had a sensation of not emptying your bladder completely?', opts: 8},
-{q: '2. Frequency: How often have you had to urinate less than every 2 hours?', opts: 8},
-{q: '3. Intermittency: How often have you had to stop and start again while urinating?', opts: 8},
-{q: '4. Urgency: How often have you found it difficult to postpone urination?', opts: 8},
-{q: '5. Weak stream: How often have you had a weak urinary stream?', opts: 8},
-{q: '6. Straining: How often have you had to strain to start urination?', opts: 8},
-{q: '7. Nocturia: How many times do you typically get up at night to urinate?', opts: 8},
-{q: '8. Post-void dribbling: How often have you experienced leakage after you finished urinating?', opts: 8}
+{q: '1. Incomplete emptying: How often have you had a sensation of not emptying your bladder completely?', max: 5},
+{q: '2. Frequency: How often have you had to urinate less than every 2 hours?', max: 5},
+{q: '3. Intermittency: How often have you had to stop and start again while urinating?', max: 5},
+{q: '4. Urgency: How often have you found it difficult to postpone urination?', max: 5},
+{q: '5. Weak stream: How often have you had a weak urinary stream?', max: 5},
+{q: '6. Straining: How often have you had to strain to start urination?', max: 5},
+{q: '7. Nocturia: How many times do you typically get up at night to urinate?', max: 5},
+{q: '8. Post-void dribbling: How often have you experienced leakage after you finished urinating?', max: 5}
 ];
-
 function switchTab(tab) {
 document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
 document.getElementById(tab).classList.add('active');
 document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
 event.target.classList.add('active');
+if (tab === 'ipss') renderIPSSHistory();
 }
-
 function addEntry() {
 var time = document.getElementById('entryTime').value;
 var type = document.getElementById('entryType').value;
 var volume = parseInt(document.getElementById('entryVolume').value);
 var desc = document.getElementById('entryDesc').value;
-
 if (!time || !volume) {
 alert('Enter date/time and volume');
 return;
 }
-
 entries.push({time, type, volume, desc, id: Date.now()});
 localStorage.setItem('entries', JSON.stringify(entries));
 document.getElementById('entryTime').value = '';
@@ -163,14 +164,12 @@ setTimeout(() => document.getElementById('addMsg').style.display = 'none', 3000)
 updateStats();
 renderEntries();
 }
-
 function deleteEntry(id) {
 entries = entries.filter(e => e.id !== id);
 localStorage.setItem('entries', JSON.stringify(entries));
 updateStats();
 renderEntries();
 }
-
 function updateStats() {
 var urine = entries.filter(e => e.type === 'urine');
 var totalVolume = urine.reduce((a, e) => a + e.volume, 0);
@@ -179,7 +178,6 @@ document.getElementById('totalVolume').textContent = totalVolume;
 document.getElementById('avgVolume').textContent = urine.length > 0 ? Math.round(totalVolume / urine.length) : 0;
 document.getElementById('withSymptoms').textContent = entries.filter(e => e.desc && e.desc.length > 0).length;
 }
-
 function renderEntries() {
 var html = entries.map(e => {
 var dt = new Date(e.time).toLocaleString('en-GB');
@@ -187,10 +185,9 @@ return '<div class="entry"><div class="entry-info"><div class="entry-time">' + d
 }).join('');
 document.getElementById('entriesList').innerHTML = html || '<p style="color: #999; text-align: center;">No entries yet</p>';
 }
-
 function renderIPSS() {
 var html = ipssQuestions.map((q, idx) => {
-var opts = Array.from({length: q.opts}, (_, i) => {
+var opts = Array.from({length: q.max + 1}, (_, i) => {
 var selected = ipssAnswers[idx] === i ? 'selected' : '';
 return '<button class="ipss-btn ' + selected + '" onclick="setIPSS(' + idx + ', ' + i + ')">' + i + '</button>';
 }).join('');
@@ -199,32 +196,38 @@ return '<div class="ipss-question"><div class="ipss-label">' + q.q + '</div><div
 document.getElementById('ipssQuestions').innerHTML = html;
 updateIPSSTotal();
 }
-
 function setIPSS(q, val) {
 ipssAnswers[q] = val;
 renderIPSS();
 }
-
 function updateIPSSTotal() {
 var total = Object.values(ipssAnswers).reduce((a, b) => a + b, 0);
 document.getElementById('ipssTotal').textContent = Object.keys(ipssAnswers).length === 8 ? total : '-';
 }
-
 function saveIPSS() {
 if (Object.keys(ipssAnswers).length !== 8) {
 alert('Answer all 8 questions');
 return;
 }
-localStorage.setItem('ipss', JSON.stringify(ipssAnswers));
 var total = Object.values(ipssAnswers).reduce((a, b) => a + b, 0);
-document.getElementById('ipssMsg').textContent = 'IPSS score ' + total + ' saved';
+var timestamp = new Date().toLocaleString('en-GB');
+ipssHistory.push({timestamp: timestamp, score: total, answers: JSON.parse(JSON.stringify(ipssAnswers))});
+localStorage.setItem('ipssHistory', JSON.stringify(ipssHistory));
+document.getElementById('ipssMsg').textContent = 'IPSS score ' + total + ' saved at ' + timestamp;
 document.getElementById('ipssMsg').style.display = 'block';
 setTimeout(() => document.getElementById('ipssMsg').style.display = 'none', 3000);
+renderIPSSHistory();
 }
-
+function renderIPSSHistory() {
+var html = ipssHistory.map(h => {
+return '<div class="ipss-entry"><div class="ipss-entry-time">' + h.timestamp + '</div><div class="ipss-entry-score">Score: ' + h.score + ' / 35</div></div>';
+}).reverse().join('');
+document.getElementById('ipssHistory').innerHTML = html || '<p style="color: #999; text-align: center;">No saved results yet</p>';
+}
 updateStats();
 renderEntries();
 renderIPSS();
+renderIPSSHistory();
 </script>
 </body>
 </html>
