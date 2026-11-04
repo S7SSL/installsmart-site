@@ -8,6 +8,8 @@
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
+  gtag('consent', 'default', {analytics_storage: 'denied', ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied', wait_for_update: 500});
+  try { if (localStorage.getItem('isa-consent') === 'granted') gtag('consent', 'update', {analytics_storage: 'granted'}); } catch (e) {}
   gtag('js', new Date());
   gtag('config', 'G-XZV7YZ974L');
 </script>
@@ -885,7 +887,7 @@ function handleAuditForm(e) {
     <a href="/terms">Terms</a>
     <a href="https://www.linkedin.com/in/satlally/" target="_blank" rel="noopener">LinkedIn — Connect with Sat</a>
   </div>
-  <p>&copy; 2026 InstallSmart.AI — Kaizen Finance Ltd. All rights reserved.</p>
+  <p>&copy; 2026 InstallSmart.AI. All rights reserved. <a href="#" data-cookie-settings style="color:inherit">Cookie settings</a></p>
   <p style="margin-top: 8px; font-size: 0.65rem; color: rgba(136,153,187,0.5);">Independent AI strategy &amp; advisory for London SMEs.</p>
 </footer>
 
@@ -951,5 +953,6 @@ s.parentNode.insertBefore(b, s);})(window.lintrk);
 <noscript>
 <img height="1" width="1" style="display:none;" alt="" src="https://px.ads.linkedin.com/collect/?pid=8777882&fmt=gif" />
 </noscript>
+<script src="/consent.js" defer></script>
 </body>
 </html>
