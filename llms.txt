@@ -1,0 +1,21 @@
+# InstallSmart.AI
+
+> Independent AI strategy and advisory for London SMEs. No software to sell and no referral fees: we tell you what to build, what to buy and who to hire, then oversee the delivery. A trading name of Kaizen Finance Ltd.
+
+## Services
+- [AI Consultant London](https://installsmart.ai/services/ai-consultant-london): vendor-neutral AI strategy for SMEs
+- [AI Readiness Assessment](https://installsmart.ai/services/ai-readiness-assessment): gaps, priorities and quick wins, fixed fee
+- [AI Vendor Selection](https://installsmart.ai/services/ai-vendor-selection): independent evaluation, no commissions
+- [AI Efficiency Audit](https://installsmart.ai/services/ai-efficiency-audit): 2-hour deep dive and prioritised action plan, £495
+- [AI Growth Partner](https://installsmart.ai/services/ai-growth-partner): fractional AI partner retainer
+
+## Guides
+- [What can AI do for a UK small business?](https://installsmart.ai/blog/what-can-ai-do-for-small-business)
+- [How much does AI cost a UK small business?](https://installsmart.ai/blog/how-much-does-ai-cost-small-business)
+- [AI vs hiring](https://installsmart.ai/blog/ai-vs-hiring)
+- [How to implement AI in your business](https://installsmart.ai/blog/how-to-implement-ai-in-your-business)
+- [AI tools for UK small businesses in 2026](https://installsmart.ai/blog/ai-tools-uk-small-business-2026)
+
+## Contact
+- Email: sat@installsmart.ai
+- Book a call: https://calendly.com/sat-installsmart/30min
