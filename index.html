@@ -795,8 +795,10 @@ footer a { color: var(--cyan); text-decoration: none; }
 
 <script>
 function handleAuditForm(e) {
-  // Enquiries go by email to sat@installsmart.ai through FormSubmit (free, no account).
-  // The first submission after deploy sends an activation email to that inbox: click it once.
+  // Enquiries are emailed to sat@installsmart.ai by Web3Forms (free plan).
+  // The access key is public by design: it only lets this form send to that inbox.
+  // Key from https://web3forms.com (created with sat@installsmart.ai).
+  const W3F_KEY = 'PASTE-WEB3FORMS-ACCESS-KEY';
   e.preventDefault();
   const form = document.getElementById('isa-audit-form');
   const success = document.getElementById('audit-success');
@@ -809,31 +811,40 @@ function handleAuditForm(e) {
   const label = button.textContent;
   button.textContent = 'Sending…';
 
+  const service = new URLSearchParams(location.search).get('enquiry') || 'homepage';
   const payload = {
+    access_key: W3F_KEY,
+    subject: 'InstallSmart enquiry: ' + data.get('firstname') + ' (' + data.get('company') + ')',
+    from_name: 'InstallSmart website',
     name: data.get('firstname'),
     company: data.get('company'),
     email: data.get('email'),
+    replyto: data.get('email'),
     message: data.get('message') || '(none)',
-    service: new URLSearchParams(location.search).get('enquiry') || 'homepage',
+    service: service,
     page: location.href,
-    _subject: 'InstallSmart enquiry: ' + data.get('firstname') + ' (' + data.get('company') + ')',
-    _replyto: data.get('email'),
-    _template: 'table'
+    botcheck: ''
   };
 
-  fetch('https://formsubmit.co/ajax/sat@installsmart.ai', {
+  // Never leave the visitor waiting: give up after 12 seconds and show the email fallback.
+  const ctl = new AbortController();
+  const timer = setTimeout(() => ctl.abort(), 12000);
+  fetch('https://api.web3forms.com/submit', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-    body: JSON.stringify(payload)
+    body: JSON.stringify(payload),
+    signal: ctl.signal
   })
-    .then(r => r.json().then(j => ({ ok: r.ok, j })))
-    .then(({ ok, j }) => {
-      if (!ok || String(j.success) !== 'true') throw new Error(j.message || 'send failed');
+    .then(r => r.json())
+    .then(j => {
+      clearTimeout(timer);
+      if (!j.success) throw new Error(j.message || 'send failed');
       form.style.display = 'none';
       success.style.display = 'block';
-      try { gtag('event', 'generate_lead', { form: 'free_call', service: payload.service }); } catch (_) {}
+      try { gtag('event', 'generate_lead', { form: 'free_call', service: service }); } catch (_) {}
     })
     .catch(() => {
+      clearTimeout(timer);
       button.disabled = false;
       button.textContent = label;
       error.style.display = 'block';
