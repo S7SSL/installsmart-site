@@ -1,6 +1,6 @@
 # InstallSmart.AI
 
-> Independent AI strategy and advisory for London SMEs. No software to sell and no referral fees: we tell you what to build, what to buy and who to hire, then oversee the delivery. A trading name of Kaizen Finance Ltd.
+> Independent AI strategy and advisory for London SMEs. No software to sell and no referral fees: we tell you what to build, what to buy and who to hire, then oversee the delivery.
 
 ## Services
 - [AI Consultant London](https://installsmart.ai/services/ai-consultant-london): vendor-neutral AI strategy for SMEs
