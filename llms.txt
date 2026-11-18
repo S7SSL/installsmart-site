@@ -9,6 +9,9 @@
 - [AI Efficiency Audit](https://installsmart.ai/services/ai-efficiency-audit): 2-hour deep dive and prioritised action plan, £495
 - [AI Growth Partner](https://installsmart.ai/services/ai-growth-partner): fractional AI partner retainer
 
+## Public sector and research
+- [Public Sector and Research](https://installsmart.ai/public-sector): applied AI research, evidence reviews and advisory for government and public bodies; Cyber Essentials certified; university research partners
+
 ## Guides
 - [What can AI do for a UK small business?](https://installsmart.ai/blog/what-can-ai-do-for-small-business)
 - [How much does AI cost a UK small business?](https://installsmart.ai/blog/how-much-does-ai-cost-small-business)

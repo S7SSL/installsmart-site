@@ -129,8 +129,9 @@ body { font-family: var(--font-body); background: var(--bg-deep); color: var(--w
 nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 0 40px; height: 70px; display: flex; align-items: center; justify-content: space-between; background: rgba(5, 10, 20, 0.85); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(0, 229, 255, 0.1); }
 .logo { font-family: var(--font-display); font-size: 1.3rem; font-weight: 700; letter-spacing: 2px; color: var(--white); }
 .logo span { color: var(--cyan); } .logo .dot { color: var(--magenta); }
-.nav-links { display: flex; align-items: center; gap: 30px; list-style: none; }
+.nav-links { display: flex; align-items: center; gap: 22px; list-style: none; white-space: nowrap; }
 .nav-links a { color: var(--grey); text-decoration: none; font-family: var(--font-mono); font-size: 0.8rem; letter-spacing: 1px; text-transform: uppercase; transition: all 0.3s; position: relative; }
+@media (min-width: 1201px) and (max-width: 1480px) { .nav-links { gap: 16px; } .nav-links a { font-size: 0.68rem; letter-spacing: 0.5px; } .nav-links .nav-cta { padding: 8px 14px; } }
 .nav-links a:hover { color: var(--cyan); }
 .nav-links a::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1px; background: var(--cyan); transition: width 0.3s; }
 .nav-links a:hover::after { width: 100%; }
@@ -300,11 +301,13 @@ footer a { color: var(--cyan); text-decoration: none; }
 /* MOBILE */
 .mobile-toggle { display: none; flex-direction: column; gap: 5px; cursor: pointer; z-index: 101; }
 .mobile-toggle span { width: 25px; height: 2px; background: var(--cyan); transition: all 0.3s; }
-@media (max-width: 768px) {
-  nav { padding: 0 20px; }
+@media (max-width: 1200px) {
   .mobile-toggle { display: flex; }
   .nav-links { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: rgba(5, 10, 20, 0.98); flex-direction: column; justify-content: center; align-items: center; gap: 30px; }
   .nav-links.open { display: flex; }
+}
+@media (max-width: 768px) {
+  nav { padding: 0 20px; }
   .stats-bar { gap: 30px; }
   .hero h1 { font-size: 1.8rem; }
   .service-pills { gap: 8px; }
@@ -353,6 +356,7 @@ footer a { color: var(--cyan); text-decoration: none; }
     <li><a href="#pricing">Pricing</a></li>
     <li><a href="#faq">FAQ</a></li>
     <li><a href="/blog/">Blog</a></li>
+    <li><a href="/public-sector">Tenders</a></li>
     <li><a href="/services/ai-efficiency-audit.html" style="color: var(--cyan);">AI Audit £495</a></li>
     <li><a href="/services/ai-growth-partner.html" style="color: #ffb800;">Growth Partner</a></li>
     <li><a href="#audit" class="nav-cta">Book a Free Call</a></li>
@@ -389,6 +393,7 @@ footer a { color: var(--cyan); text-decoration: none; }
 <div style="position:relative; z-index:2; background:rgba(10,17,40,0.8); border-top:1px solid rgba(0,229,255,0.08); border-bottom:1px solid rgba(0,229,255,0.08); padding:18px 40px;">
   <div style="max-width:900px; margin:0 auto; display:flex; flex-wrap:wrap; justify-content:center; align-items:center; gap:8px 0;">
     <span style="font-family:var(--font-mono); font-size:0.68rem; color:var(--grey); letter-spacing:3px; text-transform:uppercase; margin-right:24px;">// Trusted by decision-makers</span>
+    <a href="https://registry.blockmarktech.com/certificates/43b00b1f-1c1c-4683-8ef1-0d2251c064fa/" target="_blank" rel="noopener" title="Verify our Cyber Essentials certificate" style="font-family:var(--font-mono); font-size:0.78rem; color:var(--white); text-decoration:none; padding:6px 18px; border-right:1px solid rgba(0,229,255,0.12); display:inline-flex; align-items:center; gap:8px;"><img src="/cyber-essentials-certified.webp" alt="Cyber Essentials Certified" width="22" height="26" loading="lazy" style="display:block"> <strong style="color:var(--cyan);">Cyber Essentials</strong> certified</a>
     <span style="font-family:var(--font-mono); font-size:0.78rem; color:var(--white); padding:6px 18px; border-right:1px solid rgba(0,229,255,0.12);">📍 <strong style="color:var(--cyan);">47%</strong> London audience</span>
     <span style="font-family:var(--font-mono); font-size:0.78rem; color:var(--white); padding:6px 18px; border-right:1px solid rgba(0,229,255,0.12);">🏢 <strong style="color:var(--cyan);">Directors &amp; Owners</strong></span>
     <span style="font-family:var(--font-mono); font-size:0.78rem; color:var(--white); padding:6px 18px; border-right:1px solid rgba(0,229,255,0.12);">👥 <strong style="color:var(--cyan);">5,600+</strong> LinkedIn followers</span>
@@ -874,6 +879,17 @@ function handleAuditForm(e) {
   if (svc && box && !box.value) box.value = 'Interested in: ' + svc.replace(/-/g, ' ');
 })();
 </script>
+
+<!-- PUBLIC SECTOR -->
+<section id="public-sector" style="padding-top:0;">
+  <div class="section-label">// Public Sector &amp; Research</div>
+  <div class="problem-inner">
+    <h2>Evidence-led AI research for government, regulators and public bodies.</h2>
+    <p>Alongside advisory work for SMEs, InstallSmart.AI delivers applied research commissions: how AI crawlers behave on live websites, which content-control standards work, international comparisons across the UK, EU, Japan and South Korea and the policy options that follow. We deliver with named university research partners and remain the single accountable prime contractor.</p>
+    <p>We are <strong>Cyber Essentials certified</strong> for the whole organisation, UK GDPR compliant and set up for Find a Tender and Contracts Finder opportunities as well as direct commissions.</p>
+    <a href="/public-sector" class="problem-cta">Public sector capability and credentials →</a>
+  </div>
+</section>
 
 <!-- FAQ -->
 <section id="faq">
