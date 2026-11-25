@@ -12,6 +12,9 @@
 ## Public sector and research
 - [Public Sector and Research](https://installsmart.ai/public-sector): applied AI research, evidence reviews and advisory for government and public bodies; Cyber Essentials certified; university research partners
 
+## Products
+- [NFC Tap Cards](https://nfc.installsmart.ai/): matt black NFC cards coded to open a Google review page, Instagram or TikTok with one tap; £25 plus £3.95 UK tracked delivery
+
 ## Guides
 - [What can AI do for a UK small business?](https://installsmart.ai/blog/what-can-ai-do-for-small-business)
 - [How much does AI cost a UK small business?](https://installsmart.ai/blog/how-much-does-ai-cost-small-business)
